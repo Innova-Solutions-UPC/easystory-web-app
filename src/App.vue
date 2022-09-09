@@ -201,3 +201,4 @@ import AppTopbar from "./components/layouts/AppTopbar.vue";
 import HelloWorld from "./components/HelloWorld.vue";
 import AppMenu from "./components/layouts/AppMenu.vue";
 </script>
+

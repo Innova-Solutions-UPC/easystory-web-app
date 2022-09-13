@@ -12,11 +12,15 @@ import "./assets/main.css";
 import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
 import Card from 'primevue/card';
+
 import Dialog from "primevue/dialog";
 import Chip from 'primevue/chip';
 import Divider from 'primevue/divider';
 import Tag from 'primevue/tag';
 import ScrollPanel from 'primevue/scrollpanel';
+
+
+
 
 import 'primeicons/primeicons.css';
 import "primeflex/primeflex.css";
@@ -43,5 +47,6 @@ app.component('Divider', Divider);
 app.component('Tag', Tag);
 app.component('ScrollPanel', ScrollPanel);
 app.component("Dialog", Dialog);
+
 
 app.mount("#app");

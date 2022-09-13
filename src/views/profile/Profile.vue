@@ -5,8 +5,8 @@
         <PersonalInformation />
       </div>
       <div class="block font-bold text-center p-4  mb-3 bottom-color">
-        <About />
         <ContinueReading />
+        <About />
       </div>
     </div>
   </div>

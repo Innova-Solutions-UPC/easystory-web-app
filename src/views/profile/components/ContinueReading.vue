@@ -6,11 +6,10 @@
     </template>
     <template #content>
       <div class="content-container">
+        <ScrollPanel style="width: 100%; height: 200px" class="p-scrollpanel-bar-y">
         <Card v-for="reading in continueReadingBooks">
           <template #content>
             <div class="divider">
-
-
           <div>
             <img style="border-radius: 20px; max-width: 100px" alt="user header"
                  :src="reading.imageUrl">
@@ -23,6 +22,7 @@
             </div>
           </template>
         </Card>
+        </ScrollPanel>
       </div>
 
     </template>
@@ -40,8 +40,8 @@ const continueReadingBooks: Array<{ name: string, imageUrl: string, pageAt: numb
 <style scoped>
 .reading-information {
   position: absolute;
-  left: 35%;
-  top: 32%;
+  left: 42%;
+  top: -8vh;
   max-width: fit-content;
   max-height: fit-content;
 }
@@ -59,4 +59,25 @@ const continueReadingBooks: Array<{ name: string, imageUrl: string, pageAt: numb
   display: flex;
   gap: 1rem
 }
+
+@media screen and (max-width: 799px) {
+  .reading-information {
+    position: absolute;
+    margin-top: 65vh;
+    width: 80vw;
+    margin-left: 10vw;
+    margin-right: 10vw;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .reading-information {
+    position: absolute;
+    left: 42%;
+    top: -8vh;
+    max-width: fit-content;
+    max-height: fit-content;
+  }
+}
+
 </style>

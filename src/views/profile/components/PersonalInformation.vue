@@ -33,15 +33,28 @@
 .personal-information {
   position: absolute;
   background-color: #ffffff;
-  margin-left: 5%;
-  margin-top: 5%;
   max-height: fit-content;
   color: #181818;
   display: flex;
   flex-direction: column;
-  max-width: fit-content;
   -webkit-box-shadow: -12px 10px 32px 4px rgb(32, 91, 165);
   -moz-box-shadow: -12px 10px 32px 4px rgb(14, 79, 160);
   box-shadow: -12px 10px 32px 4px rgb(32, 106, 199);
+}
+
+@media screen and (min-width: 800px) {
+  .personal-information {
+    margin-left: 5%;
+    margin-top: 5%;
+    max-width: fit-content;
+  }
+}
+
+@media screen and (max-width: 799px) {
+  .personal-information {
+    width: 80vw;
+    margin-left: 10vw;
+    margin-right: 10vw;
+  }
 }
 </style>

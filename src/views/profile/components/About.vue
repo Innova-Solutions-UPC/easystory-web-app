@@ -6,8 +6,16 @@
     </template>
     <template #content>
       <div class="content-container">
-        <h4 style="color: #181818; margin-right: 20px"><code>Categorias favoritas</code></h4>
-        <Tag v-for="category in favoriteTags" rounded :value="category.name" :icon="category.icon"/>
+        <div class="flex gap-1">
+          <h4 style="color: #181818; margin-right: 20px"><code>Categorias favoritas</code></h4>
+          <Tag v-for="category in favoriteTags" rounded :value="category.name" :icon="category.icon"/>
+        </div>
+
+        <div class="flex gap-1">
+          <h4 style="color: #181818; margin-right: 20px"><code>Descipcion</code></h4>
+          <h4 style="color: #181818; margin-right: 20px"><p>An addictively sweet romance with a touch of danger.</p></h4>
+        </div>
+
       </div>
 
     </template>
@@ -22,15 +30,30 @@ const favoriteTags: Array<{ name: string, icon: string }> = [{name: 'Fitness', i
 </script>
 
 <style scoped>
-.about-information {
-  max-width: fit-content;
-  position: absolute;
-  left: 40%;
-  top: -30px;
-}
+
 
 .content-container {
   display: flex;
+  flex-shrink: initial;
   gap: 5px;
+  flex-direction: column;
+}
+@media screen and (min-width: 800px) {
+  .about-information {
+    position: absolute;
+    left: 35%;
+    top: 40vh;
+    width: 700px;
+  }
+}
+
+@media screen and (max-width: 799px) {
+  .about-information {
+    position: absolute;
+    margin-top: 30%;
+    margin-left: 10vw;
+    width: 80vw;
+    margin-right: 10vw;
+  }
 }
 </style>

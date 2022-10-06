@@ -11,7 +11,9 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "animate.css": "^4.1.1",
     "pinia": "^2.0.21",
+    "primeflex": "^3.2.1",
     "primeicons": "^5.0.0",
     "primevue": "^3.17.0",
     "vue": "^3.2.38",

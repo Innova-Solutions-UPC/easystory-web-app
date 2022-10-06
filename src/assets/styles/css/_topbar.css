@@ -1,0 +1,82 @@
+.AppTopbar {
+  position: relative;
+  width: 100%;
+  border: 1px solid #ebebeb;
+}
+
+.AppTopbar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.AppTopbar .container .logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.AppTopbar .container .logo .btn-mobile {
+  display: none;
+}
+
+.AppTopbar .container .nav-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.AppTopbar .container .nav-buttons ul {
+  list-style: none;
+  display: inline-flex;
+}
+
+.AppTopbar .container .nav-buttons .btn-nav {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  color: black;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.AppTopbar .container .nav-buttons .btn-nav i {
+  font-size: 1.5rem;
+}
+
+.AppTopbar .container .nav-buttons .btn-nav span {
+  font-size: 1rem;
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .AppTopbar .container .nav-buttons {
+    display: none;
+  }
+
+  .AppTopbar .container .logo {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .AppTopbar .container .logo .topbar-logo {
+    width: auto;
+    order: 2;
+  }
+
+  .AppTopbar .container .logo .btn-mobile {
+    display: inline-flex;
+    order: 3;
+  }
+
+  .AppTopbar .container .logo .topbar-btn {
+    order: 1;
+  }
+}

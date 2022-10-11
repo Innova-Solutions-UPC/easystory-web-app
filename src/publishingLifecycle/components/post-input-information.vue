@@ -25,6 +25,12 @@
         <Dropdown v-model="status" :options="statusOptions"  placeholder="Select status" />
         </span>
       </div>
+      <div>
+        <span class="p-float-label">
+        <label for="username">Hashtags</label>
+        <Chips style="max-width:250px; max-height: 50px" v-model="hashtags" />
+        </span>
+      </div>
 
     </div>
   </div>
@@ -32,21 +38,27 @@
 
 <script lang="ts" setup>
 import {ref} from "vue";
-import {EPostStatus} from "@/publishingLifecycle/model/IPublishing";
+import {EPostStatus, ICreatePost} from "@/publishingLifecycle/model/IPublishing";
+
+
+const props = defineProps<{
+  inputInformation: ICreatePost;
+}>()
 
 const statusOptions = Object.keys(EPostStatus).filter((v) => isNaN(Number(v)));
-console.log(statusOptions)
 
-const tittle = ref('');
-const description = ref('');
-const image = ref('');
-const status = ref('');
+const tittle = ref(props.inputInformation.title);
+const description = ref(props.inputInformation.description);
+const image = ref(props.inputInformation.image);
+const status = ref(props.inputInformation.status);
+const hashtags = ref(props.inputInformation.hashtags)
 
 defineExpose({
   tittle,
   description,
   image,
-  status
+  status,
+  hashtags
 })
 
 </script>

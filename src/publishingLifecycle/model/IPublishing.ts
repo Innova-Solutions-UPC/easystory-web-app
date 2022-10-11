@@ -8,8 +8,8 @@ export interface ICreatePost {
 }
 
 export enum EPostStatus{
-    Draft=0,
-    Published=1,
-    Discontinued=2,
+    Draft='draft',
+    Published='published',
+    Discontinued='discontinued',
 }
 

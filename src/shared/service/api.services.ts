@@ -1,6 +1,6 @@
 import {useRouter} from "vue-router";
-import axios, {AxiosError} from "axios";
-import type {AxiosRequestConfig, AxiosResponse} from "axios"
+import axios from "axios";
+import type {AxiosRequestConfig,AxiosError, AxiosResponse} from "axios"
 import {StatusCodes} from "http-status-codes";
 
 export abstract class ApiServices {

@@ -18,7 +18,7 @@ import Chip from 'primevue/chip';
 import Divider from 'primevue/divider';
 import Tag from 'primevue/tag';
 import ScrollPanel from 'primevue/scrollpanel';
-
+import Dropdown from "primevue/dropdown";
 
 
 
@@ -48,6 +48,7 @@ app.component('Divider', Divider);
 app.component('Tag', Tag);
 app.component('ScrollPanel', ScrollPanel);
 app.component("Dialog", Dialog);
+app.component('Dropdown', Dropdown)
 
 
 app.mount("#app");

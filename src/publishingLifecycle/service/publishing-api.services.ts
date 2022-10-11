@@ -35,6 +35,4 @@ export class PublishingApiServices extends ApiServices{
         return (await this.patch('', p_post)).status;
     }
 
-
-
 }

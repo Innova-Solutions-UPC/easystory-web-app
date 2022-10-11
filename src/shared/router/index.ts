@@ -24,6 +24,14 @@ const router = createRouter({
         visible: true
       }
     },
+    {
+      path: '/create-post',
+      name: 'CreatePost',
+      component: () => import('@/publishingLifecycle/views/createNewPost.vue'),
+      meta: {
+        visible: true
+      }
+    }
 
   ]
 })

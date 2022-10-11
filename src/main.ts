@@ -30,6 +30,8 @@ import "primeicons/primeicons.css";
 
 import './shared/assets/main.css'
 import 'animate.css';
+import Chips from "primevue/chips";
+import VirtualScroller from "primevue/virtualscroller";
 
 const app = createApp(App);
 
@@ -46,9 +48,11 @@ app.component('Card', Card);
 app.component('Chip', Chip);
 app.component('Divider', Divider);
 app.component('Tag', Tag);
+app.component('Chips', Chips)
 app.component('ScrollPanel', ScrollPanel);
 app.component("Dialog", Dialog);
 app.component('Dropdown', Dropdown)
+app.component('VirtualScroller', VirtualScroller);
 
 
 app.mount("#app");

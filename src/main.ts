@@ -4,10 +4,10 @@ import "primeicons/primeicons.css";
 import App from "./App.vue";
 import PrimeVue from "primevue/config";
 import StyleClass from "primevue/styleclass";
-import "./assets/styles/layout.css";
-import router from "./router";
+import "./shared/assets/styles/layout.css";
+import router from "./shared/router";
 
-import "./assets/main.css";
+import "./shared/assets/main.css";
 //PRIME VUE COMPONENTS
 import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
@@ -28,7 +28,7 @@ import "primevue/resources/themes/lara-light-blue/theme.css";
 import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
 
-import './assets/main.css'
+import './shared/assets/main.css'
 import 'animate.css';
 
 const app = createApp(App);

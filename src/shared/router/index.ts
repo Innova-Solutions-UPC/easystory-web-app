@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import ProfileView from '../views/personalLibrary/profile/Profile.vue'
+import ProfileView from '../../personalLibrary/profile/Profile.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,7 +7,7 @@ const router = createRouter({
     {
       path:'/login',
       name: 'Login',
-      component: () => import ('@/views/iam/login/Login.vue'),
+      component: () => import ('@/iam/login/Login.vue'),
       meta:{
         visible: false
       }
@@ -15,7 +15,7 @@ const router = createRouter({
     {
       path: '/profile',
       name: 'Profile',
-      component: () => import('@/views/personalLibrary/profile/Profile.vue'),
+      component: () => import('@/personalLibrary/profile/Profile.vue'),
       meta: {
         visible: true
       }

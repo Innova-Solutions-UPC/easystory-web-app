@@ -15,9 +15,9 @@
 <script lang="ts" setup>
 
 
-import PersonalInformation from "@/views/personalLibrary/profile/components/PersonalInformation.vue";
-import About from "@/views/personalLibrary/profile/components/About.vue";
-import ContinueReading from "@/views/personalLibrary/profile/components/ContinueReading.vue";
+import PersonalInformation from "@/personalLibrary/profile/components/PersonalInformation.vue";
+import About from "@/personalLibrary/profile/components/About.vue";
+import ContinueReading from "@/personalLibrary/profile/components/ContinueReading.vue";
 </script>
 
 <style scoped>

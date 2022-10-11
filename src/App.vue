@@ -197,8 +197,8 @@ export default {
 
 <script setup lang="ts">
 import { RouterLink, RouterView } from "vue-router";
-import AppTopbar from "./components/layouts/AppTopbar.vue";
-import HelloWorld from "./components/HelloWorld.vue";
-import AppMenu from "./components/layouts/AppMenu.vue";
+import AppTopbar from "./shared/components/layouts/AppTopbar.vue";
+import HelloWorld from "./shared/components/HelloWorld.vue";
+import AppMenu from "./shared/components/layouts/AppMenu.vue";
 </script>
 

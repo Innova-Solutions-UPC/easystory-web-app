@@ -1,5 +1,5 @@
 <template>
-  <div class="card-container ">
+  <div class="card-container">
     <div class="block  font-bold text-center p-4 border-round mb-3">
       <PostInputInformation ref="postInputInformation"/>
     </div>
@@ -37,10 +37,13 @@ const savePost = () => {
   newPost.image = postInputInformation.value.image;
   newPost.description = postInputInformation.value.description;
   newPost.title = postInputInformation.value.tittle;
+  newPost.status = postInputInformation.value.status;
   publishingController.createNewPost(newPost);
 }
 </script>
 
 <style scoped>
-
+.card-container{
+  margin-top: 2%;
+}
 </style>

@@ -14,13 +14,16 @@ import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
 import Card from 'primevue/card';
 import Editor from "primevue/editor";
-
 import Dialog from "primevue/dialog";
-import Chip from "primevue/chip";
-import Divider from "primevue/divider";
-import Tag from "primevue/tag";
-import ScrollPanel from "primevue/scrollpanel";
+import Chip from 'primevue/chip';
+import Divider from 'primevue/divider';
+import Tag from 'primevue/tag';
+import ScrollPanel from 'primevue/scrollpanel';
+import Dropdown from "primevue/dropdown";
 
+
+
+import 'primeicons/primeicons.css';
 import "primeicons/primeicons.css";
 import "primeflex/primeflex.css";
 import "primevue/resources/themes/lara-light-blue/theme.css";
@@ -61,4 +64,8 @@ app.component('Checkbox', Checkbox);
 app.component('Password', Password)
 app.component('Toast', Toast)
 app.provide('appController', appController )
+
+app.component('Dropdown', Dropdown)
+
+
 app.mount("#app");

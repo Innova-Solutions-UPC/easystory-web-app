@@ -19,6 +19,12 @@
             <label for="username">Image URL</label>
         </span>
       </div>
+      <div>
+        <span class="p-float-label">
+        <label for="username">Status</label>
+        <Dropdown v-model="status" :options="statusOptions"  placeholder="Select status" />
+        </span>
+      </div>
 
     </div>
   </div>
@@ -26,15 +32,21 @@
 
 <script lang="ts" setup>
 import {ref} from "vue";
+import {EPostStatus} from "@/publishingLifecycle/model/IPublishing";
+
+const statusOptions = Object.keys(EPostStatus).filter((v) => isNaN(Number(v)));
+console.log(statusOptions)
 
 const tittle = ref('');
 const description = ref('');
 const image = ref('');
+const status = ref('');
 
 defineExpose({
   tittle,
   description,
-  image
+  image,
+  status
 })
 
 </script>

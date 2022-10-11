@@ -12,7 +12,7 @@ import "./shared/assets/main.css";
 import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
 import Card from 'primevue/card';
-
+import Editor from "primevue/editor";
 import Dialog from "primevue/dialog";
 import Chip from 'primevue/chip';
 import Divider from 'primevue/divider';
@@ -41,6 +41,7 @@ app.use(router);
 
 app.component('InputText', InputText);
 app.component('Button', Button);
+app.component('Editor', Editor);
 app.component('Card', Card);
 app.component('Chip', Chip);
 app.component('Divider', Divider);

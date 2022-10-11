@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "animate.css": "^4.1.1",
+    "axios": "^1.1.2",
+    "http-status-codes": "^2.2.0",
     "pinia": "^2.0.21",
     "primeflex": "^3.2.1",
     "primeicons": "^5.0.0",
@@ -22,7 +24,7 @@
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.4",
     "@types/jsdom": "^20.0.0",
-    "@types/node": "^16.11.56",
+    "@types/node": "^16.11.65",
     "@vitejs/plugin-vue": "^3.0.3",
     "@vitejs/plugin-vue-jsx": "^2.0.1",
     "@vue/eslint-config-prettier": "^7.0.0",

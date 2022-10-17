@@ -18,7 +18,7 @@ import TextEditor from "@/publishingLifecycle/components/text-editor.vue";
 import {computed, reactive, ref} from "vue";
 import PostInputInformation from "@/publishingLifecycle/components/post-input-information.vue";
 import type {ICreatePost} from "@/publishingLifecycle/model/IPublishing";
-import {EPostStatus} from "@/publishingLifecycle/model/IPublishing";
+import type {EPostStatus} from "@/publishingLifecycle/model/IPublishing";
 
 const textEditor = ref<InstanceType<typeof TextEditor> | null>(null);
 const postInputInformation = ref<InstanceType<typeof PostInputInformation> | null>(null);

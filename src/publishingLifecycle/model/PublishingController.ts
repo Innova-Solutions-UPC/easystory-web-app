@@ -22,7 +22,7 @@ export class PublishingController {
         const selectedPost: ICreatePost = {
             title: 'Las aventuras de pepe',
             description: 'Pepe y sus aventuras',
-            image: 'www.pepe.com',
+            image: 'https://www.adobe.com/express/create/cover/media_181e3d2c78f153ae7bf0e19a2faeb9a76e234da30.jpeg?width=400&format=jpeg&optimize=medium',
             hashtags: ['romance'],
             status: EPostStatus.Published,
             content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis pharetra condimentum. Maecenas lacinia finibus mi a semper. Fusce commodo enim elementum, volutpat libero auctor, faucibus orci. Nullam dictum, est at sagittis efficitur, augue odio dapibus sapien, et ornare purus nisi in ex. Nullam molestie mattis neque, ornare cursus enim blandit vitae. Maecenas cursus, tortor venenatis dignissim consectetur, velit elit efficitur quam, ac laoreet elit felis ut neque. Pellentesque ut dictum ex, quis scelerisque enim. Fusce a nisi tristique, finibus massa ac, varius leo. Nulla maximus tortor ut nisi facilisis, non rhoncus purus tempus.\n" +

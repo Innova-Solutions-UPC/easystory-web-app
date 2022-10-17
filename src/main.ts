@@ -45,6 +45,8 @@ import ToastService from 'primevue/toastservice';
 
 import Chips from "primevue/chips";
 import VirtualScroller from "primevue/virtualscroller";
+import Image from "primevue/image";
+import FileUpload from "primevue/fileupload";
 
 
 const app = createApp(App);
@@ -63,7 +65,9 @@ app.component('Card', Card);
 app.component('Chip', Chip);
 app.component('Divider', Divider);
 app.component('Tag', Tag);
-app.component('Chips', Chips)
+app.component('Chips', Chips);
+app.component('Image', Image);
+app.component('FileUpload', FileUpload);
 app.component('ScrollPanel', ScrollPanel);
 app.component("Dialog", Dialog);
 app.component('Checkbox', Checkbox);

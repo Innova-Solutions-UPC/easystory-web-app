@@ -16,8 +16,8 @@
       <div v-if="inputInformation.image.length > 1 "  style="margin-top: 20%">
          <span class="p-float-label">
            <code class="image-edit">Edit</code>
-             <Image class="post-image" :src="imageToShow" alt="Image" width="150" height="150" @click="openModal" />
-           <Dialog header="Upload Image" v-model:visible="showImageModal" :breakpoints="{'960px': '75vw', '640px': '90vw'}" :style="{width: '50vw'}">
+             <Image class="post-image" :src="imageToShow" alt="Image" width="150" height="150" @click="showImageModalForEditing = true" />
+           <Dialog header="Upload Image" v-model:visible="showImageModalForEditing" :breakpoints="{'960px': '75vw', '640px': '90vw'}" :style="{width: '50vw'}">
             <ImageModal @upload-image="myUploader"  />
         </Dialog>
             <label for="username">Image</label>
@@ -26,8 +26,8 @@
       <div v-else >
         <span class="p-float-label">
         <label for="username">Image</label>
-        <Button label="Upload" @click="openModal"  />
-          <Dialog header="Upload Image" v-model:visible="showImageModal" :breakpoints="{'960px': '75vw', '640px': '90vw'}" :style="{width: '50vw'}">
+        <Button label="Upload" @click="showImageModalForCreating = true"  />
+          <Dialog header="Uploasasaasad Image" v-model:visible="showImageModalForCreating" :breakpoints="{'960px': '75vw', '640px': '90vw'}" :style="{width: '50vw'}">
             <ImageModal @upload-image="myUploader"  />
         </Dialog>
 
@@ -74,15 +74,15 @@ const imageToShow = ref(props.inputInformation.image);
 
 
 const myUploader = (data: FormData, blobUrl: string) => {
-  showImageModal.value =false;
+  showImageModalForEditing.value =false;
+  showImageModalForCreating.value = false;
   image.value = data;
   imageToShow.value = blobUrl;
 }
 
-const showImageModal = ref(false);
-const openModal=()=>{
-  showImageModal.value = true;
-}
+const showImageModalForEditing = ref(false);
+const showImageModalForCreating = ref(false);
+
 
 
 

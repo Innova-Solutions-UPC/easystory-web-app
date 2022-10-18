@@ -1,7 +1,9 @@
 import {useRouter} from "vue-router";
-import axios, {AxiosError} from "axios";
-import type {AxiosRequestConfig, AxiosResponse} from "axios"
+
+import type {AxiosRequestConfig, AxiosResponse, AxiosError} from "axios"
 import {StatusCodes} from "http-status-codes";
+import axios from "axios";
+import tokenService from "@/shared/service/token-api.services";
 
 export abstract class ApiServices {
     _baseUrl: string;
@@ -12,14 +14,15 @@ export abstract class ApiServices {
         this.router = useRouter();
         this._baseUrl = config.baseUrl;
         //TODO: set this with .env variables
-        this._fullBaseApiURL = 'baseUrl' + this._baseUrl;
+        this._fullBaseApiURL = 'https://easy-story-api.onrender.com' + this._baseUrl;
         //TODO:
-        //this.setHeader();
+        this.setHeader();
     }
 
     setHeader() {
         //todo: when working with auth
-        //axios.defaults.headers.common["Authorization"] = `Bearer ${tokenService.getToken()}`
+        axios.defaults.headers.common["Authorization"] = `Bearer ${tokenService.getToken()}`
+        axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*"
     }
 
     removeHeader() {

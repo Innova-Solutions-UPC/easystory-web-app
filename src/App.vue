@@ -2,9 +2,6 @@
   <div :class="containerApp">
     <AppTopbar />
     <div>
-      <AppMenu :model="menu" />
-    </div>
-    <div>
       <div>
         <router-view />
       </div>

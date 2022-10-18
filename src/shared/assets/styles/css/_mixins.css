@@ -10,3 +10,60 @@
     cursor: pointer;
     transition: background-color 0.2s;
 }
+
+.square-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-color: transparent;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    background-color: transparent;
+}
+
+
+
+.blue-btn {
+    background-color: #4717f6;
+    color: white;
+}
+
+/* Font Styles */
+.font-bold {
+    font-weight: bold;
+}
+
+.font-normal {
+    font-weight: normal;
+}
+
+/* Text Colors */
+
+.color-white {
+    color: white;
+}
+
+.color-black {
+    color: black;
+}
+
+.color-blue {
+    color: #4717f6;
+}
+
+/* Margin Left And Right */
+
+.mr-1 {
+    margin-right: 1rem;
+}
+
+.mr-2 {
+    margin-right: 2rem;
+}
+
+.mr-3 {
+    margin-right: 3rem;
+}

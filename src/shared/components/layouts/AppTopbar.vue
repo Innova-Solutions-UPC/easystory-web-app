@@ -3,10 +3,10 @@
     <div class="container">
       <div class="logo">
         <router-link class="topbar-logo" to="/">
-          <icon-community />
-          <span>EasyStory</span>
+          <icon-community class="color-blue" />
+          <span class="color-white font-bold mr-3">EasyStory</span>
         </router-link>
-        <button class="topbar-btn circular-btn" @click="onMenuToggle">
+        <button class="topbar-btn blue-btn square-btn" @click="onMenuToggle">
           <i class="pi pi-bars"></i>
         </button>
 
@@ -27,19 +27,19 @@
       <div class="nav-buttons">
         <ul>
           <li>
-            <button class="btn-nav">
+            <button class="square-btn blue-btn mr-2">
               <i class="pi pi-calendar"></i>
               <span>Events</span>
             </button>
           </li>
           <li>
-            <button class="btn-nav">
+            <button class="square-btn blue-btn mr-2">
               <i class="pi pi-cog"></i>
               <span>Settings</span>
             </button>
           </li>
           <li>
-            <button class="btn-nav">
+            <button class="square-btn blue-btn mr-2">
               <i class="pi pi-user"></i>
               <span>Profile</span>
             </button>

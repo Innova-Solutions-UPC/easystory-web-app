@@ -53,12 +53,12 @@
 <script lang="ts" setup>
 import { Ref, ref} from "vue";
 import ImageModal from "@/publishing/components/imageModal.vue";
-import type {CreatePost} from "@/publishing/model/entities/CreatePost";
-import {EPostStatus} from "@/publishing/model/entities/PostStatus";
+import type {CreatePostInterface} from "@/publishing/model/entities/createPost.interface";
+import {EPostStatus} from "@/publishing/model/entities/postStatus.enum";
 
 
 const props = defineProps<{
-  inputInformation: CreatePost;
+  inputInformation: CreatePostInterface;
 }>()
 
 const statusOptions = Object.keys(EPostStatus).filter((v) => isNaN(Number(v)));

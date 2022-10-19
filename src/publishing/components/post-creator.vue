@@ -17,8 +17,8 @@
 import TextEditor from "@/publishing/components/text-editor.vue";
 import {computed, reactive, ref} from "vue";
 import PostInputInformation from "@/publishing/components/post-input-information.vue";
-import type {CreatePost} from "@/publishing/model/entities/CreatePost";
-import {EPostStatus} from "@/publishing/model/entities/PostStatus";
+import type {CreatePostInterface} from "@/publishing/model/entities/createPost.interface";
+import {EPostStatus} from "@/publishing/model/entities/postStatus.enum";
 
 const textEditor = ref<InstanceType<typeof TextEditor> | null>(null);
 const postInputInformation = ref<InstanceType<typeof PostInputInformation> | null>(null);
@@ -41,7 +41,7 @@ const props = withDefaults(defineProps<{
 })
 
 
-const newPost: CreatePost = reactive({
+const newPost: CreatePostInterface = reactive({
   title: props.title,
   description: props.description,
   image: props.image,
@@ -61,7 +61,7 @@ const savePost = () => {
 }
 
 const emits = defineEmits<{
-  (e: 'save', post: CreatePost): void;
+  (e: 'save', post: CreatePostInterface): void;
 }>();
 
 

@@ -1,5 +1,5 @@
 import {ApiServices} from "@/shared/service/api.services";
-import type {CreatePost} from "@/publishing/model/entities/CreatePost";
+import type {CreatePostInterface} from "@/publishing/model/entities/createPost.interface";
 
 export class PublishingApiServices extends ApiServices{
     constructor() {
@@ -27,11 +27,11 @@ export class PublishingApiServices extends ApiServices{
         return (await this.get('/', config)).data;
     }
 
-    async createNewPost(p_post: CreatePost){
+    async createNewPost(p_post: CreatePostInterface){
         return (await this.post('',p_post)).status;
     }
 
-    async updatePost(p_post: CreatePost){
+    async updatePost(p_post: CreatePostInterface){
         return (await this.patch('', p_post)).status;
     }
 

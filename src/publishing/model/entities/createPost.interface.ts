@@ -1,6 +1,6 @@
-import type {EPostStatus} from "@/publishing/model/entities/PostStatus";
+import type {EPostStatus} from "@/publishing/model/entities/postStatus.enum";
 
-export interface CreatePost {
+export interface CreatePostInterface {
     title?: string,
     description?: string,
     status?: EPostStatus,

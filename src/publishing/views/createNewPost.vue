@@ -5,10 +5,10 @@
 <script lang="ts" setup>
 import publishingController from "@/publishing/model/PublishingController";
 import PostCreator from "@/publishing/components/post-creator.vue";
-import type {CreatePost} from "@/publishing/model/entities/CreatePost";
+import type {CreatePostInterface} from "@/publishing/model/entities/createPost.interface";
 
 
-const savePost =(p_post: CreatePost) => {
+const savePost =(p_post: CreatePostInterface) => {
   publishingController.createNewPost(p_post, true);
 }
 

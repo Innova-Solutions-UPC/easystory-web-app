@@ -1,5 +1,5 @@
 import {ApiServices} from "@/shared/service/api.services";
-import type {ICreatePost} from "@/publishingLifecycle/model/IPublishing";
+import type {CreatePost} from "@/publishing/model/entities/CreatePost";
 
 export class PublishingApiServices extends ApiServices{
     constructor() {
@@ -27,11 +27,11 @@ export class PublishingApiServices extends ApiServices{
         return (await this.get('/', config)).data;
     }
 
-    async createNewPost(p_post: ICreatePost){
+    async createNewPost(p_post: CreatePost){
         return (await this.post('',p_post)).status;
     }
 
-    async updatePost(p_post: ICreatePost){
+    async updatePost(p_post: CreatePost){
         return (await this.patch('', p_post)).status;
     }
 

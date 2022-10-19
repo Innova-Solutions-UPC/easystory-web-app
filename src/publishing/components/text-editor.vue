@@ -13,12 +13,13 @@
 <script lang="ts" setup>
 import type {Ref} from "vue";
 import {ref} from "vue";
-import {EPostStatus, ICreatePost} from "@/publishingLifecycle/model/IPublishing";
+import type {CreatePost} from "@/publishing/model/entities/CreatePost";
+import {EPostStatus} from "@/publishing/model/entities/PostStatus";
 
 
 
 const props = defineProps<{
-  postInformation: ICreatePost
+  postInformation: CreatePost
 }>()
 
 const post= ref(props.postInformation.content);

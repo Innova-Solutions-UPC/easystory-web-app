@@ -14,11 +14,11 @@
 
 <script lang="ts" setup>
 
-import TextEditor from "@/publishingLifecycle/components/text-editor.vue";
+import TextEditor from "@/publishing/components/text-editor.vue";
 import {computed, reactive, ref} from "vue";
-import PostInputInformation from "@/publishingLifecycle/components/post-input-information.vue";
-import type {ICreatePost} from "@/publishingLifecycle/model/IPublishing";
-import type {EPostStatus} from "@/publishingLifecycle/model/IPublishing";
+import PostInputInformation from "@/publishing/components/post-input-information.vue";
+import type {CreatePost} from "@/publishing/model/entities/CreatePost";
+import {EPostStatus} from "@/publishing/model/entities/PostStatus";
 
 const textEditor = ref<InstanceType<typeof TextEditor> | null>(null);
 const postInputInformation = ref<InstanceType<typeof PostInputInformation> | null>(null);
@@ -41,7 +41,7 @@ const props = withDefaults(defineProps<{
 })
 
 
-const newPost: ICreatePost = reactive({
+const newPost: CreatePost = reactive({
   title: props.title,
   description: props.description,
   image: props.image,
@@ -61,7 +61,7 @@ const savePost = () => {
 }
 
 const emits = defineEmits<{
-  (e: 'save', post: ICreatePost): void;
+  (e: 'save', post: CreatePost): void;
 }>();
 
 

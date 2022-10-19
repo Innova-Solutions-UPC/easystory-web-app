@@ -1,7 +1,7 @@
 import {PublishingApiServices} from "@/publishing/service/publishing-api.services";
 import {reactive} from "vue";
-import type {CreatePost} from "@/publishing/model/entities/CreatePost";
-import {EPostStatus} from "@/publishing/model/entities/PostStatus";
+import type {CreatePostInterface} from "@/publishing/model/entities/createPost.interface";
+import {EPostStatus} from "@/publishing/model/entities/postStatus.enum";
 
 export class PublishingController {
 
@@ -12,14 +12,14 @@ export class PublishingController {
     }
 
 
-    createNewPost(p_post: CreatePost, isCreated: boolean) {
+    createNewPost(p_post: CreatePostInterface, isCreated: boolean) {
         //TODO:
         //await this.apiService.createNewPost(p_post);
         console.log({p_post});
     }
 
     getPostById(postId: number) {
-        const selectedPost: CreatePost = {
+        const selectedPost: CreatePostInterface = {
             title: 'Las aventuras de pepe',
             description: 'Pepe y sus aventuras',
             image: 'https://www.adobe.com/express/create/cover/media_181e3d2c78f153ae7bf0e19a2faeb9a76e234da30.jpeg?width=400&format=jpeg&optimize=medium',

@@ -1,13 +1,13 @@
-import type {IProfile} from "@/shared/models/IUser";
-import AuthService from "@/shared/service/auth-api.services";
+import type {Profile} from "@/shared/models/entities/user.interfaces";
+import AuthService from "@/iam/services/auth-api.services";
 import tokenService from "@/shared/service/token-api.services";
-import type {ILoginForm, IResLogin} from "@/shared/models/IAuth";
+import type {LoginForm, ResLogin} from "@/shared/models/entities/author.interfaces";
 
 export default class User{
     private _m_name: string | null = null;
     private _m_password: string | null = null;
 
-    private _m_profile: IProfile | null = null;
+    private _m_profile: Profile | null = null;
 
     m_apiService = new AuthService();
 
@@ -28,11 +28,11 @@ export default class User{
         this._m_password = value;
     }
 
-    get m_profile(): IProfile | null {
+    get m_profile(): Profile | null {
         return this._m_profile;
     }
 
-    set m_profile(value: IProfile | null) {
+    set m_profile(value: Profile | null) {
         this._m_profile = value;
     }
 
@@ -43,8 +43,8 @@ export default class User{
     /**********
      * Methods
      **********/
-    async doLogin(p_loginForm: ILoginForm): Promise<boolean> {
-        const rsLogin: IResLogin | null = await this.m_apiService.doLogin({
+    async doLogin(p_loginForm: LoginForm): Promise<boolean> {
+        const rsLogin: ResLogin | null = await this.m_apiService.doLogin({
             email: p_loginForm.email,
             password: p_loginForm.password,
         })

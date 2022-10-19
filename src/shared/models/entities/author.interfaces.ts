@@ -1,12 +1,12 @@
-export interface ILoginForm {
+export interface LoginForm {
     email: string;
     password: string;
 }
 
-export interface IResLogin {
+export interface ResLogin {
     access_token: string;
 }
-export interface IResProfile {
+export interface ResProfile {
     _id: string;
     email: string;
     user_name: string;

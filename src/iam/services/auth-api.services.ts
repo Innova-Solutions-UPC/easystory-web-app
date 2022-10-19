@@ -1,6 +1,7 @@
 import {ApiServices} from "@/shared/service/api.services";
-import type {ILoginForm, IResLogin, IResProfile} from "@/shared/models/IAuth";
+import type {LoginForm, ResLogin, ResProfile} from "@/shared/models/entities/author.interfaces";
 import {StatusCodes} from "http-status-codes";
+import type {RegisterUser} from "@/iam/models/registerUser";
 
 export default class AuthService extends ApiServices{
     constructor(){
@@ -13,9 +14,9 @@ export default class AuthService extends ApiServices{
      * @param p_payload ILoginForm
      * @returns
      */
-    async doLogin(p_payload: ILoginForm): Promise<IResLogin | null>{
+    async doLogin(p_payload: LoginForm): Promise<ResLogin | null>{
 
-        const m_data: ILoginForm = p_payload;
+        const m_data: LoginForm = p_payload;
 
         const rs = await this.post('/login', m_data)
 
@@ -25,7 +26,11 @@ export default class AuthService extends ApiServices{
             return null;
     }
 
-    async getProfile(): Promise<IResProfile>{
+    async getProfile(): Promise<ResProfile>{
         return (await this.get('/profile')).data
+    }
+
+    async createAccount(p_registerUserInformation: RegisterUser){
+        return (await this.post('/register')).status;
     }
 }

@@ -56,7 +56,6 @@ const login: Login = reactive(new Login());
 const wrongCredentials: Ref<boolean> = ref(false);
 const loginForm: Ref<any> = ref(null);
 const app: Controller = injectStrict("appController");
-
 const createAccountDialog = ref(false);
 
 const doLogin = async function () {

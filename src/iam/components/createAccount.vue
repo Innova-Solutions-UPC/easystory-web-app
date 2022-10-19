@@ -6,11 +6,20 @@
       <form @submit.prevent="handleSubmit(!v$.$invalid)" class="p-fluid">
         <div class="field">
           <div class="p-float-label">
-            <InputText id="name" v-model="v$.name.$model" :class="{'p-invalid':v$.name.$invalid && submitted}" />
-            <label for="name" :class="{'p-error':v$.name.$invalid && submitted}">Name*</label>
+            <InputText id="name" v-model="v$.firstName.$model" :class="{'p-invalid':v$.firstName.$invalid && submitted}" />
+            <label for="firstName" :class="{'p-error':v$.firstName.$invalid && submitted}">First name*</label>
           </div>
-          <small v-if="(v$.name.$invalid && submitted) || v$.name.$pending.$response" class="p-error">{{v$.name.required.$message.replace('Value', 'Name')}}</small>
+          <small v-if="(v$.firstName.$invalid && submitted) || v$.firstName.$pending.$response" class="p-error">{{v$.firstName.required.$message.replace('Value', 'Name')}}</small>
         </div>
+
+        <div class="field">
+          <div class="p-float-label">
+            <InputText id="name" v-model="v$.lastName.$model" :class="{'p-invalid':v$.lastName.$invalid && submitted}" />
+            <label for="lastName" :class="{'p-error':v$.lastName.$invalid && submitted}">Last name*</label>
+          </div>
+          <small v-if="(v$.lastName.$invalid && submitted) || v$.lastName.$pending.$response" class="p-error">{{v$.lastName.required.$message.replace('Value', 'Last name')}}</small>
+        </div>
+
         <div class="field">
           <div class="p-float-label p-input-icon-right">
             <i class="pi pi-envelope" />
@@ -71,21 +80,30 @@ import { email, required } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
 import {computed, reactive, ref} from "vue";
 import AccountCreated from "@/iam/components/accountCreated.vue";
+import type {ReactiveVariable} from "vue/macros";
+import type {RegisterUser} from "@/iam/models/registerUser";
+import AuthService from "@/iam/services/auth-api.services";
+import {useToast} from "primevue/usetoast";
 
 const showCreatedAccountDialog = ref(false);
 const createAccountDialog = ref(false);
+const authService : AuthService = new AuthService();
 
-const state = reactive({
-  name: '',
+const state: ReactiveVariable<RegisterUser> | any = reactive({
+  firstName: '',
   email: '',
   password: '',
+  lastName:'',
+  username: '',
+  bio: '',
   accept: null
 });
 
 const submitted = ref(false);
 
 const rules = {
-  name: { required },
+  firstName: { required },
+  lastName: {required},
   email: { required, email },
   password: { required },
   accept: { required }
@@ -93,21 +111,24 @@ const rules = {
 
 const v$ = useVuelidate(rules, state);
 
-const resetForm = () => {
-  state.name = '';
-  state.email = '';
-  state.password = '';
-  state.accept = null;
-  submitted.value = false;
-}
+// const resetForm = () => {
+//   state.firstName = '';
+//   state.email = '';
+//   state.password = '';
+//   state.accept = null;
+//   submitted.value = false;
+// }
 
-const handleSubmit = (isFormValid: any) => {
-  submitted.value = true;
-
-
+const handleSubmit = async (isFormValid: any) => {
   if (!isFormValid) {
     return;
   }
+  // const toast = useToast();
+  // toast.add({severity:'success', summary: 'Success Message', detail:'Message Content', life: 3000});
+  submitted.value = true;
+  state.username = state.firstName + state.lastName + (Math.random() + 1).toString(36).substring(7);
+  const responseStatus = await authService.createAccount(state);
+  console.log({responseStatus});
   showCreatedAccountDialog.value = true;
 }
 

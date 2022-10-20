@@ -36,4 +36,7 @@ export class PublishingApiServices extends ApiServices{
         return (await this.patch('{' + id + '}', p_post)).status;
     }
 
+    async getPostByAutenticatedUser(): Promise<AuthorPosts> {
+        return (await (this.get('/user-posts'))).data;
+    }
 }

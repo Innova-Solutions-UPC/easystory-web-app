@@ -50,12 +50,12 @@ export default class User{
         })
         if (rsLogin !== null){
             this.m_password = null;
-            tokenService.saveToken(rsLogin.access_token)
+            tokenService.saveToken(rsLogin.tokens.accessToken)
             // this.m_tokenService.saveRefreshToken(rsLogin.access_token)
             this.m_apiService.setHeader()
             // ApiService.setHeader(rsLogin.access_token)
 
-            await this.getProfile();
+            //await this.getProfile();
             return true
         }
 

@@ -1,18 +1,33 @@
 export interface LoginForm {
     email: string;
     password: string;
+    rememberMe?: boolean;
+    token?: string;
 }
 
 export interface ResLogin {
-    access_token: string;
+    tokens: Tokens
+    authenticatedUser: AuthenticatedUser
 }
 export interface ResProfile {
-    _id: string;
-    email: string;
-    user_name: string;
-    first_name: string;
-    last_name: string;
-    password: string;
-    photo_url: string | null;
-
+    id: number
+    username: string
+    email: string
+    verified: boolean
+    createdAt: string
+    updatedAt: string
 }
+
+export interface Tokens {
+    accessToken: string
+}
+
+export interface AuthenticatedUser {
+    id: number
+    username: string
+    email: string
+    verified: boolean
+    createdAt: string
+    updatedAt: string
+}
+

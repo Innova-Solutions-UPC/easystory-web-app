@@ -72,18 +72,21 @@
       </div>
     </template>
   </Dialog>
-
+  <Toast />
 </template>
 
 <script lang="ts" setup>
-import { email, required } from "@vuelidate/validators";
-import { useVuelidate } from "@vuelidate/core";
+
 import {computed, reactive, ref} from "vue";
 import AccountCreated from "@/iam/components/accountCreated.vue";
 import type {ReactiveVariable} from "vue/macros";
 import type {RegisterUser} from "@/iam/models/registerUser";
 import AuthService from "@/iam/services/auth-api.services";
 import {useToast} from "primevue/usetoast";
+import { useVuelidate } from '@vuelidate/core'
+import { required, email } from '@vuelidate/validators'
+import router from "@/shared/router";
+
 
 const showCreatedAccountDialog = ref(false);
 const createAccountDialog = ref(false);
@@ -110,26 +113,33 @@ const rules = {
 };
 
 const v$ = useVuelidate(rules, state);
+const toast = useToast();
 
-// const resetForm = () => {
-//   state.firstName = '';
-//   state.email = '';
-//   state.password = '';
-//   state.accept = null;
-//   submitted.value = false;
-// }
 
 const handleSubmit = async (isFormValid: any) => {
   if (!isFormValid) {
     return;
   }
-  // const toast = useToast();
-  // toast.add({severity:'success', summary: 'Success Message', detail:'Message Content', life: 3000});
   submitted.value = true;
   state.username = state.firstName + state.lastName + (Math.random() + 1).toString(36).substring(7);
-  const responseStatus = await authService.createAccount(state);
-  console.log({responseStatus});
-  showCreatedAccountDialog.value = true;
+  let createUser: RegisterUser = reactive({
+    username: state.username,
+    email: state.email,
+    password: state.password,
+    firstName: state.firstName,
+    lastName: state.lastName,
+    bio: state.bio
+  });
+  const responseStatus = await authService.createAccount(createUser);
+  if (responseStatus.toString().startsWith('2')){
+    //TODO: Check if use the dialog or the toast
+    //showCreatedAccountDialog.value = true;
+    toast.add({severity:'success', summary: 'Account created!', detail:'Message Content', life: 3200});
+    await router.push('/login');
+  }
+  else {
+    toast.add({severity:'error', summary: 'Error while creating account', detail:'Message Content', life: 3200});
+  }
 }
 
 defineExpose({

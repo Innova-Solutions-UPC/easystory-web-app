@@ -9,27 +9,33 @@ import router from "./shared/router";
 
 import "./shared/assets/main.css";
 //PRIME VUE COMPONENTS
-import InputText from 'primevue/inputtext';
-import Button from 'primevue/button';
-import Card from 'primevue/card';
+import InputText from "primevue/inputtext";
+import Button from "primevue/button";
+import Card from "primevue/card";
 
 import Dialog from "primevue/dialog";
-import Chip from 'primevue/chip';
-import Divider from 'primevue/divider';
-import Tag from 'primevue/tag';
-import ScrollPanel from 'primevue/scrollpanel';
+import Chip from "primevue/chip";
+import Divider from "primevue/divider";
+import Tag from "primevue/tag";
+import ScrollPanel from "primevue/scrollpanel";
 
-
-
-
-import 'primeicons/primeicons.css';
+import "primeicons/primeicons.css";
 import "primeflex/primeflex.css";
 import "primevue/resources/themes/lara-light-blue/theme.css";
 import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
 
+
 import './shared/assets/main.css'
 import 'animate.css';
+import appController from "@/shared/models/Controller";
+import Checkbox from "primevue/checkbox";
+import Password from "primevue/password";
+
+import Toast from "primevue/toast";
+import ToastService from 'primevue/toastservice';
+
+
 
 const app = createApp(App);
 
@@ -38,6 +44,7 @@ app.directive("styleclass", StyleClass);
 app.use(PrimeVue, {inputStyle: 'filled'});
 app.use(createPinia());
 app.use(router);
+app.use(ToastService);
 
 app.component('InputText', InputText);
 app.component('Button', Button);
@@ -47,6 +54,8 @@ app.component('Divider', Divider);
 app.component('Tag', Tag);
 app.component('ScrollPanel', ScrollPanel);
 app.component("Dialog", Dialog);
-
-
+app.component('Checkbox', Checkbox);
+app.component('Password', Password)
+app.component('Toast', Toast)
+app.provide('appController', appController )
 app.mount("#app");

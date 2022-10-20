@@ -2,6 +2,7 @@ import {PublishingApiServices} from "@/publishing/service/publishing-api.service
 import {reactive} from "vue";
 import type {CreatePostInterface} from "@/publishing/model/entities/createPost.interface";
 import {EPostStatus} from "@/publishing/model/entities/postStatus.enum";
+import type {AuthorPosts} from "@/publishing/model/entities/authorPosts.interface";
 
 export class PublishingController {
 
@@ -16,6 +17,10 @@ export class PublishingController {
         //TODO:
         //await this.apiService.createNewPost(p_post);
         console.log({p_post});
+    }
+
+    async getPostsByAutenticatedUser(): Promise<AuthorPosts>{
+        return await this.apiService.getPostByAutenticatedUser();
     }
 
     getPostById(postId: number) {

@@ -1,12 +1,24 @@
 <template>
-<div class="posts-gallery">
-  <post-card />
-</div>
+  <Suspense>
+    <template #default>
+      <div class="posts-gallery">
+        <post-card />
+      </div>
+    </template>
+    <template #fallback>
+    ...loadinf
+    </template>
+  </Suspense>
+
 </template>
 
 <script lang="ts" setup>
-
 import PostCard from "@/publishing/components/post-card.vue";
+import type {AuthorPosts} from "@/publishing/model/entities/authorPosts.interface";
+import publishingController from "@/publishing/model/PublishingController";
+
+const posts: AuthorPosts = await publishingController.getPostsByAutenticatedUser();
+console.log(posts)
 </script>
 
 <style scoped>

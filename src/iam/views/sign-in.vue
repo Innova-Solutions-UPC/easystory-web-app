@@ -50,7 +50,8 @@ import {computed, reactive, ref, watch} from "vue";
 import type {Ref} from "vue"
 import type {Controller} from "@/shared/models/Controller";
 import {injectStrict} from "@/shared/utils/Injections";
-import CreateAccount from "@/iam/components/createAccount.vue";
+import CreateAccount from "@/iam/components/sign-up.vue";
+import router from "@/shared/router";
 
 const login: Login = reactive(new Login());
 const wrongCredentials: Ref<boolean> = ref(false);
@@ -60,7 +61,7 @@ const createAccountDialog = ref(false);
 
 const doLogin = async function () {
 
-  let successfulLogin: boolean = false;
+  let successfulLogin: Array<boolean> = [false];
   if (login.email !== null && login.password !== null) {
     successfulLogin = await handle(
         app.user.doLogin({
@@ -68,6 +69,9 @@ const doLogin = async function () {
           password: login.password,
         })
     );
+    if (successfulLogin[0]){
+      router.push('/profile');
+    }
     wrongCredentials.value = !successfulLogin;
   }
 }

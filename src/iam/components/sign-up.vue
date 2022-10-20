@@ -131,14 +131,13 @@ const handleSubmit = async (isFormValid: any) => {
     bio: state.bio
   });
   const responseStatus = await authService.createAccount(createUser);
-  if (responseStatus.toString().startsWith('2')){
-    //TODO: Check if use the dialog or the toast
-    //showCreatedAccountDialog.value = true;
-    toast.add({severity:'success', summary: 'Account created!', detail:'Message Content', life: 3200});
-    await router.push('/login');
+  console.log(responseStatus.status)
+  if (responseStatus.status.toString().startsWith('2')){
+    toast.add({severity:'success', summary: 'Welcome  ' + responseStatus.data.username, detail:'Message Content', life: 3200});
+    window.location.reload();
   }
   else {
-    toast.add({severity:'error', summary: 'Error while creating account', detail:'Message Content', life: 3200});
+    toast.add({severity:'error', summary: 'Error while creating account', detail:'Your account was created successfully', life: 3200});
   }
 }
 

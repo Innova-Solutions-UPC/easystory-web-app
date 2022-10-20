@@ -22,7 +22,8 @@ export abstract class ApiServices {
     setHeader() {
         //todo: when working with auth
         axios.defaults.headers.common["Authorization"] = `Bearer ${tokenService.getToken()}`
-        axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*"
+        //axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*"
+        axios.defaults.headers.common["Content-Type"] = "application/json"
     }
 
     removeHeader() {

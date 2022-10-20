@@ -1,8 +1,10 @@
 import {ApiServices} from "@/shared/service/api.services";
-import type {LoginForm, ResLogin, ResProfile} from "@/shared/models/entities/author.interfaces";
+import type {LoginForm} from "@/shared/models/entities/login-form.interface";
 import {StatusCodes} from "http-status-codes";
 import type {RegisterUser} from "@/iam/models/registerUser";
 import appController from "@/shared/models/Controller";
+import type {ResProfile} from "@/shared/models/entities/res-profile.interface";
+import type {ResLogin} from "@/shared/models/entities/res-login.interface";
 
 export default class AuthService extends ApiServices{
     constructor(){
@@ -33,10 +35,10 @@ export default class AuthService extends ApiServices{
     }
 
     async getProfile(): Promise<ResProfile>{
-        return (await this.get('/profile')).data
+        return (await this.get('/user')).data
     }
 
     async createAccount(p_registerUserInformation: RegisterUser){
-        return (await this.post('/register', p_registerUserInformation)).status;
+        return (await this.post('/register', p_registerUserInformation));
     }
 }

@@ -2,6 +2,7 @@ import {ApiServices} from "@/shared/service/api.services";
 import type {LoginForm, ResLogin, ResProfile} from "@/shared/models/entities/author.interfaces";
 import {StatusCodes} from "http-status-codes";
 import type {RegisterUser} from "@/iam/models/registerUser";
+import appController from "@/shared/models/Controller";
 
 export default class AuthService extends ApiServices{
     constructor(){
@@ -22,8 +23,11 @@ export default class AuthService extends ApiServices{
 
         const rs = await this.post('/login', m_data);
 
-        if (rs.status == StatusCodes.CREATED)
+        if (rs.status == StatusCodes.CREATED){
+            appController.user.m_profile = rs.data.authenticatedUser;
             return (rs).data;
+        }
+
         else
             return null;
     }

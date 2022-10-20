@@ -7,16 +7,18 @@
           <div class="col-12 mb-2 lg:col-12 lg:mb-0">
             <span class="p-input-icon-left">
               <i class="pi pi-user"/>
-              <InputText type="text" placeholder="Username"/>
+              <InputText type="text" placeholder="Username" v-model="login.email"/>
             </span>
           </div>
           <div class="col-12 mb-2 lg:col-12 lg:mb-0">
             <span class="p-input-icon-left">
               <i class="pi pi-user"/>
-              <InputText type="password" placeholder="Password"/>
+              <InputText type="password" placeholder="Password" v-model="login.password" />
             </span>
           </div>
-          <Button style="background-color: #193f6c" label="Login"></Button>
+          <Button style="background-color: #193f6c" label="Login" @click="doLogin" />
+          <code> Don't have an account  <code @click="createAccountDialog = true" style="color: #7eaadc; cursor: pointer;  font-weight: bold;">Sign Up</code> </code>
+
 
         </div>
       </div>
@@ -36,9 +38,55 @@
       </div>
     </div>
   </div>
+  <Dialog v-model:visible="createAccountDialog" :breakpoints="{ '960px': '80vw' }" :style="{ width: '45vw', marginTop: '30vh' }" position="top">
+    <create-account />
+  </Dialog>
 </template>
 
 <script setup lang="ts">
+
+import {Login} from "@/iam/models/login";
+import {computed, reactive, ref, watch} from "vue";
+import type {Ref} from "vue"
+import type {Controller} from "@/shared/models/Controller";
+import {injectStrict} from "@/shared/utils/Injections";
+import CreateAccount from "@/iam/components/sign-up.vue";
+import router from "@/shared/router";
+
+const login: Login = reactive(new Login());
+const wrongCredentials: Ref<boolean> = ref(false);
+const loginForm: Ref<any> = ref(null);
+const app: Controller = injectStrict("appController");
+const createAccountDialog = ref(false);
+
+const doLogin = async function () {
+
+  let successfulLogin: Array<boolean> = [false];
+  if (login.email !== null && login.password !== null) {
+    successfulLogin = await handle(
+        app.user.doLogin({
+          email: login.email,
+          password: login.password,
+        })
+    );
+    if (successfulLogin[0]){
+      router.push('/profile');
+    }
+    wrongCredentials.value = !successfulLogin;
+  }
+}
+
+const handle = (promise: any) => {
+  return promise
+      .then((data: any) => [data, undefined])
+      .catch((error: any) => {
+        Promise.resolve([undefined, error]);
+        wrongCredentials.value = true
+      });
+};
+
+const opacityCss = computed(()=>  !createAccountDialog.value ? 1 : 0.1);
+
 
 </script>
 
@@ -52,11 +100,13 @@
 .first-column {
   flex-grow: 1;
   background-color: #f4f6f9;
+  opacity: v-bind(opacityCss);
 }
 
 .second-column {
   flex-grow: 1;
   background-color: #193f6c;
+  opacity: v-bind(opacityCss);
 }
 
 

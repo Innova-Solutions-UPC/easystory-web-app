@@ -13,8 +13,6 @@
 </template>
 
 <script lang="ts" setup>
-
-
 import PersonalInformation from "@/personalLibrary/profile/components/PersonalInformation.vue";
 import About from "@/personalLibrary/profile/components/About.vue";
 import ContinueReading from "@/personalLibrary/profile/components/ContinueReading.vue";

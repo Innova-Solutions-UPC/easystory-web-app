@@ -1,5 +1,5 @@
 import type {AuthorInterface} from "@/publishing/model/entities/author.interface";
-import type {HashtagInterface} from "@/publishing/model/entities/hashtag.interface";
+import type {Hashtag} from "@/publishing/model/entities/hashtag";
 
 export interface Item {
     id: number
@@ -12,5 +12,5 @@ export interface Item {
     createdAt: string
     updatedAt: string
     author: AuthorInterface
-    hashtags: HashtagInterface[]
+    hashtags: Hashtag[]
 }

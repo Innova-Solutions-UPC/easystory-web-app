@@ -31,10 +31,19 @@ const router = createRouter({
       meta: {
         visible: true
       }
-    },{
+    },
+    {
       path: '/update-post',
       name: 'UpdatePost',
       component: () => import('@/publishing/views/updateExistingPost.vue'),
+      meta: {
+        visible: true
+      }
+    },
+    {
+      path: '/personal-posts',
+      name: 'Posts',
+      component: () => import('@/publishing/views/allCreatedPosts.vue'),
       meta: {
         visible: true
       }

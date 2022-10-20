@@ -1,5 +1,5 @@
 import type {AuthorInterface} from "@/publishing/model/entities/author.interface";
-import type {HashtagInterface} from "@/publishing/model/entities/hashtag.interface";
+import type {Hashtag} from "@/publishing/model/entities/hashtag";
 import type {MetadataInterface} from "@/publishing/model/entities/metadata.interface";
 
 export interface PostInterface {
@@ -11,7 +11,7 @@ export interface PostInterface {
     content: string
     image: string
     author: AuthorInterface
-    hashtags: HashtagInterface[]
+    hashtags: Hashtag[]
     metadata: MetadataInterface
     createdAt: string
     updatedAt: string

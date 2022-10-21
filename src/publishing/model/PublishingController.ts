@@ -6,6 +6,7 @@ import type {AuthorPosts} from "@/publishing/model/entities/author-posts.interfa
 import type {Item} from "@/publishing/model/entities/item.interface";
 import appController from "@/shared/models/Controller";
 
+
 export class PublishingController {
 
     private apiService: PublishingApiServices;

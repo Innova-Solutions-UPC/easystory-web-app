@@ -1,4 +1,5 @@
 export interface AuthorInterface {
+
     id?: number
     username?: string
     email?: string
@@ -9,4 +10,5 @@ export interface AuthorInterface {
     verified?: boolean
     createdAt?: string
     updatedAt?: string
+
 }

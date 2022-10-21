@@ -34,6 +34,7 @@ import "primeicons/primeicons.css";
 import './shared/assets/main.css'
 import 'animate.css';
 
+
 import appController from "@/shared/models/Controller";
 import Checkbox from "primevue/checkbox";
 import Password from "primevue/password";
@@ -71,11 +72,16 @@ app.component('Image', Image);
 app.component('FileUpload', FileUpload);
 app.component('ScrollPanel', ScrollPanel);
 app.component("Dialog", Dialog);
+
 app.component('Checkbox', Checkbox);
 app.component('Password', Password)
 app.component('Toast', Toast)
 app.provide('appController', appController )
 app.component('Breadcrumb', Breadcrumb)
+
+app.component('Dropdown', Dropdown)
+app.component('VirtualScroller', VirtualScroller);
+
 
 app.component('Dropdown', Dropdown)
 app.component('VirtualScroller', VirtualScroller);

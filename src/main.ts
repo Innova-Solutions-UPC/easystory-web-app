@@ -40,13 +40,14 @@ import Password from "primevue/password";
 
 import Toast from "primevue/toast";
 import ToastService from 'primevue/toastservice';
-
+import Skeleton from 'primevue/skeleton';
 
 
 import Chips from "primevue/chips";
 import VirtualScroller from "primevue/virtualscroller";
 import Image from "primevue/image";
 import FileUpload from "primevue/fileupload";
+import Breadcrumb from "primevue/breadcrumb";
 
 
 const app = createApp(App);
@@ -74,9 +75,10 @@ app.component('Checkbox', Checkbox);
 app.component('Password', Password)
 app.component('Toast', Toast)
 app.provide('appController', appController )
+app.component('Breadcrumb', Breadcrumb)
 
 app.component('Dropdown', Dropdown)
 app.component('VirtualScroller', VirtualScroller);
-
+app.component('Skeleton', Skeleton);
 
 app.mount("#app");

@@ -13,20 +13,24 @@
 <script lang="ts" setup>
 import type {Ref} from "vue";
 import {ref} from "vue";
-import type {CreatePostInterface} from "@/publishing/model/entities/createPost.interface";
-import {EPostStatus} from "@/publishing/model/entities/postStatus.enum";
+import type {CreatePostInterface} from "@/publishing/model/entities/create-post.interface";
+import {EPostStatus} from "@/publishing/model/entities/post-status.enum";
+import type {Item} from "@/publishing/model/entities/item.interface";
+import publishingController from "@/publishing/model/PublishingController";
 
 
 
-const props = defineProps<{
-  postInformation: CreatePostInterface
-}>()
 
-const post= ref(props.postInformation.content);
+const post= ref(publishingController.selectedPost.content);
 
 defineExpose({
   post
 })
+</script>
+<script lang="ts">
+export default {
+  name: "TextEditor"
+}
 </script>
 
 <style scoped>

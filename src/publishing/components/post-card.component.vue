@@ -1,11 +1,11 @@
 <template>
 <div class="post-container">
-  <div class="transparent-side border-1 border-bottom-none border-blue-50">
-    <Breadcrumb :home="home" :model="items" />
-    <Image src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" alt="Image" class="post-image"/>
+  <div class="transparent-side ">
+    <Tag class="mr-2 tag-status" severity="warning" :value="props.post.status"></Tag>
+    <Image width="120" height="140" :src="props.post.image" alt="Image" class="post-image"/>
   </div>
   <div class="information-side">
-    <Tag class="mr-2 post-name" severity="info" value="Inasdsadsad sadad"></Tag>
+    <Tag class="mr-2 post-name" severity="info" :value="props.post.title"></Tag>
   </div>
 
 </div>
@@ -14,12 +14,12 @@
 <script lang="ts" setup>
 import {ref} from "vue";
 
-//import {defineProps} from "vue";
-//import type {Item} from "@/publishing/model/entities/item.interface";
-//
-//const props = defineProps<{
-//  post: Item
-//}>();
+import {defineProps} from "vue";
+import type {Item} from "@/publishing/model/entities/item.interface";
+
+const props = defineProps<{
+ post: Item
+}>();
 
 
 
@@ -37,6 +37,11 @@ const items = ref([
 
 
 </script>
+<script lang="ts">
+export default {
+  name: "PostCard"
+}
+</script>
 
 <style scoped>
 .transparent-side{
@@ -49,6 +54,7 @@ const items = ref([
   height: 70%;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
+  text-align: center;
 }
 .post-container{
   background-color: transparent;
@@ -57,8 +63,6 @@ const items = ref([
   z-index: 1;
   position: relative;
   top:10px;
-  max-width: 120px;
-  max-height: 120px;
 }
 .post-name{
   position: absolute;
@@ -66,4 +70,13 @@ const items = ref([
   left: 35%;
   right: 35%;
 }
+.tag-status{
+  position: absolute;
+  bottom: 10px;
+  left: 2px;
+  max-height: 26px;
+  top: 2px
+}
+
+
 </style>

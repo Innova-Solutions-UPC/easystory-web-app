@@ -1,4 +1,4 @@
-export interface Hashtag {
+export interface HashtagInterface {
     id: number
     name: string
     posts?: string[]

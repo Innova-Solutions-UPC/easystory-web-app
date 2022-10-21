@@ -24,6 +24,11 @@ const myUploader =(event: any) => {
   emits('uploadImage', formdata, selectedFile.objectURL);
 }
 </script>
+<script lang="ts">
+export default {
+  name: "ImageModal"
+}
+</script>
 
 <style scoped>
 

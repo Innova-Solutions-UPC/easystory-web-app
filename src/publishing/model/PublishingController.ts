@@ -45,8 +45,14 @@ export class PublishingController {
     }
 
     async loadInfo(){
+        if (appController.user.m_profile?.authenticatedUser == null){
+            await appController.user.getProfile();
+        }
+        const authorId = appController.user.m_profile!.authenticatedUser.id;
+
+
         this._posts = await this.apiService.getPostByAutenticatedUser();
-        this._postsByAuthor = await this.apiService.getAllPostByAuthorId(appController.user.m_profile!.authenticatedUser.id);
+        this._postsByAuthor = await this.apiService.getAllPostByAuthorId(authorId);
     }
 
     async createNewPost(p_post: Item) {

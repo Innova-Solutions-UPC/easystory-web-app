@@ -58,6 +58,7 @@ export default {
 }
 .post-container{
   background-color: transparent;
+  cursor: pointer;
 }
 .post-image{
   z-index: 1;

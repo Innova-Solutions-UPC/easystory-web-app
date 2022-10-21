@@ -51,10 +51,12 @@
 </template>
 
 <script lang="ts" setup>
-import { Ref, ref} from "vue";
-import ImageModal from "@/publishing/components/imageModal.vue";
-import type {CreatePostInterface} from "@/publishing/model/entities/createPost.interface";
-import {EPostStatus} from "@/publishing/model/entities/postStatus.enum";
+import { ref} from "vue";
+import type { Ref} from "vue";
+
+import type {CreatePostInterface} from "@/publishing/model/entities/create-post.interface";
+import {EPostStatus} from "@/publishing/model/entities/post-status.enum";
+import ImageModal from "@/publishing/components/image-modal.component.vue";
 
 
 const props = defineProps<{

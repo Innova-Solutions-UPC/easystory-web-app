@@ -1,5 +1,6 @@
 <template>
   <div class="row">
+    <ProgressSpinner v-if="doingLogin" style="width:150px;height:150px" strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s"/>
     <div class="first-column">
       <div class="child-first-column">
 
@@ -59,7 +60,8 @@ const wrongCredentials: Ref<boolean> = ref(false);
 const loginForm: Ref<any> = ref(null);
 const app: Controller = injectStrict("appController");
 const createAccountDialog = ref(false);
-
+const doingLogin=ref(false);
+const doingLoginOpacity=ref(1);
 
 onMounted(() => {
   if (app.user.getIsAuthenticated()){
@@ -68,7 +70,8 @@ onMounted(() => {
 })
 
 const doLogin = async function () {
-
+  doingLogin.value = true;
+  doingLoginOpacity.value = 0.2;
   let successfulLogin: Array<boolean> = [false];
   if (login.email !== null && login.password !== null) {
     successfulLogin = await handle(
@@ -83,6 +86,8 @@ const doLogin = async function () {
     }
     wrongCredentials.value = !successfulLogin;
   }
+  doingLogin.value = false;
+  doingLoginOpacity.value = 1;
 }
 
 const handle = (promise: any) => {
@@ -104,6 +109,7 @@ const opacityCss = computed(()=>  !createAccountDialog.value ? 1 : 0.1);
   display: flex;
   min-height: 100vh;
   min-width: 100vw;
+  opacity: v-bind(doingLoginOpacity);
 }
 
 .first-column {

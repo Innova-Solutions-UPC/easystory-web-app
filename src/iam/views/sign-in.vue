@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <ProgressSpinner v-if="doingLogin" style="width:150px;height:150px" strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s"/>
+    <ProgressSpinner v-if="doingLogin" style="width:150px;height:150px; opacity: 1" strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s"/>
     <div class="first-column">
       <div class="child-first-column">
 

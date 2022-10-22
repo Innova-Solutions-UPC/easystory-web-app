@@ -3,12 +3,29 @@
     <AppTopbar v-if="app.user.getIsAuthenticated()" />
     <div>
       <div>
-        <Suspense>
-          <template #default>
-            <router-view />
-          </template>
-          <template #fallback> cargando... </template>
-        </Suspense>
+        <RouterView name="default" v-slot="{ Component, route }">
+          <transition
+            :name="route.meta.transition"
+            mode="out-in"
+            :duration="300"
+            :key="route.path"
+          >
+            <Suspense>
+              <template #default v-if="Component">
+                <component :is="Component" :key="route.path" />
+              </template>
+              <template #fallback>
+                <ProgressSpinner
+                  class="loading-spinner"
+                  style="width: 5vw; height: 50px"
+                  strokeWidth="8"
+                  fill="var(--surface-ground)"
+                  animationDuration=".5s"
+                />
+              </template>
+            </Suspense>
+          </transition>
+        </RouterView>
       </div>
     </div>
   </div>
@@ -200,8 +217,16 @@ export default {
 <script setup lang="ts">
 import { RouterLink, RouterView } from "vue-router";
 import AppTopbar from "./shared/components/layouts/AppTopbar.vue";
-import {Controller} from "@/shared/models/Controller";
-import {injectStrict} from "@/shared/utils/Injections";
+import { Controller } from "@/shared/models/Controller";
+import { injectStrict } from "@/shared/utils/Injections";
 
-const app: Controller = injectStrict('appController');
+const app: Controller = injectStrict("appController");
 </script>
+
+<style scoped>
+.loading-spinner {
+  position: absolute;
+  top: 15vh;
+  left: 45vw;
+}
+</style>

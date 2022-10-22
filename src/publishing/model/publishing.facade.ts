@@ -1,7 +1,6 @@
 import {PublishingApiServices} from "@/publishing/service/publishing-api.services";
 import {reactive} from "vue";
 import type {CreatePostInterface} from "@/publishing/model/entities/create-post.interface";
-import {EPostStatus} from "@/publishing/model/entities/post-status.enum";
 import type {AuthorPosts} from "@/publishing/model/entities/author-posts.interface";
 import type {Item} from "@/publishing/model/entities/item.interface";
 import appController from "@/shared/models/Controller";
@@ -55,7 +54,7 @@ export class PublishingFacade {
         this._postsByAuthor = await this.apiService.getAllPostByAuthorId(authorId);
     }
 
-    async createNewPost(p_post: Item) {
+    async createNewPost(p_post: Item): Promise<boolean> {
         //TODO:
         const postDto: CreatePostInterface = {
             title: p_post.title,
@@ -65,12 +64,12 @@ export class PublishingFacade {
             image: p_post.image,
             hashtags: p_post.hashtags
         }
-        await this.apiService.createNewPost(postDto) ;
-        console.log({p_post});
+        const responseStatus = await this.apiService.createNewPost(postDto);
+        return responseStatus.toString().startsWith('2');
     }
 
     async updateSelectedPost(p_post: Item, postId: number){
-        return (await this.apiService.updateExistingPost(PublishingFacade.convertItemToPostDTO(p_post), postId));
+        return (await this.apiService.updateExistingPost(p_post, postId));
     }
 
     private static convertItemToPostDTO(p_postItem: Item): CreatePostInterface{

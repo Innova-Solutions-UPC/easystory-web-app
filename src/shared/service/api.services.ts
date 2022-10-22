@@ -2,7 +2,7 @@ import {useRouter} from "vue-router";
 import type {AxiosRequestConfig, AxiosResponse, AxiosError} from "axios"
 import {StatusCodes} from "http-status-codes";
 import axios from "axios";
-import tokenService from "@/shared/service/token-api.services";
+import tokenService from "@/iam/services/token-api.services";
 
 export abstract class ApiServices {
     _baseUrl: string;
@@ -22,7 +22,7 @@ export abstract class ApiServices {
         //todo: when working with auth
         axios.defaults.headers.common["Authorization"] = `Bearer ${tokenService.getToken()}`
         //axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*"
-        axios.defaults.headers.common["Content-Type"] = "application/json"
+        axios.defaults.headers.common["Content-Type"] = 'application/x-www-form-urlencoded'
     }
 
     removeHeader() {

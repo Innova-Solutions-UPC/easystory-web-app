@@ -1,6 +1,6 @@
 import type {Profile} from "@/shared/models/entities/user.interfaces";
 import AuthService from "@/iam/services/auth-api.services";
-import tokenService from "@/shared/service/token-api.services";
+import tokenService from "@/iam/services/token-api.services";
 import type {LoginForm} from "@/shared/models/entities/login-form.interface";
 import appController from "@/shared/models/Controller";
 import type {ResProfile} from "@/shared/models/entities/res-profile.interface";

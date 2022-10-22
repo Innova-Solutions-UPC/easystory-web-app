@@ -1,5 +1,6 @@
 <template>
   <div class="row">
+    <ProgressSpinner v-if="doingLogin" style="width:150px;height:150px; opacity: 1" strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s"/>
     <div class="first-column">
       <div class="child-first-column">
 
@@ -39,18 +40,19 @@
     </div>
   </div>
   <Dialog v-model:visible="createAccountDialog" :breakpoints="{ '960px': '80vw' }" :style="{ width: '45vw', marginTop: '30vh' }" position="top">
-    <create-account />
+    <CreateAccount />
   </Dialog>
 </template>
 
 <script setup lang="ts">
 
 import {Login} from "@/iam/models/login";
-import {computed, reactive, ref, watch} from "vue";
+import {computed, onMounted, reactive, ref, watch} from "vue";
 import type {Ref} from "vue"
 import type {Controller} from "@/shared/models/Controller";
 import {injectStrict} from "@/shared/utils/Injections";
-import CreateAccount from "@/iam/components/sign-up.vue";
+import CreateAccount from "@/iam/components/sign-up.component.vue";
+import appController from "@/shared/models/Controller";
 import router from "@/shared/router";
 
 const login: Login = reactive(new Login());
@@ -58,9 +60,18 @@ const wrongCredentials: Ref<boolean> = ref(false);
 const loginForm: Ref<any> = ref(null);
 const app: Controller = injectStrict("appController");
 const createAccountDialog = ref(false);
+const doingLogin=ref(false);
+const doingLoginOpacity=ref(1);
+
+onMounted(() => {
+  if (app.user.getIsAuthenticated()){
+    console.log('is autenticated')
+  }
+})
 
 const doLogin = async function () {
-
+  doingLogin.value = true;
+  doingLoginOpacity.value = 0.2;
   let successfulLogin: Array<boolean> = [false];
   if (login.email !== null && login.password !== null) {
     successfulLogin = await handle(
@@ -69,11 +80,14 @@ const doLogin = async function () {
           password: login.password,
         })
     );
-    if (successfulLogin[0]){
+    if (app.user.getIsAuthenticated()){
+      console.log('is authenticated')
       router.push('/profile');
     }
     wrongCredentials.value = !successfulLogin;
   }
+  doingLogin.value = false;
+  doingLoginOpacity.value = 1;
 }
 
 const handle = (promise: any) => {
@@ -95,6 +109,7 @@ const opacityCss = computed(()=>  !createAccountDialog.value ? 1 : 0.1);
   display: flex;
   min-height: 100vh;
   min-width: 100vw;
+  opacity: v-bind(doingLoginOpacity);
 }
 
 .first-column {

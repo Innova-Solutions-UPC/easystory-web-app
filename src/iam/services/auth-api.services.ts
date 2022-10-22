@@ -1,7 +1,7 @@
 import {ApiServices} from "@/shared/service/api.services";
 import type {LoginForm} from "@/shared/models/entities/login-form.interface";
 import {StatusCodes} from "http-status-codes";
-import type {RegisterUser} from "@/iam/models/registerUser";
+import type {RegisterUserInterface} from "@/iam/models/register-user.interface";
 import appController from "@/shared/models/Controller";
 import type {ResProfile} from "@/shared/models/entities/res-profile.interface";
 import type {ResLogin} from "@/shared/models/entities/res-login.interface";
@@ -19,11 +19,7 @@ export default class AuthService extends ApiServices{
      */
     async doLogin(p_payload: LoginForm): Promise<ResLogin | null>{
 
-        const m_data: LoginForm = p_payload;
-        m_data.token = 'token';
-        m_data.rememberMe = true;
-
-        const rs = await this.post('/login', m_data);
+        const rs = await this.post('/login', p_payload);
 
         if (rs.status == StatusCodes.CREATED){
             appController.user.m_profile = rs.data.authenticatedUser;
@@ -38,7 +34,7 @@ export default class AuthService extends ApiServices{
         return (await this.get('/user')).data
     }
 
-    async createAccount(p_registerUserInformation: RegisterUser){
+    async createAccount(p_registerUserInformation: RegisterUserInterface){
         return (await this.post('/register', p_registerUserInformation));
     }
 }

@@ -41,7 +41,7 @@ const router = createRouter({
       }
     },
     {
-      path: '/personal-posts',
+      path: '/my-posts',
       name: 'Posts',
       component: () => import('@/publishing/views/posts-by-author.vue'),
       meta: {

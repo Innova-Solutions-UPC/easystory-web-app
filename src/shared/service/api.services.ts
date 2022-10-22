@@ -2,7 +2,7 @@ import {useRouter} from "vue-router";
 import type {AxiosRequestConfig, AxiosResponse, AxiosError} from "axios"
 import {StatusCodes} from "http-status-codes";
 import axios from "axios";
-import tokenService from "@/shared/service/token-api.services";
+import tokenService from "@/iam/services/token-api.services";
 
 export abstract class ApiServices {
     _baseUrl: string;

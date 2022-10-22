@@ -49,6 +49,7 @@ import VirtualScroller from "primevue/virtualscroller";
 import Image from "primevue/image";
 import FileUpload from "primevue/fileupload";
 import Breadcrumb from "primevue/breadcrumb";
+import ProgressSpinner from "primevue/progressspinner";
 
 
 const app = createApp(App);
@@ -69,6 +70,7 @@ app.component('Divider', Divider);
 app.component('Tag', Tag);
 app.component('Chips', Chips);
 app.component('Image', Image);
+app.component('ProgressSpinner', ProgressSpinner)
 app.component('FileUpload', FileUpload);
 app.component('ScrollPanel', ScrollPanel);
 app.component("Dialog", Dialog);

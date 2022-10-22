@@ -27,6 +27,9 @@ const postInputInformation = ref<InstanceType<typeof PostInputInformation> | nul
 
 
 const newPost: Item = reactive(publishingFacade.selectedPost!)
+newPost.hashtags = newPost.hashtags?.map( e => {
+  return [e.name]
+}).flat();
 
 const savePost = () => {
   newPost.content = textEditor.value.post;

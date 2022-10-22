@@ -69,20 +69,17 @@ export class PublishingFacade {
     }
 
     async updateSelectedPost(p_post: Item, postId: number){
-        return (await this.apiService.updateExistingPost(p_post, postId));
+        return (await this.apiService.updateExistingPost(this.convertItemToPostDTO(p_post), postId));
     }
 
-    private static convertItemToPostDTO(p_postItem: Item): CreatePostInterface{
+    private  convertItemToPostDTO(p_postItem: Item): CreatePostInterface{
         return {
             title: p_postItem.title,
             description: p_postItem.description,
             status: p_postItem.status,
             content: p_postItem.content,
             image: p_postItem.image,
-            hashtags:  p_postItem.hashtags?.map(e => {
-                return [e.name]
-                // @ts-ignore
-            }).flat()
+            hashtags: p_postItem.hashtags
         };
     }
 

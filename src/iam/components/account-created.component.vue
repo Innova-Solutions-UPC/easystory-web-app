@@ -10,6 +10,11 @@
 import {defineProps, toRef} from "vue";
 
 </script>
+<script lang="ts">
+export default {
+  name: "AccountCreated"
+}
+</script>
 
 <style scoped>
 

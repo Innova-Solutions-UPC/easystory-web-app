@@ -39,7 +39,7 @@
     </div>
   </div>
   <Dialog v-model:visible="createAccountDialog" :breakpoints="{ '960px': '80vw' }" :style="{ width: '45vw', marginTop: '30vh' }" position="top">
-    <create-account />
+    <CreateAccount />
   </Dialog>
 </template>
 
@@ -50,7 +50,7 @@ import {computed, onMounted, reactive, ref, watch} from "vue";
 import type {Ref} from "vue"
 import type {Controller} from "@/shared/models/Controller";
 import {injectStrict} from "@/shared/utils/Injections";
-import CreateAccount from "@/iam/components/sign-up.vue";
+import CreateAccount from "@/iam/components/sign-up.component.vue";
 import appController from "@/shared/models/Controller";
 import router from "@/shared/router";
 
@@ -78,7 +78,7 @@ const doLogin = async function () {
         })
     );
     if (app.user.getIsAuthenticated()){
-      console.log('is autenticated')
+      console.log('is authenticated')
       router.push('/profile');
     }
     wrongCredentials.value = !successfulLogin;

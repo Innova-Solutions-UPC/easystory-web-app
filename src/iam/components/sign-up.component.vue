@@ -78,9 +78,9 @@
 <script lang="ts" setup>
 
 import {computed, reactive, ref} from "vue";
-import AccountCreated from "@/iam/components/accountCreated.vue";
+import AccountCreated from "@/iam/components/account-created.component.vue";
 import type {ReactiveVariable} from "vue/macros";
-import type {RegisterUser} from "@/iam/models/registerUser";
+import type {RegisterUserInterface} from "@/iam/models/register-user.interface";
 import AuthService from "@/iam/services/auth-api.services";
 import {useToast} from "primevue/usetoast";
 import { useVuelidate } from '@vuelidate/core'
@@ -92,7 +92,7 @@ const showCreatedAccountDialog = ref(false);
 const createAccountDialog = ref(false);
 const authService : AuthService = new AuthService();
 
-const state: ReactiveVariable<RegisterUser> | any = reactive({
+const state: ReactiveVariable<RegisterUserInterface> | any = reactive({
   firstName: '',
   email: '',
   password: '',
@@ -122,7 +122,7 @@ const handleSubmit = async (isFormValid: any) => {
   }
   submitted.value = true;
   state.username = state.firstName + state.lastName + (Math.random() + 1).toString(36).substring(7);
-  let createUser: RegisterUser = reactive({
+  let createUser: RegisterUserInterface = reactive({
     username: state.username,
     email: state.email,
     password: state.password,
@@ -146,6 +146,11 @@ defineExpose({
 })
 const inputInformationVisibility = computed(() => !showCreatedAccountDialog.value ? 'inline' : 'none');
 
+</script>
+<script lang="ts">
+export default {
+  name: "Sign-up"
+}
 </script>
 
 <style scoped>

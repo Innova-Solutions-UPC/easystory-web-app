@@ -20,13 +20,13 @@ import  PostInputInformation from "@/publishing/components/post-input-informatio
 import type {CreatePostInterface} from "@/publishing/model/entities/create-post.interface";
 import type {EPostStatus} from "@/publishing/model/entities/post-status.enum";
 import type {Item} from "@/publishing/model/entities/item.interface";
-import publishingController from "@/publishing/model/PublishingController";
+import publishingFacade from "@/publishing/model/publishing.facade";
 
 const textEditor = ref<InstanceType<typeof TextEditor> | null>(null);
 const postInputInformation = ref<InstanceType<typeof PostInputInformation> | null>(null);
 
 
-const newPost: Item = reactive(publishingController.selectedPost!)
+const newPost: Item = reactive(publishingFacade.selectedPost!)
 
 const savePost = () => {
   newPost.content = textEditor.value.post;

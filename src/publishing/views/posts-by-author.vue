@@ -18,20 +18,20 @@
 
 <script lang="ts" setup>
 import type {AuthorPosts} from "@/publishing/model/entities/author-posts.interface";
-import publishingController from "@/publishing/model/PublishingController";
+import publishingFacade from "@/publishing/model/publishing.facade";
 import PostSkeleton from "@/publishing/components/post-skeleton.component.vue";
 import type {Item} from "@/publishing/model/entities/item.interface";
 import {watch} from "vue";
 import router from "@/shared/router";
 import PostCard from "@/publishing/components/post-card.component.vue";
 
-await publishingController.loadInfo();
+await publishingFacade.loadInfo();
 
-const posts: AuthorPosts = publishingController.postsByAuthor!;
+const posts: AuthorPosts = publishingFacade.postsByAuthor!;
 
 const selectPost = (p_post: Item) => {
-  Object.assign(publishingController.selectedPost!, p_post);
-  console.log('FROM ALL POSTS VIEWS: ', publishingController.selectedPost);
+  Object.assign(publishingFacade.selectedPost!, p_post);
+  console.log('FROM ALL POSTS VIEWS: ', publishingFacade.selectedPost);
   router.push('/update-post')
 }
 </script>

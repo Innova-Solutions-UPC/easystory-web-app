@@ -16,12 +16,12 @@ import {ref} from "vue";
 import type {CreatePostInterface} from "@/publishing/model/entities/create-post.interface";
 import {EPostStatus} from "@/publishing/model/entities/post-status.enum";
 import type {Item} from "@/publishing/model/entities/item.interface";
-import publishingController from "@/publishing/model/PublishingController";
+import publishingFacade from "@/publishing/model/publishing.facade";
 
 
 
 
-const post= ref(publishingController.selectedPost.content);
+const post= ref(publishingFacade.selectedPost.content);
 
 defineExpose({
   post

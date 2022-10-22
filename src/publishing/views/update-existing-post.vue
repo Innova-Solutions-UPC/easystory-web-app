@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-import publishingController from "@/publishing/model/PublishingController";
+import publishingFacade from "@/publishing/model/publishing.facade";
 import PostCreator from "@/publishing/components/post-creator.component.vue";
 import type {CreatePostInterface} from "@/publishing/model/entities/create-post.interface";
 import type {Item} from "@/publishing/model/entities/item.interface";
@@ -12,7 +12,7 @@ import TextEditor from "@/publishing/components/text-editor.component.vue";
 
 
 const savePost =(p_post: Item) => {
-  publishingController.updateSelectedPost(p_post, publishingController.selectedPost.id!);
+  publishingFacade.updateSelectedPost(p_post, publishingFacade.selectedPost.id!);
 }
 </script>
 

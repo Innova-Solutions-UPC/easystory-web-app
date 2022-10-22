@@ -57,21 +57,21 @@ import ImageModal from "@/publishing/components/image-modal.component.vue";
 import type {CreatePostInterface} from "@/publishing/model/entities/create-post.interface";
 import {EPostStatus} from "@/publishing/model/entities/post-status.enum";
 import type {Item} from "@/publishing/model/entities/item.interface";
-import publishingController from "@/publishing/model/PublishingController";
+import publishingFacade from "@/publishing/model/publishing.facade";
 
 
 
 const statusOptions = Object.keys(EPostStatus).filter((v) => isNaN(Number(v)));
 
-const tittle = ref(publishingController.selectedPost.title);
-const description = ref(publishingController.selectedPost.description);
-const image: Ref<string | FormData |undefined>  = ref(publishingController.selectedPost.image);
-const status = ref(publishingController.selectedPost.status);
-const hashtags = ref(publishingController.selectedPost.hashtags);
+const tittle = ref(publishingFacade.selectedPost.title);
+const description = ref(publishingFacade.selectedPost.description);
+const image: Ref<string | FormData |undefined>  = ref(publishingFacade.selectedPost.image);
+const status = ref(publishingFacade.selectedPost.status);
+const hashtags = ref(publishingFacade.selectedPost.hashtags);
 
 
 
-const imageToShow = ref(publishingController.selectedPost.image);
+const imageToShow = ref(publishingFacade.selectedPost.image);
 
 
 const myUploader = (data: FormData, blobUrl: string) => {

@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-import publishingController from "@/publishing/model/PublishingController";
+import publishingFacade from "@/publishing/model/publishing.facade";
 import PostCreator from "@/publishing/components/post-creator.component.vue";
 import type {CreatePostInterface} from "@/publishing/model/entities/create-post.interface";
 import type {Item} from "@/publishing/model/entities/item.interface";
@@ -13,9 +13,9 @@ import {ref} from "vue";
 
 
 const savePost =(p_post: Item) => {
-  console.log('before save: ',publishingController.selectedPost);
-  Object.assign(publishingController.selectedPost, p_post)
-  publishingController.createNewPost(p_post);
+  console.log('before save: ',publishingFacade.selectedPost);
+  Object.assign(publishingFacade.selectedPost, p_post)
+  publishingFacade.createNewPost(p_post);
 }
 
 </script>

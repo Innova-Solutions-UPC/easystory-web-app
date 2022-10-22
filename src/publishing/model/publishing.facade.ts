@@ -7,7 +7,7 @@ import type {Item} from "@/publishing/model/entities/item.interface";
 import appController from "@/shared/models/Controller";
 
 
-export class PublishingController {
+export class PublishingFacade {
 
     private apiService: PublishingApiServices;
     private _posts: AuthorPosts | undefined = undefined;
@@ -70,7 +70,7 @@ export class PublishingController {
     }
 
     async updateSelectedPost(p_post: Item, postId: number){
-        return (await this.apiService.updateExistingPost(PublishingController.convertItemToPostDTO(p_post), postId));
+        return (await this.apiService.updateExistingPost(PublishingFacade.convertItemToPostDTO(p_post), postId));
     }
 
     private static convertItemToPostDTO(p_postItem: Item): CreatePostInterface{
@@ -94,5 +94,5 @@ export class PublishingController {
 
 }
 
-const publishingController = reactive(new PublishingController());
-export default publishingController;
+const publishingFacade = reactive(new PublishingFacade());
+export default publishingFacade;

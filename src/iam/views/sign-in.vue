@@ -46,11 +46,12 @@
 <script setup lang="ts">
 
 import {Login} from "@/iam/models/login";
-import {computed, reactive, ref, watch} from "vue";
+import {computed, onMounted, reactive, ref, watch} from "vue";
 import type {Ref} from "vue"
 import type {Controller} from "@/shared/models/Controller";
 import {injectStrict} from "@/shared/utils/Injections";
 import CreateAccount from "@/iam/components/sign-up.vue";
+import appController from "@/shared/models/Controller";
 import router from "@/shared/router";
 
 const login: Login = reactive(new Login());
@@ -58,6 +59,13 @@ const wrongCredentials: Ref<boolean> = ref(false);
 const loginForm: Ref<any> = ref(null);
 const app: Controller = injectStrict("appController");
 const createAccountDialog = ref(false);
+
+
+onMounted(() => {
+  if (app.user.getIsAuthenticated()){
+    console.log('is autenticated')
+  }
+})
 
 const doLogin = async function () {
 
@@ -69,7 +77,8 @@ const doLogin = async function () {
           password: login.password,
         })
     );
-    if (successfulLogin[0]){
+    if (app.user.getIsAuthenticated()){
+      console.log('is autenticated')
       router.push('/profile');
     }
     wrongCredentials.value = !successfulLogin;

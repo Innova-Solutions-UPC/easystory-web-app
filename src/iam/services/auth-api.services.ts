@@ -19,11 +19,7 @@ export default class AuthService extends ApiServices{
      */
     async doLogin(p_payload: LoginForm): Promise<ResLogin | null>{
 
-        const m_data: LoginForm = p_payload;
-        m_data.token = 'token';
-        m_data.rememberMe = true;
-
-        const rs = await this.post('/login', m_data);
+        const rs = await this.post('/login', p_payload);
 
         if (rs.status == StatusCodes.CREATED){
             appController.user.m_profile = rs.data.authenticatedUser;

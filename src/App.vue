@@ -3,7 +3,12 @@
     <AppTopbar />
     <div>
       <div>
-        <router-view />
+        <Suspense>
+          <template #default>
+            <router-view />
+          </template>
+          <template #fallback> cargando... </template>
+        </Suspense>
       </div>
     </div>
   </div>

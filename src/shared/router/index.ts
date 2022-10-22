@@ -24,6 +24,30 @@ const router = createRouter({
         visible: true
       }
     },
+    {
+      path: '/create-post',
+      name: 'CreatePost',
+      component: () => import('@/publishing/views/create-new-post.vue'),
+      meta: {
+        visible: true
+      }
+    },
+    {
+      path: '/update-post',
+      name: 'UpdatePost',
+      component: () => import('@/publishing/views/update-existing-post.vue'),
+      meta: {
+        visible: true
+      }
+    },
+    {
+      path: '/personal-posts',
+      name: 'Posts',
+      component: () => import('@/publishing/views/posts-by-author.vue'),
+      meta: {
+        visible: true
+      }
+    }
 
   ]
 })
@@ -54,7 +78,7 @@ router.beforeEach(
 
       // Do not allow user to visit login page or register page if they are logged in
       if (appController.user.getIsAuthenticated() && onlyWhenLoggedOut) {
-        return next("/");
+        return next("/profile");
       } else next();
     }
 );

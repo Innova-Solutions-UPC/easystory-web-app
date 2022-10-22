@@ -1,5 +1,4 @@
 import {useRouter} from "vue-router";
-
 import type {AxiosRequestConfig, AxiosResponse, AxiosError} from "axios"
 import {StatusCodes} from "http-status-codes";
 import axios from "axios";

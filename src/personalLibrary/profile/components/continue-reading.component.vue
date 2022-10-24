@@ -37,6 +37,12 @@ const continueReadingBooks: Array<{ name: string, imageUrl: string, pageAt: numb
 }, {name: 'Besame una vez mas', imageUrl: 'https://www.republica.com/wp-content/uploads/2016/02/beso.jpg', pageAt: 21},]
 </script>
 
+<script lang="ts">
+export default {
+  name: "ContinueReading"
+}
+</script>
+
 <style scoped>
 .reading-information {
   position: absolute;

@@ -28,7 +28,11 @@ const favoriteTags: Array<{ name: string, icon: string }> = [{name: 'Fitness', i
   icon: 'pi pi-heart'
 }, {name: 'Terror', icon: 'pi pi-prime'}];
 </script>
-
+<script lang="ts">
+export default {
+  name: "About"
+}
+</script>
 <style scoped>
 
 

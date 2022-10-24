@@ -1,6 +1,6 @@
 import {createRouter, createWebHistory} from 'vue-router'
 import type { NavigationGuardNext, RouteLocationNormalized} from 'vue-router'
-import ProfileView from '../../personalLibrary/profile/Profile.vue'
+import ProfileView from '../../personalLibrary/profile/profile.vue'
 import appController from "@/shared/models/Controller";
 
 const router = createRouter({
@@ -19,7 +19,7 @@ const router = createRouter({
     {
       path: '/profile',
       name: 'Profile',
-      component: () => import('@/personalLibrary/profile/Profile.vue'),
+      component: () => import('@/personalLibrary/profile/profile.vue'),
       meta: {
         visible: true
       }

@@ -12,8 +12,8 @@ export abstract class ApiServices {
     constructor(config: { baseUrl: string }) {
         this.router = useRouter();
         this._baseUrl = config.baseUrl;
-        //TODO: set this with .env variables
-        this._fullBaseApiURL = 'https://easy-story-api.onrender.com' + this._baseUrl;
+
+        this._fullBaseApiURL = import.meta.env.VITE_API_BASE_URL + this._baseUrl;
         //TODO:
         this.setHeader();
     }

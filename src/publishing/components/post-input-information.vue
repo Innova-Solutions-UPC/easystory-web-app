@@ -67,7 +67,7 @@ const statusOptions = Object.keys(EPostStatus).filter((v) => isNaN(Number(v)));
 
 const tittle = ref(props.inputInformation.title);
 const description = ref(props.inputInformation.description);
-const image: Ref<string | FormData |undefined>  = ref(props.inputInformation.image);
+const image: Ref<string | FormData >  = ref(props.inputInformation.image!);
 const status = ref(props.inputInformation.status);
 const hashtags = ref(props.inputInformation.hashtags);
 

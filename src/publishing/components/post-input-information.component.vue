@@ -65,7 +65,7 @@ const statusOptions = Object.keys(EPostStatus).filter((v) => isNaN(Number(v)));
 
 const tittle = ref(publishingFacade.selectedPost.title);
 const description = ref(publishingFacade.selectedPost.description);
-const image: Ref<string | FormData |undefined>  = ref(publishingFacade.selectedPost.image);
+const image: Ref<string | FormData > | any  = ref(publishingFacade.selectedPost.image!);
 const status = ref(publishingFacade.selectedPost.status);
 const hashtags = ref(publishingFacade.selectedPost.hashtags);
 

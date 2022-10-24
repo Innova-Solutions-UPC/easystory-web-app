@@ -50,7 +50,7 @@ export class PublishingFacade {
         const authorId = appController.user.m_profile!.authenticatedUser.id;
 
 
-        this._posts = await this.apiService.getPostByAutenticatedUser();
+        //this._posts = await this.apiService.getPostByAutenticatedUser();
         this._postsByAuthor = await this.apiService.getAllPostByAuthorId(authorId);
     }
 

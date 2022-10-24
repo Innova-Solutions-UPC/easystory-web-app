@@ -47,6 +47,10 @@ const router = createRouter({
       meta: {
         visible: true
       }
+    },
+    {
+      path: '/:catchAll(.*)',
+      redirect: '/my-posts'
     }
 
   ]

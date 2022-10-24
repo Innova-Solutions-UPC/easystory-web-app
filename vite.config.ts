@@ -11,5 +11,13 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
+  },
+  server: {
+    proxy: {
+      "/v1": {
+        target: "https://easy-story-api.onrender.com",
+        changeOrigin: true,
+      }
+    }
   }
 })

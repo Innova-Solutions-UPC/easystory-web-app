@@ -3,6 +3,10 @@
   "include": ["vite.config.*", "vitest.config.*", "cypress.config.*"],
   "compilerOptions": {
     "composite": true,
-    "types": ["node"]
+    "types": ["node"],
+    "target": "es5",
+    "lib": [
+      "es2019"
+    ]
   }
 }

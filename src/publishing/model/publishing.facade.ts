@@ -2,7 +2,7 @@ import {PublishingApiServices} from "@/publishing/service/publishing-api.service
 import {reactive} from "vue";
 import type {CreatePostInterface} from "@/publishing/model/entities/create-post.interface";
 import type {AuthorPosts} from "@/publishing/model/entities/author-posts.interface";
-import type {Item} from "@/publishing/model/entities/item.interface";
+import type {Item} from "@/shared/models/entities/item.interface";
 import appController from "@/shared/models/Controller";
 
 

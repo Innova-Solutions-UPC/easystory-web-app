@@ -24,7 +24,11 @@
 
 
 <script lang="ts" setup>
+import type {Item} from "@/shared/models/entities/item.interface";
 
+const props = defineProps<{
+  post: Item;
+}>();
 </script>
 
 

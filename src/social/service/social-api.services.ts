@@ -1,4 +1,5 @@
 import {ApiServices} from "@/shared/service/api.services";
+import type {AuthorPosts} from "@/shared/models/entities/author-posts.interface";
 
 export class SocialApiServices extends ApiServices{
     constructor() {
@@ -6,7 +7,7 @@ export class SocialApiServices extends ApiServices{
     };
 
 
-    async getAllPosts(){
+    async getAllPosts(): Promise<AuthorPosts>{
         return (await (this.get('/user-posts'))).data;
     }
 
@@ -28,6 +29,6 @@ export class SocialApiServices extends ApiServices{
                 post: p_postId
             }
         };
-        await (this.post(`/bookmarks`,'',config));
+      return (await (this.post(`/bookmarks`,'',config))).status;
     }
 }

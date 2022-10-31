@@ -1,22 +1,22 @@
 <template>
-<div>
-  <Card style="width: 25em">
+<div class="item-cnt">
+  <Card style="width: 25em; ">
     <template #header>
-      <img src="https://www.primefaces.org/wp-content/uploads/2020/02/primefacesorg-primevue-2020.png" style="height: 15rem"  alt="post image"/>
+      <Image width="120" height="140" :src="props.post.image" alt="Image" class="post-image"/>
     </template>
     <template #title>
-      Advanced Card
+      {{props.post.title}}
     </template>
     <template #subtitle>
-      Card subtitle
+      <h4>By: {{props.post.author.username }}</h4>
+      <code>Time Ago: {{timeAgo}}</code>
+
     </template>
     <template #content>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
-        quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!</p>
+      <p>{{props.post.content}}</p>
     </template>
     <template #footer>
-      <Button icon="pi pi-check" label="Save" />
-      <Button icon="pi pi-times" label="Cancel" class="p-button-secondary" style="margin-left: .5em" />
+      <Button @click="startShare" icon="pi pi-check" label="Save" />
     </template>
   </Card>
 </div>
@@ -25,19 +25,39 @@
 
 <script lang="ts" setup>
 import type {Item} from "@/shared/models/entities/item.interface";
+import {useShare, useTimeAgo} from "@vueuse/core";
 
 const props = defineProps<{
   post: Item;
 }>();
+console.log(props);
+const timeAgo = useTimeAgo(new Date(props.post.createdAt!))
+
+
+//LINK: https://vueuse.org/core/useShare/
+const { share, isSupported } = useShare()
+function startShare() {
+  share({
+    title: 'Hello',
+    text: 'Hello my friend!',
+    url: location.href,
+  })
+}
 </script>
 
 
-<script>
+
+<script lang="ts">
+import {computed, ref} from "vue";
+import {TransitionPresets, useTimeAgo, useTransition} from "@vueuse/core";
+
 export default {
   name: "HomeItem"
 }
 </script>
 
 <style scoped>
-
+.item-cnt{
+  height: 5vh !important;
+}
 </style>

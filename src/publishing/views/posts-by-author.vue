@@ -19,7 +19,7 @@
 <script lang="ts" setup>
 import type { AuthorPosts } from "@/publishing/model/entities/author-posts.interface";
 import publishingFacade from "@/publishing/model/publishing.facade";
-import type { Item } from "@/publishing/model/entities/item.interface";
+import type { Item } from "@/shared/models/entities/item.interface";
 import router from "@/shared/router";
 import PostCard from "@/publishing/components/post-card.component.vue";
 // import {computed, ref} from "vue";

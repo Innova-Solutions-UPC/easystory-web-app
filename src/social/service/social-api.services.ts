@@ -7,7 +7,7 @@ export class SocialApiServices extends ApiServices{
 
 
     async getAllPosts(){
-        return (await (this.get('/posts'))).data;
+        return (await (this.get('/user-posts'))).data;
     }
 
     async getAllCommentsIntoAPost(p_slug: string){

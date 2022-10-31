@@ -1,6 +1,6 @@
 import {ApiServices} from "@/shared/service/api.services";
 import type {CreatePostInterface} from "@/publishing/model/entities/create-post.interface";
-import type {AuthorPosts} from "@/publishing/model/entities/author-posts.interface";
+import type {AuthorPosts} from "@/shared/models/entities/author-posts.interface";
 import type {Item} from "@/shared/models/entities/item.interface";
 
 export class PublishingApiServices extends ApiServices{

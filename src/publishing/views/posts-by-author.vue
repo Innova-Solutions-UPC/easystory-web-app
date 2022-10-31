@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { AuthorPosts } from "@/publishing/model/entities/author-posts.interface";
+import type { AuthorPosts } from "@/shared/models/entities/author-posts.interface";
 import publishingFacade from "@/publishing/model/publishing.facade";
 import type { Item } from "@/shared/models/entities/item.interface";
 import router from "@/shared/router";

@@ -1,31 +1,34 @@
 <template>
-<div class="item-cnt">
-  <Card style="width: 25em; ">
-    <template #header>
-      <Image width="120" height="140" :src="props.post.image" alt="Image" class="post-image"/>
-    </template>
-    <template #title>
-      {{props.post.title}}
-    </template>
-    <template #subtitle>
-      <h4>By: {{props.post.author.username }}</h4>
-      <code>Time Ago: {{timeAgo}}</code>
-
-    </template>
-    <template #content>
-      <p>{{props.post.content}}</p>
-    </template>
-    <template #footer>
-      <Button @click="startShare" icon="pi pi-check" label="Save" />
-    </template>
-  </Card>
-</div>
+  <div
+      class="w-full p-8 rounded shadow-2xl bg-charcoal-600 card card-cnt"
+      ref="target"
+      :style="{
+      transform: cardTransform,
+      transition: 'transform 0.25s ease-out'
+    }"
+  >
+    <h1 class="mb-2 text-2xl font-bold">{{props.post.title}}</h1>
+    <section class="flex" style="margin-bottom: 15px">
+      <img
+          :src="props.post.image"
+          class="w-8 h-8 mr-4 rounded image-book"
+      />
+      <h2 class="font-2xl"> @{{props.post.author.username}}</h2>
+    </section>
+    <code>{{props.post.slug}}</code>
+    <p class="mt-4">
+      Organic growth beef up, and shotgun approach note for the previous submit:
+      Can you ballpark the cost per unit for me. Conversational content reach
+      out, what's the status on the deliverables for eow?
+    </p>
+  </div>
 </template>
 
 
 <script lang="ts" setup>
 import type {Item} from "@/shared/models/entities/item.interface";
-import {useShare, useTimeAgo} from "@vueuse/core";
+import {useMouseInElement, useShare, useTimeAgo} from "@vueuse/core";
+import {computed, ref} from "vue";
 
 const props = defineProps<{
   post: Item;
@@ -43,6 +46,25 @@ function startShare() {
     url: location.href,
   })
 }
+
+//LINK: https://www.youtube.com/watch?v=AVMNjbKdU1M
+const target = ref(null)
+const { elementX, elementY, isOutside, elementHeight, elementWidth } =
+    useMouseInElement(target)
+const cardTransform = computed(() => {
+  const MAX_ROTATION = 35
+  const rX = (
+      MAX_ROTATION / 2 -
+      (elementY.value / elementHeight.value) * MAX_ROTATION
+  ).toFixed(2) // handles x-axis
+  const rY = (
+      (elementX.value / elementWidth.value) * MAX_ROTATION -
+      MAX_ROTATION / 2
+  ).toFixed(2) // handles y-axis
+  return isOutside.value
+      ? ''
+      : `perspective(${elementWidth.value}px) rotateX(${rX}deg) rotateY(${rY}deg)`
+})
 </script>
 
 
@@ -59,5 +81,16 @@ export default {
 <style scoped>
 .item-cnt{
   height: 5vh !important;
+}
+.image-book{
+  max-width: 90px;
+  max-height: 50px;
+}
+.card-cnt{
+  background-color: #191a23;
+  border-radius: 30px;
+}
+.card-cnt:hover{
+  box-shadow: 0px 10px 20px 2px rgba(0, 255, 255, 0.7);
 }
 </style>

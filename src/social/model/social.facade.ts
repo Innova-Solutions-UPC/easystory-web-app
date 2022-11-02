@@ -2,11 +2,13 @@ import {SocialApiServices} from "@/social/service/social-api.services";
 import type {AuthorPosts} from "@/shared/models/entities/author-posts.interface";
 import type {Item} from "@/shared/models/entities/item.interface";
 import {reactive} from "vue";
+import type {BookmarkResponse} from "@/social/model/entities/bookmark-response.interface";
 
 export class SocialFacade {
     private apiService: SocialApiServices;
     private _allPosts: AuthorPosts | undefined = undefined;
     private _selectedPost: Item | undefined = undefined;
+    private _bookmarks: BookmarkResponse | undefined = undefined;
 
     constructor() {
         this.apiService = new SocialApiServices();
@@ -14,6 +16,15 @@ export class SocialFacade {
 
     async loadPosts(){
         this._allPosts = await this.apiService.getAllPosts();
+    }
+
+    async loadBookmarks(){
+        this._bookmarks = await this.apiService.getAllBookmarks();
+    }
+
+
+    get bookmarks(): BookmarkResponse | undefined {
+        return this._bookmarks;
     }
 
     set selectedPost(value: Item | undefined) {

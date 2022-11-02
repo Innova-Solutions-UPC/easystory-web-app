@@ -22,7 +22,7 @@
 <!--      <template v-slot:toolbar style="display: none">-->
 <!--      </template>-->
 <!--    </Editor>-->
-    <QuillEditor class="quill-preview" theme="bubble" read-only content-type="text" :content="props.post.content" />
+    <QuillEditor class="quill-preview" theme="bubble" read-only content-type="html" :content="props.post.content" />
   </div>
 </template>
 

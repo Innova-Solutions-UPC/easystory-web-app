@@ -66,7 +66,7 @@ const router = createRouter({
     },
     {
       path: '/:catchAll(.*)',
-      redirect: '/my-posts'
+      redirect: '/home'
     }
 
   ]

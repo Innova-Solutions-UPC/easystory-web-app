@@ -1,5 +1,6 @@
 import {ApiServices} from "@/shared/service/api.services";
 import type {AuthorPosts} from "@/shared/models/entities/author-posts.interface";
+import type {BookmarkResponse} from "@/social/model/entities/bookmark-response.interface";
 
 export class SocialApiServices extends ApiServices{
     constructor() {
@@ -29,6 +30,10 @@ export class SocialApiServices extends ApiServices{
                 post: p_postId + ''
             }
         };
+        console.log({p_postId});
       return (await (this.post(`/bookmarks`,'',config))).status;
+    }
+    async getAllBookmarks(): Promise<BookmarkResponse>{
+        return (await (this.get('/bookmarks'))).data;
     }
 }

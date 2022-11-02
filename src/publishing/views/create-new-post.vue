@@ -19,6 +19,7 @@ import { computed, ref } from "vue";
 import { useToast } from "primevue/usetoast";
 import router from "@/shared/router";
 
+Object.assign(publishingFacade.selectedPost, {});
 const createdSuccesfully = ref(false);
 const showLoading = ref(false);
 const toast = useToast();

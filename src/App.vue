@@ -12,7 +12,9 @@
           >
             <Suspense>
               <template #default v-if="Component">
-                <component :is="Component" :key="route.path" />
+                <KeepAlive>
+                  <component :is="Component" :key="route.path" />
+                </KeepAlive>
               </template>
               <template #fallback>
                 <ProgressSpinner

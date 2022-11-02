@@ -26,9 +26,15 @@
 <!--      </Editor>-->
       <QuillEditor theme="bubble" read-only content-type="text" :content="post.content" />
     </div>
+    <Divider type="dashed" align="left">
+      <div class="inline-flex align-items-center">
+        <i class="pi pi-comments mr-2"></i>
+        <b>Comments</b>
+      </div>
+    </Divider>
 
   </div>
-
+<Toast />
 </div>
 </template>
 
@@ -50,13 +56,23 @@ const { share, isSupported } = useShare()
 const timeAgo = useTimeAgo(post.value.createdAt!);
 const toast = useToast();
 
+const isBookmarked: boolean = socialFacade.bookmarks?.items.filter(e => e.id == post.value.id).length! > 0;
+console.log(isBookmarked)
+const bookmarkedIcon = isBookmarked ? 'pi pi-bookmark-fill' : 'pi pi-bookmark';
+console.log(bookmarkedIcon)
+
 const speedDialItems = ref([
   {
     label: 'Bookmark',
-    icon: 'pi pi-bookmark',
+    icon: bookmarkedIcon,
     command: async () => {
-      const response = await socialFacade.bookmarkAPost(post.id);
-      response.toString().startsWith('2') ? toast.add({severity: 'info', summary: 'Add', detail: 'Data Added'}) : toast.add({severity: 'error', summary: 'Error', detail: 'Please try again'});
+      const response = await socialFacade.bookmarkAPost(post.value.id);
+      if (response.toString().startsWith('2')){
+        toast.add({severity: 'success', summary: 'Bookmarked', detail: 'Post was bookmarked successful'});
+      }
+      else {
+        toast.add({severity: 'error', summary: 'Error', detail: 'Please try again'});
+      }
     }
   },
   {

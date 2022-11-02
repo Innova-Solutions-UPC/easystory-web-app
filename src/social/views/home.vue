@@ -15,6 +15,7 @@ import HomeItem from "@/social/components/item.component.vue";
 import {useVirtualList} from "@vueuse/core";
 
 await socialFacade.loadPosts();
+await socialFacade.loadBookmarks();
 const posts = computed(()=> socialFacade.allPosts?.items);
 const selectedPost = computed(()=> socialFacade.selectedPost);
 

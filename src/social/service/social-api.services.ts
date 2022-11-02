@@ -30,7 +30,6 @@ export class SocialApiServices extends ApiServices{
                 post: p_postId + ''
             }
         };
-        console.log({p_postId});
       return (await (this.post(`/bookmarks`,'',config))).status;
     }
     async getAllBookmarks(): Promise<BookmarkResponse>{

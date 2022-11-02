@@ -36,8 +36,7 @@ export abstract class ApiServices {
             })
             .catch((error: AxiosError) => {
                 if (error.response?.status == StatusCodes.UNAUTHORIZED) {
-                    //TODO:
-                    //tokenService.removeToken();
+                    tokenService.removeToken();
                     this.router.push("/login")
                 }
                 return Promise.reject(error.response)
@@ -53,8 +52,7 @@ export abstract class ApiServices {
             })
             .catch((error: AxiosError) => {
                 if (error.response?.status == StatusCodes.UNAUTHORIZED) {
-                    //TODO:
-                    //tokenService.removeToken();
+                    tokenService.removeToken();
                     this.router.push("/login")
                 }
                 return Promise.reject(error.response)
@@ -69,8 +67,22 @@ export abstract class ApiServices {
             })
             .catch((error: AxiosError) => {
                 if (error.response?.status == StatusCodes.UNAUTHORIZED) {
-                    //TODO:
-                    //tokenService.removeToken();
+                    tokenService.removeToken();
+                    this.router.push("/login")
+                }
+                return Promise.reject(error.response)
+            })
+
+    }
+
+    async delete(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse<any>> {
+        return axios.delete(this._fullBaseApiURL + url, config)
+            .then((response: AxiosResponse) => {
+                return response
+            })
+            .catch((error: AxiosError) => {
+                if (error.response?.status == StatusCodes.UNAUTHORIZED) {
+                    tokenService.removeToken();
                     this.router.push("/login")
                 }
                 return Promise.reject(error.response)

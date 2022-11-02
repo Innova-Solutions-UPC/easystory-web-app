@@ -28,8 +28,8 @@ export class SocialFacade {
         return this._selectedPost;
     }
 
-    async bookmarkAPost(p_postId: string){
-        const responseStatus = await this.apiService.createBookMark(p_postId);
+    async bookmarkAPost(p_postId: string): Promise<number>{
+        return await this.apiService.createBookMark(p_postId);
     }
 }
 const socialFacade = reactive(new SocialFacade());

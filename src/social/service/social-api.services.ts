@@ -26,7 +26,7 @@ export class SocialApiServices extends ApiServices{
     async createBookMark(p_postId: string){
         const config = {
             params: {
-                post: p_postId
+                post: p_postId + ''
             }
         };
       return (await (this.post(`/bookmarks`,'',config))).status;

@@ -30,7 +30,7 @@ const {list, containerProps, wrapperProps} = useVirtualList(posts.value!,{
 .gallery{
   display: grid;
   gap: 5rem;
-  grid-auto-rows: 15%;
+  grid-auto-rows: 10%;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
 }
 .props-cnt{

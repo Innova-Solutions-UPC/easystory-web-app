@@ -35,4 +35,8 @@ export class SocialApiServices extends ApiServices{
     async getAllBookmarks(): Promise<BookmarkResponse>{
         return (await (this.get('/bookmarks'))).data;
     }
+
+    async deleteBookmark(id: string){
+        return (await (this.delete(`/bookmarks/${id}`))).status
+    }
 }

@@ -66,12 +66,23 @@ const speedDialItems = ref([
     label: 'Bookmark',
     icon: bookmarkedIcon,
     command: async () => {
-      const response = await socialFacade.bookmarkAPost(post.value.id);
-      if (response.toString().startsWith('2')){
-        toast.add({severity: 'success', summary: 'Bookmarked', detail: 'Post was bookmarked successful'});
+      if(isBookmarked){
+        const response = await socialFacade.deleteBookmark(socialFacade.bookmarks?.items.filter(e => e.id == post.value.id)[0].id!)
+        if (response.toString().startsWith('2')){
+          toast.add({severity: 'success', summary: 'Bookmarked', detail: 'Bookmark was deleted successful'});
+        }
+        else {
+          toast.add({severity: 'error', summary: 'Error', detail: 'Please try again'});
+        }
       }
       else {
-        toast.add({severity: 'error', summary: 'Error', detail: 'Please try again'});
+        const response = await socialFacade.bookmarkAPost(post.value.id);
+        if (response.toString().startsWith('2')){
+          toast.add({severity: 'success', summary: 'Bookmarked', detail: 'Post was bookmarked successful'});
+        }
+        else {
+          toast.add({severity: 'error', summary: 'Error', detail: 'Please try again'});
+        }
       }
     }
   },

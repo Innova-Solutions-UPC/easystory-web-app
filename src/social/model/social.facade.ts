@@ -22,6 +22,9 @@ export class SocialFacade {
         this._bookmarks = await this.apiService.getAllBookmarks();
     }
 
+    async deleteBookmark(bookmarkId: string){
+        return this.apiService.deleteBookmark(bookmarkId);
+    }
 
     get bookmarks(): BookmarkResponse | undefined {
         return this._bookmarks;

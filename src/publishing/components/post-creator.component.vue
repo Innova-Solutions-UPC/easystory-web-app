@@ -19,7 +19,7 @@ import {computed, reactive, ref} from "vue";
 import  PostInputInformation from "@/publishing/components/post-input-information.component.vue";
 import type {CreatePostInterface} from "@/publishing/model/entities/create-post.interface";
 import type {EPostStatus} from "@/publishing/model/entities/post-status.enum";
-import type {Item} from "@/publishing/model/entities/item.interface";
+import type {Item} from "@/shared/models/entities/item.interface";
 import publishingFacade from "@/publishing/model/publishing.facade";
 
 const textEditor = ref<InstanceType<typeof TextEditor> | null>(null);

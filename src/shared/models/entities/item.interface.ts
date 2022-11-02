@@ -3,7 +3,7 @@ import type {HashtagInterface} from "@/publishing/model/entities/hashtag.interfa
 
 
 export interface Item {
-    id?: number
+    id?:  string
     title?: string
     status?: string
     slug?: string

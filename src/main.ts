@@ -6,7 +6,8 @@ import PrimeVue from "primevue/config";
 import StyleClass from "primevue/styleclass";
 import "./shared/assets/styles/layout.css";
 import router from "./shared/router";
-
+import '@vueup/vue-quill/dist/vue-quill.bubble.css'
+import '@vueup/vue-quill/dist/vue-quill.snow.css'
 import "./shared/assets/main.css";
 //PRIME VUE COMPONENTS
 
@@ -50,6 +51,9 @@ import Image from "primevue/image";
 import FileUpload from "primevue/fileupload";
 import Breadcrumb from "primevue/breadcrumb";
 import ProgressSpinner from "primevue/progressspinner";
+import Avatar from "primevue/avatar";
+import SpeedDial from "primevue/speeddial";
+import {QuillEditor} from "@vueup/vue-quill";
 
 
 const app = createApp(App);
@@ -80,11 +84,12 @@ app.component('Password', Password)
 app.component('Toast', Toast)
 app.provide('appController', appController )
 app.component('Breadcrumb', Breadcrumb)
+app.component('Avatar', Avatar);
 
 app.component('Dropdown', Dropdown)
 app.component('VirtualScroller', VirtualScroller);
-
-
+app.component('SpeedDial', SpeedDial)
+app.component('QuillEditor', QuillEditor);
 app.component('Dropdown', Dropdown)
 app.component('VirtualScroller', VirtualScroller);
 app.component('Skeleton', Skeleton);

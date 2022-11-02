@@ -49,8 +49,24 @@ const router = createRouter({
       }
     },
     {
+      path: '/home',
+      name: 'Home',
+      component: () => import('@/social/views/home.vue'),
+      meta: {
+        visible: true
+      }
+    },
+    {
+      path: '/post-detail',
+      name: 'Post detail',
+      component: () => import('@/social/views/post-detail.vue'),
+      meta:{
+        visible: false
+      }
+    },
+    {
       path: '/:catchAll(.*)',
-      redirect: '/my-posts'
+      redirect: '/home'
     }
 
   ]

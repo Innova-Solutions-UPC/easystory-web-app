@@ -13,7 +13,7 @@
 <script lang="ts" setup>
 import publishingFacade from "@/publishing/model/publishing.facade";
 import PostCreator from "@/publishing/components/post-creator.component.vue";
-import type { Item } from "@/publishing/model/entities/item.interface";
+import type { Item } from "@/shared/models/entities/item.interface";
 import { computed, ref } from "vue";
 import { useToast } from "primevue/usetoast";
 import router from "@/shared/router";

@@ -56,7 +56,7 @@ import type { Ref} from "vue";
 import ImageModal from "@/publishing/components/image-modal.component.vue";
 import type {CreatePostInterface} from "@/publishing/model/entities/create-post.interface";
 import {EPostStatus} from "@/publishing/model/entities/post-status.enum";
-import type {Item} from "@/publishing/model/entities/item.interface";
+import type {Item} from "@/shared/models/entities/item.interface";
 import publishingFacade from "@/publishing/model/publishing.facade";
 
 

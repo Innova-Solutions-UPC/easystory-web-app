@@ -1,0 +1,21 @@
+{
+  "bc-iam-username": "nombre de usuario",
+  "bc-iam-password": "clave",
+  "bc-iam-sign-up": "Inscribirse",
+  "bc-iam-sign-in": "Iniciar sesión",
+  "bc-iam-sign-out": "desconectar",
+  "bc-iam-no-account": "¿No tienes una cuenta?",
+  "bc-iam-firstname": "Nombre de pila",
+  "bc-iam-lastname": "Apellido",
+  "bc-iam-email": "Correo electrónico",
+  "bc-iam-agree-terms": "Estoy de acuerdo con los términos y condiciones",
+  "bc-iam-register": "Registro",
+  "bc-publishing-page-title": "Publicación",
+  "bc-publishing-description": "Descripción",
+  "bc-publishing-title": "Título",
+  "bc-publishing-tags": "Etiquetas",
+  "bc-publishing-image": "Imagen",
+  "bc-publishing-status": "Estado",
+  "bc-publishing-upload": "Subir",
+  "bc-publishing-publish": "Publicar"
+}

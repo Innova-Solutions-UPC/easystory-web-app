@@ -8,17 +8,17 @@
           <div class="col-12 mb-2 lg:col-12 lg:mb-0">
             <span class="p-input-icon-left">
               <i class="pi pi-user"/>
-              <InputText type="text" placeholder="Username" v-model="login.email"/>
+              <InputText type="text" :placeholder="translate('bc-iam-username')" v-model="login.email"/>
             </span>
           </div>
           <div class="col-12 mb-2 lg:col-12 lg:mb-0">
             <span class="p-input-icon-left">
               <i class="pi pi-user"/>
-              <InputText type="password" placeholder="Password" v-model="login.password" />
+              <InputText type="password" :placeholder="translate('bc-iam-password')" v-model="login.password" />
             </span>
           </div>
-          <Button style="background-color: #193f6c" label="Login" @click="doLogin" />
-          <code> Don't have an account  <code @click="createAccountDialog = true" style="color: #7eaadc; cursor: pointer;  font-weight: bold;">Sign Up</code> </code>
+          <Button style="background-color: #193f6c" :label="translate('bc-iam-sign-in')" @click="doLogin" />
+          <code> {{translate('bc-iam-no-account')}} <code @click="createAccountDialog = true" style="color: #7eaadc; cursor: pointer;  font-weight: bold;">{{translate('bc-iam-sign-up')}}</code> </code>
 
 
         </div>
@@ -33,7 +33,7 @@
             </h4>
           </template>
           <template #content>
-            <p>Plataforma web cuyo contenido es publicado por los usuarios de la misma. Con <code style="font-weight: 900;">EasyStory</code>  puedes publicar tus propias historias, relatos o cuentos.</p>
+            <p>{{translate('app-slogan')}}</p>
           </template>
         </Card>
       </div>
@@ -54,6 +54,7 @@ import {injectStrict} from "@/shared/utils/Injections";
 import CreateAccount from "@/iam/components/sign-up.component.vue";
 import appController from "@/shared/models/Controller";
 import router from "@/shared/router";
+import { translate } from '../../shared/plugins/i18n/i18n';
 
 const login: Login = reactive(new Login());
 const wrongCredentials: Ref<boolean> = ref(false);

@@ -1,4 +1,6 @@
 {
+  "app-slogan": "Web platform whose content is published by its users. With EasyStory you can publish your own stories, tales or stories.",
+
   "bc-iam-username": "username",
   "bc-iam-password": "password",
   "bc-iam-sign-up": "Sign up",
@@ -10,6 +12,12 @@
   "bc-iam-email": "Email",
   "bc-iam-agree-terms": "I agree to the terms and conditions",
   "bc-iam-register": "Register",
+  "bc-iam-pick-password": "Pick a password",
+  "bc-iam-one-lowcase": "At least one lowercase letter",
+  "bc-iam-one-uppercase": "At least one uppercase letter",
+  "bc-iam-one-number": "At least one number",
+  "bc-iam-characters": "Minimum 8 characters",
+  "bc-iam-suggest-password": "Suggest a password",
 
   "bc-publishing-page-title": "Publishing",
   "bc-publishing-description": "Description",

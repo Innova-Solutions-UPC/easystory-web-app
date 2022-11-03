@@ -2,18 +2,18 @@
   <Card
       class="z-5  flex align-items-center justify-content-center p-4  font-bold text-white border-round shadow-1 about-information">
     <template #title>
-      <h4 style="color: #181818">Ruperto Mena</h4>
+      <h4 style="color: #fff">Ruperto Mena</h4>
     </template>
     <template #content>
       <div class="content-container">
         <div class="flex gap-1">
-          <h4 style="color: #181818; margin-right: 20px"><code>Categorias favoritas</code></h4>
+          <h4 style="color: #fff; margin-right: 20px"><code>Categorias favoritas</code></h4>
           <Tag v-for="category in favoriteTags" rounded :value="category.name" :icon="category.icon"/>
         </div>
 
         <div class="flex gap-1">
-          <h4 style="color: #181818; margin-right: 20px"><code>Descipcion</code></h4>
-          <h4 style="color: #181818; margin-right: 20px"><p>An addictively sweet romance with a touch of danger.</p></h4>
+          <h4 style="color: #fff; margin-right: 20px"><code>Descipcion</code></h4>
+          <h4 style="color: #fff; margin-right: 20px"><p>An addictively sweet romance with a touch of danger.</p></h4>
         </div>
 
       </div>
@@ -34,7 +34,14 @@ export default {
 }
 </script>
 <style scoped>
-
+.about-information{
+  background: rgba(114, 117, 124, 0.37);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(8.2px);
+-webkit-backdrop-filter: blur(8.2px);
+color: #ffff !important;
+}
 
 .content-container {
   display: flex;

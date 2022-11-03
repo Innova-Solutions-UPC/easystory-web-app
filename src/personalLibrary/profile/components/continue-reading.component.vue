@@ -2,12 +2,12 @@
   <Card
       class="z-5  flex align-items-center justify-content-center p-4  font-bold text-white border-round shadow-1 reading-information">
     <template #title>
-      <h4 style="color: #181818">Continua leyendo</h4>
+      <h4 style="color: #fff">Continua leyendo</h4>
     </template>
     <template #content>
       <div class="content-container">
         <ScrollPanel style="width: 100%; height: 200px" class="p-scrollpanel-bar-y">
-        <Card v-for="reading in continueReadingBooks">
+        <Card v-for="reading in continueReadingBooks" class="reading-cardd">
           <template #content>
             <div class="divider">
           <div>
@@ -15,8 +15,8 @@
                  :src="reading.imageUrl">
           </div>
           <div class="reading-continue">
-            <div><h3 style="color: #181818; font-size:small"><code>{{ reading.name}}</code></h3></div>
-            <div><h4 style="color: #181818; font-size:x-small"><code>Pagina actual: {{ reading.pageAt}}</code></h4></div>
+            <div><h3 style="color: #fff; font-size:small"><code>{{ reading.name}}</code></h3></div>
+            <div><h4 style="color: #fff; font-size:x-small"><code>Pagina actual: {{ reading.pageAt}}</code></h4></div>
             <div></div>
           </div>
             </div>
@@ -44,12 +44,25 @@ export default {
 </script>
 
 <style scoped>
+.reading-cardd{
+  background: transparent;
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(8.2px);
+-webkit-backdrop-filter: blur(8.2px);
+margin-top: 5px;
+}
 .reading-information {
   position: absolute;
   left: 42%;
   top: -8vh;
   max-width: fit-content;
   max-height: fit-content;
+  background: rgba(114, 117, 124, 0.37);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(8.2px);
+-webkit-backdrop-filter: blur(8.2px);
 }
 
 .content-container {
@@ -60,6 +73,7 @@ export default {
 .reading-continue {
   display: flex;
   flex-direction: column;
+
 }
 .divider{
   display: flex;

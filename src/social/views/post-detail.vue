@@ -5,11 +5,11 @@
     <code>{{post.description}}</code>
   </div>
   <div :style="{ position: 'relative' }">
-    <SpeedDial  :model="speedDialItems" :radius="120" direction="down-right" type="quarter-circle" buttonClass="p-button-success" mask />
+    <SpeedDial style="margin-left: 1%;"  :model="speedDialItems" :radius="120" direction="down-right" type="quarter-circle" buttonClass="p-button-success" mask />
   </div>
 
   <div>
-    <Image :src="post.image" alt="Image" width="450" style="max-height: 300px"  />
+    <Image :src="post.image" alt="Image" width="450" style="max-height: 300px;"  />
   </div>
   <div style="margin-top: 2%">
     <div style="display: flex">
@@ -112,13 +112,27 @@ function startShare(text: string) {
 
 <style scoped>
 .post-detail-cnt{
-  margin: 1%;
+
+  background: #000046;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #1CB5E0, #000046);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #1CB5E0, #000046);
   text-align: center;
+  height: calc(100vh - 52px);
+  color: #fff;
 }
 .quill-cnt{
-  background-color: rgba(21, 20, 20, 0.96);
+  margin-left: 1%;
+  margin-right: 1%;
   min-height: 35vh;
   border-radius: 20px;
+  background: rgba(47, 62, 108, 0.58);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8.2px);
+  -webkit-backdrop-filter: blur(8.2px);
+  border: 1px solid rgba(47, 62, 108, 0.1);
 
 }
 </style>

@@ -7,7 +7,7 @@
       <TextEditor ref="textEditor"  />
     </div>
     <div class="block font-bold text-center p-4 border-round mb-3">
-      <Button @click="savePost" label="Save" icon="pi pi-check"/>
+      <Button @click="savePost" :label="translate('bc-publishing-publish')" icon="pi pi-check"/>
     </div>
   </div>
 </template>
@@ -21,6 +21,8 @@ import type {CreatePostInterface} from "@/publishing/model/entities/create-post.
 import type {EPostStatus} from "@/publishing/model/entities/post-status.enum";
 import type {Item} from "@/shared/models/entities/item.interface";
 import publishingFacade from "@/publishing/model/publishing.facade";
+import { translate } from "@/shared/plugins/i18n/i18n";
+
 
 const textEditor = ref<InstanceType<typeof TextEditor> | null>(null);
 const postInputInformation = ref<InstanceType<typeof PostInputInformation> | null>(null);

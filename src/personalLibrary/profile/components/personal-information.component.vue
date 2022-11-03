@@ -6,7 +6,7 @@
            src="https://media.istockphoto.com/photos/portrait-of-successful-black-male-modern-day-student-holding-picture-id1311634222?k=20&m=1311634222&s=612x612&w=0&h=1a0XDWnZNPjk_5n7maZdzowaDfBcBohwoiZZF69qS9A=">
     </template>
     <template #title>
-      <h4 style="color: #181818">{{userName}}</h4>
+      <h4 style="color: #fff">{{userName}}</h4>
     </template>
     <template #content>
       <div class="chips-container ">
@@ -42,14 +42,19 @@ export default {
 
 .personal-information {
   position: absolute;
-  background-color: #ffffff;
+
   max-height: fit-content;
-  color: #181818;
+  color: #faf5f5;
   display: flex;
   flex-direction: column;
-  -webkit-box-shadow: -12px 10px 32px 4px rgb(32, 91, 165);
-  -moz-box-shadow: -12px 10px 32px 4px rgb(14, 79, 160);
-  box-shadow: -12px 10px 32px 4px rgb(32, 106, 199);
+
+}
+.personal-information{
+background: rgba(114, 117, 124, 0.37);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(8.2px);
+-webkit-backdrop-filter: blur(8.2px);
 }
 
 @media screen and (min-width: 800px) {

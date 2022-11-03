@@ -45,3 +45,8 @@ import { useRouter } from 'vue-router';
 const visibleRroutes = useRouter().getRoutes().filter(e => e.meta.visible);
 console.log({visibleRroutes})
 </script>
+<style scoped>
+.AppTopbar{
+  z-index: 9999999999999;
+}
+</style>

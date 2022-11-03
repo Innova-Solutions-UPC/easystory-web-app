@@ -2,6 +2,7 @@ import {createRouter, createWebHistory} from 'vue-router'
 import type { NavigationGuardNext, RouteLocationNormalized} from 'vue-router'
 import ProfileView from '../../personalLibrary/profile/profile.vue'
 import appController from "@/shared/models/Controller";
+import {PrimeIcons} from 'primevue/api';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,31 +22,34 @@ const router = createRouter({
       name: 'Profile',
       component: () => import('@/personalLibrary/profile/profile.vue'),
       meta: {
-        visible: true
+        visible: true,
+        icon: 'pi pi-user'
       }
     },
     {
       path: '/create-post',
-      name: 'CreatePost',
+      name: 'Create Post',
       component: () => import('@/publishing/views/create-new-post.vue'),
       meta: {
-        visible: true
+        visible: true,
+        icon: PrimeIcons.BOOK
       }
     },
     {
       path: '/update-post',
-      name: 'UpdatePost',
+      name: 'Update Post',
       component: () => import('@/publishing/views/update-existing-post.vue'),
       meta: {
-        visible: true
+        visible: false
       }
     },
     {
       path: '/my-posts',
-      name: 'Posts',
+      name: 'My Posts',
       component: () => import('@/publishing/views/posts-by-author.vue'),
       meta: {
-        visible: true
+        visible: true,
+        icon: PrimeIcons.DATABASE
       }
     },
     {
@@ -53,7 +57,8 @@ const router = createRouter({
       name: 'Home',
       component: () => import('@/social/views/home.vue'),
       meta: {
-        visible: true
+        visible: true,
+        icon: PrimeIcons.HOME
       }
     },
     {

@@ -16,6 +16,7 @@
   "bc-iam-one-uppercase": "Pelo menos uma letra maiuscula",
   "bc-iam-one-number": "Pelo menos um numero",
   "bc-iam-characters": "Mínimo 8 caracteres",
+  "bc-iam-suggest-password": "Sugira uma senha",
   "bc-publishing-page-title": "Publicação",
   "bc-publishing-description": "Descrição",
   "bc-publishing-title": "Título",
@@ -23,5 +24,9 @@
   "bc-publishing-image": "Imagem",
   "bc-publishing-status": "Status",
   "bc-publishing-upload": "Envio",
-  "bc-publishing-publish": "Publicar"
+  "bc-publishing-publish": "Publicar",
+  "router-home": "Casa",
+  "router-profile": "Perfil",
+  "router-create-post": "Criar postagem",
+  "router-my-posts": "Minhas postagens"
 }

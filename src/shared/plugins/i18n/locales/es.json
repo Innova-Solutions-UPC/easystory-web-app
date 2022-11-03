@@ -24,5 +24,9 @@
   "bc-publishing-image": "Imagen",
   "bc-publishing-status": "Estado",
   "bc-publishing-upload": "Subir",
-  "bc-publishing-publish": "Publicar"
+  "bc-publishing-publish": "Publicar",
+  "router-home": "Hogar",
+  "router-profile": "Perfil",
+  "router-create-post": "Crear publicación",
+  "router-my-posts": "Mis publicaciones"
 }

@@ -26,6 +26,11 @@
   "bc-publishing-image": "Image",
   "bc-publishing-status": "Status",
   "bc-publishing-upload": "Upload",
-  "bc-publishing-publish": "Publish"
+  "bc-publishing-publish": "Publish",
+
+  "router-home": "Home",
+  "router-profile": "Profile",
+  "router-create-post": "Create post",
+  "router-my-posts": "My posts"
 
 }

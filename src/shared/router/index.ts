@@ -3,6 +3,7 @@ import type { NavigationGuardNext, RouteLocationNormalized} from 'vue-router'
 import ProfileView from '../../personalLibrary/profile/profile.vue'
 import appController from "@/shared/models/Controller";
 import {PrimeIcons} from 'primevue/api';
+import { translate } from '../plugins/i18n/i18n';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,7 +20,7 @@ const router = createRouter({
     },
     {
       path: '/profile',
-      name: 'Profile',
+      name: translate('router-profile'),
       component: () => import('@/personalLibrary/profile/profile.vue'),
       meta: {
         visible: true,
@@ -28,7 +29,7 @@ const router = createRouter({
     },
     {
       path: '/create-post',
-      name: 'Create Post',
+      name: translate('router-create-post'),
       component: () => import('@/publishing/views/create-new-post.vue'),
       meta: {
         visible: true,
@@ -45,7 +46,7 @@ const router = createRouter({
     },
     {
       path: '/my-posts',
-      name: 'My Posts',
+      name: translate('router-my-posts'),
       component: () => import('@/publishing/views/posts-by-author.vue'),
       meta: {
         visible: true,
@@ -54,7 +55,7 @@ const router = createRouter({
     },
     {
       path: '/home',
-      name: 'Home',
+      name: translate('router-home'),
       component: () => import('@/social/views/home.vue'),
       meta: {
         visible: true,

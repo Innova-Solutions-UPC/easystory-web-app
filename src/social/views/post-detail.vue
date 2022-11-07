@@ -16,7 +16,7 @@
       <div>
         <Avatar image="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" class="mr-2" shape="circle" />
       </div>
-      <div style="margin-right: 5%"><h3>{{app.user.m_profile.authenticatedUser.username}}</h3></div>
+      <div style="margin-right: 5%"><h3>@{{post.author.username}}</h3></div>
       <div style="margin-left: 5%"><h3>Time ago: {{timeAgo}}</h3></div>
     </div>
     <div style="margin-top: 2%" class="quill-cnt">
@@ -113,11 +113,12 @@ function startShare(text: string) {
 <style scoped>
 .post-detail-cnt{
 
-  background: #000046;
+  background: #bdc3c7;
   /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #1CB5E0, #000046);
+  background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);
   /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #1CB5E0, #000046);
+  background: linear-gradient(to right, #2c3e50, #bdc3c7);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   text-align: center;
   height: calc(100vh - 52px);
   color: #fff;
@@ -127,7 +128,7 @@ function startShare(text: string) {
   margin-right: 1%;
   min-height: 35vh;
   border-radius: 20px;
-  background: rgba(47, 62, 108, 0.58);
+  background: rgba(13, 13, 14, 0.404);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(8.2px);

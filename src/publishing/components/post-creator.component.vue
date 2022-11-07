@@ -37,7 +37,7 @@ const savePost = () => {
   newPost.content = textEditor.value.post;
   //TODO:
   // newPost.image = postInputInformation.value.image;
-  newPost.image = 'https://prodimage.images-bn.com/lf?set=key%5Bresolve.pixelRatio%5D,value%5B1%5D&set=key%5Bresolve.width%5D,value%5B300%5D&set=key%5Bresolve.height%5D,value%5B10000%5D&set=key%5Bresolve.imageFit%5D,value%5Bcontainerwidth%5D&set=key%5Bresolve.allowImageUpscaling%5D,value%5B0%5D&set=key%5Bresolve.format%5D,value%5Bwebp%5D&product=path%5B/pimages/9781668015179_p0_v5%5D&call=url%5Bfile:common/decodeProduct.chain%5D'
+  newPost.image = 'https://assets.teenvogue.com/photos/5cd4384fac4d9e712fe2ebb0/2:3/w_1852,h_2778,c_limit/The%20Gravity%20of%20Us_.jpg'
   newPost.description = postInputInformation.value.description;
   newPost.title = postInputInformation.value.tittle;
   newPost.hashtags = postInputInformation.value.hashtags

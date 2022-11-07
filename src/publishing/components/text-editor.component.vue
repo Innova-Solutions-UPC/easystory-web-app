@@ -8,7 +8,7 @@
 <!--&lt;!&ndash;                </span>&ndash;&gt;-->
 <!--&lt;!&ndash;    </template>&ndash;&gt;-->
 <!--  </Editor>-->
-  <QuillEditor theme="snow"  toolbar="full" content-type="text" :content="post" class="quill-editor" style="min-height: 40vh;" />
+  <QuillEditor theme="snow"  toolbar="full" content-type="text" v-model:content="post"  class="quill-editor" style="min-height: 40vh;" />
 </template>
 
 <script lang="ts" setup>

@@ -1,4 +1,5 @@
 <template>
+  <div>
   <div class="row">
     <ProgressSpinner v-if="doingLogin" style="width:150px;height:150px; opacity: 1" strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s"/>
     <div class="first-column">
@@ -42,6 +43,7 @@
   <Dialog v-model:visible="createAccountDialog" :breakpoints="{ '960px': '80vw' }" :style="{ width: '45vw', marginTop: '30vh' }" position="top">
     <CreateAccount />
   </Dialog>
+</div>
 </template>
 
 <script setup lang="ts">

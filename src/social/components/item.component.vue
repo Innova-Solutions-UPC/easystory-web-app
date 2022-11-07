@@ -93,7 +93,7 @@ export default {
 
 .card-cnt {
   /* From https://css.glass */
-  background: rgba(47, 62, 108, 0.58);
+  background: rgba(0, 0, 0, 0.479);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(8.2px);

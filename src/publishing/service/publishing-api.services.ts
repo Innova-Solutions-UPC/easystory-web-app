@@ -43,7 +43,7 @@ export class PublishingApiServices extends ApiServices{
     }
 
     async updateExistingPost(p_post: CreatePostInterface, postId: number){
-        return (await this.patch('/posts/' + postId, p_post)).data;
+        return (await this.patch('/posts/' + postId, p_post)).status;
     }
 
     async updatePost(p_post: CreatePostInterface, id: number){

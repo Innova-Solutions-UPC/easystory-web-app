@@ -6,9 +6,7 @@
           <icon-community class="color-blue" />
           <span class="color-white font-bold mr-3">EasyStory</span>
         </router-link>
-        <button class="topbar-btn blue-btn square-btn" @click="onMenuToggle">
-          <i class="pi pi-bars"></i>
-        </button>
+        
 
         <button
           class="btn-mobile circular-btn"
@@ -26,23 +24,13 @@
       </div>
       <div class="nav-buttons">
         <ul>
-          <li>
+          <li v-for="route in visibleRroutes" :key="route.name" >
+            <router-link :to="route.path">
             <button class="square-btn blue-btn mr-2">
-              <i class="pi pi-calendar"></i>
-              <span>Events</span>
+              <i :class="route.meta.icon"></i>
+              <span style="margin-left: 5px;">{{route.name}}</span>
             </button>
-          </li>
-          <li>
-            <button class="square-btn blue-btn mr-2">
-              <i class="pi pi-cog"></i>
-              <span>Settings</span>
-            </button>
-          </li>
-          <li>
-            <button class="square-btn blue-btn mr-2">
-              <i class="pi pi-user"></i>
-              <span>Profile</span>
-            </button>
+          </router-link>
           </li>
         </ul>
       </div>
@@ -52,7 +40,13 @@
 
 <script setup lang="ts">
 import IconCommunity from "../icons/IconCommunity.vue";
-const onMenuToggle = () => {
-  console.log("onMenuToggle");
-};
+import { useRouter } from 'vue-router';
+
+const visibleRroutes = useRouter().getRoutes().filter(e => e.meta.visible);
+console.log({visibleRroutes})
 </script>
+<style scoped>
+.AppTopbar{
+  z-index: 9999999999999;
+}
+</style>

@@ -43,7 +43,8 @@ import Password from "primevue/password";
 import Toast from "primevue/toast";
 import ToastService from 'primevue/toastservice';
 import Skeleton from 'primevue/skeleton';
-
+//Highchart library
+import HighchartsVue from 'highcharts-vue'
 
 import Chips from "primevue/chips";
 import VirtualScroller from "primevue/virtualscroller";
@@ -54,6 +55,7 @@ import ProgressSpinner from "primevue/progressspinner";
 import Avatar from "primevue/avatar";
 import SpeedDial from "primevue/speeddial";
 import {QuillEditor} from "@vueup/vue-quill";
+import i18n from './shared/plugins/i18n/i18n';
 
 
 const app = createApp(App);
@@ -64,6 +66,8 @@ app.use(PrimeVue, {inputStyle: 'filled'});
 app.use(createPinia());
 app.use(router);
 app.use(ToastService);
+app.use(i18n);
+app.use(HighchartsVue);
 
 app.component('InputText', InputText);
 app.component('Button', Button);

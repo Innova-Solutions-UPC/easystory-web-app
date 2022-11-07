@@ -28,5 +28,6 @@
   "router-home": "Maison",
   "router-profile": "Profil",
   "router-create-post": "Créer un message",
-  "router-my-posts": "Mes publications"
+  "router-my-posts": "Mes publications",
+  "bc-profile-tags": "balises les plus utilisées"
 }

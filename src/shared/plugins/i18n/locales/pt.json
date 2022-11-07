@@ -28,5 +28,6 @@
   "router-home": "Casa",
   "router-profile": "Perfil",
   "router-create-post": "Criar postagem",
-  "router-my-posts": "Minhas postagens"
+  "router-my-posts": "Minhas postagens",
+  "bc-profile-tags": "OST Tags usados"
 }

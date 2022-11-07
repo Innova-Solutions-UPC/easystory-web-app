@@ -23,7 +23,7 @@ export class SocialFacade {
     }
 
     async deleteBookmark(bookmarkId: string){
-        return this.apiService.deleteBookmark(bookmarkId);
+        return (await (this.apiService.deleteBookmark(bookmarkId))).toString().startsWith('2');
     }
 
     get bookmarks(): BookmarkResponse | undefined {
@@ -43,7 +43,7 @@ export class SocialFacade {
     }
 
     async bookmarkAPost(p_postId: string): Promise<number>{
-        return await this.apiService.createBookMark(p_postId);
+        return (await this.apiService.createBookMark(p_postId)).toString().startsWith('2');
     }
 }
 const socialFacade = reactive(new SocialFacade());

@@ -31,6 +31,8 @@
   "router-home": "Home",
   "router-profile": "Profile",
   "router-create-post": "Create post",
-  "router-my-posts": "My posts"
+  "router-my-posts": "My posts",
+
+  "bc-profile-tags": "Most used tags"
 
 }

@@ -7,16 +7,18 @@ import en from '@/shared/plugins/i18n/locales/en.json'
 import es from '@/shared/plugins/i18n/locales/es.json'
 import pt from '@/shared/plugins/i18n/locales/pt.json'
 import fr from '@/shared/plugins/i18n/locales/fr.json'
+import af from '@/shared/plugins/i18n/locales/af.json'
 
 const i18n = vueI18n.createI18n({
   legacy: false,
   locale:  localStorage.getItem('language') || "fr",
-  fallbackLocale: ["es", "en", "pt", "fr"],
+  fallbackLocale: ["es", "en", "pt", "fr", "af"],
   messages: {
     es: es,
     en: en,
     pt: pt,
-    fr: fr
+    fr: fr,
+    af: af
   },
   globalInjection: true,
 });

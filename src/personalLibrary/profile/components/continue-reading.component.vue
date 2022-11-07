@@ -2,7 +2,7 @@
   <Card
     class="z-5  flex align-items-center justify-content-center p-4  font-bold text-white border-round shadow-1 reading-information">
     <template #title>
-      <h4 style="color: #fff">Continua leyendo</h4>
+      <h4 style="color: #fff">{{translate('bc-profile-tags')}}</h4>
     </template>
     <template #content>
       <!--  <div class="content-container">
@@ -34,6 +34,7 @@
 <script lang="ts" setup>
 import SpilineGraph from '@/shared/components/graphs/SpilineGraph.component.vue';
 import type { ICardTimeSeries } from '@/shared/models/Spineline.facade';
+import { translate } from '../../../shared/plugins/i18n/i18n';
 
 const cardTimeSeries: ICardTimeSeries = {
 

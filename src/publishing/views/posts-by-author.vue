@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="author-posts">
     <Button
       @click="router.push('/create-post')"
       icon="pi pi-plus-circle"
@@ -56,4 +56,5 @@ const selectPost = (p_post: Item) => {
 .opacity-loading {
   opacity: v-bind(showOpacity);
 }
+
 </style>

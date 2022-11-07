@@ -43,7 +43,8 @@ import Password from "primevue/password";
 import Toast from "primevue/toast";
 import ToastService from 'primevue/toastservice';
 import Skeleton from 'primevue/skeleton';
-
+//Highchart library
+import HighchartsVue from 'highcharts-vue'
 
 import Chips from "primevue/chips";
 import VirtualScroller from "primevue/virtualscroller";
@@ -66,6 +67,7 @@ app.use(createPinia());
 app.use(router);
 app.use(ToastService);
 app.use(i18n);
+app.use(HighchartsVue);
 
 app.component('InputText', InputText);
 app.component('Button', Button);

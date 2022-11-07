@@ -1,12 +1,8 @@
-import Highcharts, {
-  Chart,
-  Options,
-  SeriesOptionsType,
-  SeriesSplineOptions,
-  XAxisOptions,
-} from "highcharts";
+import Highcharts, {Options, Chart, SeriesOptionsType, SeriesPackedbubbleOptions, Series } from 'highcharts';
+import HC_more from 'highcharts/highcharts-more' //module
+HC_more(Highcharts) //init module
 // Load the exporting module.
-import Exporting from "highcharts/modules/exporting";
+import Exporting from 'highcharts/modules/exporting';
 // Initialize exporting module.
 Exporting(Highcharts);
 
@@ -98,143 +94,67 @@ export default class Spline {
   createChart(): void {
     const option = {
       chart: {
-        renderTo: this.m_containerId,
-        backgroundColor: "transparent",
-        type: "spline",
-        style: {
-          fontFamily: "PT Serif",
-        },
-        borderRadius: 20,
-        animation: {
-          duration: 118000,
-        },
+          renderTo: this.m_containerId,
+          backgroundColor: 'transparent',
+          //TODO: packedbubble?? https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/packed-bubble
+          type: 'packedbubble',
+          // height: '100%',
+          style: {
+              fontFamily: 'PT Serif'
+          }
       },
       title: {
-        text: "",
+          text: '',
       },
       credits: {
-        enabled: false,
+          enabled: false
       },
-      xAxis: {
-        type: "datetime",
-        dateTimeLabelFormats: {
-          // don't display the dummy year
-          month: "%e. %b",
-          year: "%b",
-        },
-        title: {
-          text: "Date",
-          margin: 40,
-        },
-      },
-
-      yAxis: {
-        reversed: false,
-        title: {
-          enabled: true,
-          text: "Grados",
-          margin: 40,
-        },
-        labels: {
-          format: "{value} °",
-        },
-        accessibility: {
-          rangeDescription: "Range: 0 to 80 °.",
-        },
-        maxPadding: 0.05,
-        showLastLabel: true,
-      },
-      tooltip: {
-        headerFormat: "<b>{series.name}</b><br>",
-        pointFormat: "{point.x:%e. %b}: {point.y:.2f} m",
-      },
-
-      plotOptions: {
-        series: {
-          marker: {
-            enabled: true,
-          },
-        },
-      },
-
-      colors: ["#6CF", "#fcc572", "#06C", "#036", "#000"],
-
-      // Define the data points. All series have a dummy year
-      // of 1970/71 in order to be compared on the same x axis. Note
-      // that in JavaScript, months start at 0 for January, 1 for February etc.
-      series: this.m_series,
       exporting: {
-        enabled: false,
+          enabled: false
       },
-    };
-    const optionForMobile = {
-      chart: {
-        renderTo: this.m_containerId,
-        backgroundColor: "transparent",
-        type: "spline",
-        style: {
-          fontFamily: "PT Serif",
-        },
-        with: '400px',
-        borderRadius: 20,
-        animation: {
-          duration: 118000,
-        },
+      legend: {
+          enabled: false,
+          align: 'left',
+          layout: 'vertical',
+          verticalAlign: 'top',
+          itemMarginTop: 10,
       },
-      title: {
-        text: "",
-      },
-      credits: {
-        enabled: false,
-      },
-
-      yAxis: {
-        labels: {
-            align: 'left',
-            x: 0,
-            y: -2
-        },
-        title: {
-            text: ''
-        }
-       
-      },
-      xAxis: {
-        
-        title: {
-            enabled: true,
-            text:''
-        },
-      },
-      tooltip: {
-        headerFormat: "<b>{series.name}</b><br>",
-        pointFormat: "{point.x:%e. %b}: {point.y:.2f} m",
-      },
-
+  
       plotOptions: {
-        series: {
-          marker: {
-            enabled: true,
-          },
-        },
+          packedbubble: {
+              minSize: '10%',
+              maxSize: '200%',
+              zMin: this._zMin,
+              zMax: this._zMax,
+              layoutAlgorithm: {
+                  // splitSeries: 'true', // By default is false but need a string instead of a boolean
+                  gravitationalConstant: 0.02
+              },
+              dataLabels: {
+                  enabled: true,
+                  format: '{point.name.name}',
+                  filter: {
+                      property: 'y',
+                      operator: '>',
+                      value: this.m_threshold
+                  },
+                  style: {
+                      color: 'black',
+                      textOutline: 'none',
+                      fontWeight: 'normal'
+                  }
+              }
+          }
       },
 
-      colors: ["#6CF", "#fcc572", "#06C", "#036", "#000"],
-
-      // Define the data points. All series have a dummy year
-      // of 1970/71 in order to be compared on the same x axis. Note
-      // that in JavaScript, months start at 0 for January, 1 for February etc.
-      series: this.m_series,
-      exporting: {
-        enabled: false,
+      tooltip: {
+          useHTML: true,
+           pointFormat: 'Name: <b>{point.name}</br> Rating: {point.value}' // Useful if series would be split by groups
+          //pointFormat: 'Rating: <b>{point.value}</b>'
       },
-    };
-
-    if (this.screenWidth > 600) {
-      this.m_chart = new Highcharts.Chart(option as Options);
-    }
-    else {
-        this.m_chart = new Highcharts.Chart(optionForMobile as Options);
-    }
+      series: this.m_series //as SeriesOptionsType[]
   }
+  this.m_chart = new Highcharts.Chart(option as Options);
+  }
+    
 }

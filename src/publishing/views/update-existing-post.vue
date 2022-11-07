@@ -1,5 +1,6 @@
 <template>
-  <PostCreator class="opacity-loading" @save="savePost" />
+  <div>
+    <PostCreator class="opacity-loading" @save="savePost" />
   <ProgressSpinner
     class="loading-spinner"
     v-if="showLoading"
@@ -8,6 +9,9 @@
     fill="var(--surface-ground)"
     animationDuration=".5s"
   />
+  <Toast  style="margin-top: 3%;"/>
+  </div>
+  
 </template>
 
 <script lang="ts" setup>
@@ -29,21 +33,26 @@ const savePost = async (p_post: Item) => {
     p_post,
     publishingFacade.selectedPost.id!
   );
+  console.log(createdSuccesfully.value)
   createdSuccesfully.value
     ? toast.add({
         severity: "success",
-        summary: "Success Message",
-        detail: "Message Content",
+        summary: "Guardado",
+        detail: "Post actualizado correctamente",
         life: 3000,
       })
     : toast.add({
         severity: "error",
-        summary: "Error Message",
-        detail: "Message Content",
+        summary: "Oh no",
+        detail: "Intentalo de nuevo",
         life: 3000,
       });
-  showLoading.value = false;
-  createdSuccesfully.value ? router.push("/my-posts") : console.log("oh no");
+  
+  setTimeout(()=> {
+    showLoading.value = false;
+    createdSuccesfully.value ? router.push("/my-posts") : console.log("oh no");
+  }, 3000)
+  
 };
 </script>
 

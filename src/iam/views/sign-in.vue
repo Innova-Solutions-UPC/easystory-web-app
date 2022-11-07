@@ -1,7 +1,7 @@
 <template>
   <div>
   <div class="row">
-    <ProgressSpinner v-if="doingLogin" style="width:150px;height:150px; opacity: 1" strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s"/>
+    <ProgressSpinner v-if="doingLogin" style="width:150px;height:150px; margin-left: 40%; margin-top: 20% ; opacity: 1" strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s"/>
     <div class="first-column">
       <div class="child-first-column">
 

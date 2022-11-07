@@ -9,7 +9,7 @@
   </div>
 
   <div>
-    <Image :src="post.image" alt="Image" width="450" style="max-height: 300px;"  />
+    <img :src="post.image" alt="Image" width="450" style="max-height: 300px !important;"  />
   </div>
   <div style="margin-top: 2%">
     <div style="display: flex">
@@ -103,8 +103,8 @@ const speedDialItems = ref([
 ]);
 function startShare(text: string) {
   share({
-    title: 'Hello',
-    text: text,
+    title: post.title,
+    text: post.content,
     url: location.href,
   })
 }

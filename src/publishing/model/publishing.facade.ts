@@ -68,8 +68,10 @@ export class PublishingFacade {
         return responseStatus.toString().startsWith('2');
     }
 
-    async updateSelectedPost(p_post: Item, postId: number){
-        return (await this.apiService.updateExistingPost(this.convertItemToPostDTO(p_post), postId));
+    async updateSelectedPost(p_post: Item, postId: number): Promise<boolean>{
+        const respone=  (await this.apiService.updateExistingPost(this.convertItemToPostDTO(p_post), postId));
+        return respone.toString().startsWith('2') ;
+
     }
 
     private  convertItemToPostDTO(p_postItem: Item): CreatePostInterface{

@@ -34,14 +34,14 @@ newPost.hashtags = newPost.hashtags?.map( e => {
 }).flat();
 
 const savePost = () => {
-  newPost.content = textEditor.value.post;
+  newPost.content = textEditor.value?.post;
   //TODO:
   // newPost.image = postInputInformation.value.image;
-  newPost.image = 'https://assets.teenvogue.com/photos/5cd4384fac4d9e712fe2ebb0/2:3/w_1852,h_2778,c_limit/The%20Gravity%20of%20Us_.jpg'
-  newPost.description = postInputInformation.value.description;
-  newPost.title = postInputInformation.value.tittle;
-  newPost.hashtags = postInputInformation.value.hashtags
-  newPost.status = postInputInformation.value.status;
+  newPost.image = 'https://st.booknet.com/uploads/covers/220/1602531481_84.png'
+  newPost.description = postInputInformation.value?.description;
+  newPost.title = postInputInformation.value?.tittle;
+  newPost.hashtags = postInputInformation.value?.hashtags
+  newPost.status = postInputInformation.value?.status;
   emits('save', newPost);
 }
 

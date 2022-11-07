@@ -1,11 +1,11 @@
 <template>
   <Card
-      class="z-5  flex align-items-center justify-content-center p-4  font-bold text-white border-round shadow-1 reading-information">
+    class="z-5  flex align-items-center justify-content-center p-4  font-bold text-white border-round shadow-1 reading-information">
     <template #title>
       <h4 style="color: #fff">Continua leyendo</h4>
     </template>
     <template #content>
-      <div class="content-container">
+      <!--  <div class="content-container">
         <ScrollPanel style="width: 100%; height: 200px" class="p-scrollpanel-bar-y">
         <Card v-for="reading in continueReadingBooks" class="reading-cardd">
           <template #content>
@@ -23,18 +23,58 @@
           </template>
         </Card>
         </ScrollPanel>
-      </div>
+      </div>-->
+      <SpilineGraph :card-time-series="cardTimeSeries" />
+
 
     </template>
   </Card>
 </template>
 
 <script lang="ts" setup>
+import SpilineGraph from '@/shared/components/graphs/SpilineGraph.component.vue';
+import type { ICardTimeSeries } from '@/shared/models/Spineline.facade';
+
+const cardTimeSeries: ICardTimeSeries = {
+
+  series: [
+    {
+    data: [{
+      name: 'Terror',
+      value: 767.1,
+      color: 'pink'
+    }, {
+      name: 'Suspenso',
+      value: 20.7,
+      color: 'green'
+    },
+    {
+      name: "Drama",
+      value: 97.2,
+      color: 'yellow'
+    },
+    {
+      name: "Aventura",
+      value: 111.7,
+      color: 'blue'
+    },
+    {
+      name: "Romance",
+      value: 158.1,
+      color: 'white'
+    }]
+  },
+  
+]
+}
+
+
+
 const continueReadingBooks: Array<{ name: string, imageUrl: string, pageAt: number }> = [{
   name: 'Las fantasias de pedrito',
   imageUrl: 'https://www.fcbarcelonanoticias.com/uploads/s1/13/11/03/1/pedri-fc-barcelona.jpeg',
   pageAt: 85
-}, {name: 'Besame una vez mas', imageUrl: 'https://www.republica.com/wp-content/uploads/2016/02/beso.jpg', pageAt: 21},]
+}, { name: 'Besame una vez mas', imageUrl: 'https://www.republica.com/wp-content/uploads/2016/02/beso.jpg', pageAt: 21 },]
 </script>
 
 <script lang="ts">
@@ -44,14 +84,15 @@ export default {
 </script>
 
 <style scoped>
-.reading-cardd{
+.reading-cardd {
   background: transparent;
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(8.2px);
--webkit-backdrop-filter: blur(8.2px);
-margin-top: 5px;
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8.2px);
+  -webkit-backdrop-filter: blur(8.2px);
+  margin-top: 5px;
 }
+
 .reading-information {
   position: absolute;
   left: 42%;
@@ -59,10 +100,10 @@ margin-top: 5px;
   max-width: fit-content;
   max-height: fit-content;
   background: rgba(114, 117, 124, 0.37);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(8.2px);
--webkit-backdrop-filter: blur(8.2px);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8.2px);
+  -webkit-backdrop-filter: blur(8.2px);
 }
 
 .content-container {
@@ -75,7 +116,8 @@ backdrop-filter: blur(8.2px);
   flex-direction: column;
 
 }
-.divider{
+
+.divider {
   display: flex;
   gap: 1rem
 }
@@ -99,5 +141,4 @@ backdrop-filter: blur(8.2px);
     max-height: fit-content;
   }
 }
-
 </style>

@@ -1,5 +1,6 @@
 <template>
-  <PostCreator class="opacity-loading" @save="savePost" />
+  <div class="bg-post">
+    <PostCreator class="opacity-loading" @save="savePost" />
   <ProgressSpinner
     class="loading-spinner"
     v-if="showLoading"
@@ -9,6 +10,8 @@
     animationDuration=".5s"
   />
   <Toast />
+  </div>
+  
 </template>
 
 <script lang="ts" setup>
@@ -27,9 +30,9 @@ const showOpacity = computed(() => (showLoading.value ? 0.2 : 1));
 
 const savePost = async (p_post: Item) => {
   showLoading.value = true;
-  console.log("before save: ", publishingFacade.selectedPost);
   Object.assign(publishingFacade.selectedPost, p_post);
   createdSuccesfully.value = await publishingFacade.createNewPost(p_post);
+  console.log(createdSuccesfully.value)
   createdSuccesfully.value
     ? toast.add({
         severity: "success",
@@ -43,8 +46,11 @@ const savePost = async (p_post: Item) => {
         detail: "Message Content",
         life: 3000,
       });
-  showLoading.value = false;
-  createdSuccesfully.value ? router.push("/my-posts") : console.log("oh no");
+
+  setTimeout(()=> {
+    showLoading.value = false;
+    createdSuccesfully.value ? router.push("/my-posts") : console.log("oh no");
+  }, 3000)
 };
 </script>
 
@@ -60,5 +66,14 @@ const savePost = async (p_post: Item) => {
 }
 .opacity-loading {
   opacity: v-bind(showOpacity);
+}
+.bg-post{
+  
+  background: #bdc3c7;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #272b2e, #474b4e);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #232527, #383a3b);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 </style>

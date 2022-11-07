@@ -7,7 +7,7 @@
       <TextEditor ref="textEditor"  />
     </div>
     <div class="block font-bold text-center p-4 border-round mb-3">
-      <Button @click="savePost" label="Save" icon="pi pi-check"/>
+      <Button @click="savePost" :label="translate('bc-publishing-publish')" icon="pi pi-check"/>
     </div>
   </div>
 </template>
@@ -19,8 +19,10 @@ import {computed, reactive, ref} from "vue";
 import  PostInputInformation from "@/publishing/components/post-input-information.component.vue";
 import type {CreatePostInterface} from "@/publishing/model/entities/create-post.interface";
 import type {EPostStatus} from "@/publishing/model/entities/post-status.enum";
-import type {Item} from "@/publishing/model/entities/item.interface";
+import type {Item} from "@/shared/models/entities/item.interface";
 import publishingFacade from "@/publishing/model/publishing.facade";
+import { translate } from "@/shared/plugins/i18n/i18n";
+
 
 const textEditor = ref<InstanceType<typeof TextEditor> | null>(null);
 const postInputInformation = ref<InstanceType<typeof PostInputInformation> | null>(null);
@@ -32,14 +34,14 @@ newPost.hashtags = newPost.hashtags?.map( e => {
 }).flat();
 
 const savePost = () => {
-  newPost.content = textEditor.value.post;
+  newPost.content = textEditor.value?.post;
   //TODO:
   // newPost.image = postInputInformation.value.image;
-  newPost.image = 'https://prodimage.images-bn.com/lf?set=key%5Bresolve.pixelRatio%5D,value%5B1%5D&set=key%5Bresolve.width%5D,value%5B300%5D&set=key%5Bresolve.height%5D,value%5B10000%5D&set=key%5Bresolve.imageFit%5D,value%5Bcontainerwidth%5D&set=key%5Bresolve.allowImageUpscaling%5D,value%5B0%5D&set=key%5Bresolve.format%5D,value%5Bwebp%5D&product=path%5B/pimages/9781668015179_p0_v5%5D&call=url%5Bfile:common/decodeProduct.chain%5D'
-  newPost.description = postInputInformation.value.description;
-  newPost.title = postInputInformation.value.tittle;
-  newPost.hashtags = postInputInformation.value.hashtags
-  newPost.status = postInputInformation.value.status;
+  newPost.image = 'https://st.booknet.com/uploads/covers/220/1602531481_84.png'
+  newPost.description = postInputInformation.value?.description;
+  newPost.title = postInputInformation.value?.tittle;
+  newPost.hashtags = postInputInformation.value?.hashtags
+  newPost.status = postInputInformation.value?.status;
   emits('save', newPost);
 }
 

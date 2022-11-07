@@ -12,7 +12,9 @@
           >
             <Suspense>
               <template #default v-if="Component">
-                <component :is="Component" :key="route.path" />
+                <KeepAlive>
+                  <component :is="Component" :key="route.path" />
+                </KeepAlive>
               </template>
               <template #fallback>
                 <ProgressSpinner
@@ -217,7 +219,7 @@ export default {
 <script setup lang="ts">
 import { RouterLink, RouterView } from "vue-router";
 import AppTopbar from "./shared/components/layouts/AppTopbar.vue";
-import { Controller } from "@/shared/models/Controller";
+import type { Controller } from "@/shared/models/Controller";
 import { injectStrict } from "@/shared/utils/Injections";
 
 const app: Controller = injectStrict("appController");

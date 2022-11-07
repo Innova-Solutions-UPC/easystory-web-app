@@ -1,7 +1,7 @@
 import {ApiServices} from "@/shared/service/api.services";
 import type {CreatePostInterface} from "@/publishing/model/entities/create-post.interface";
-import type {AuthorPosts} from "@/publishing/model/entities/author-posts.interface";
-import type {Item} from "@/publishing/model/entities/item.interface";
+import type {AuthorPosts} from "@/shared/models/entities/author-posts.interface";
+import type {Item} from "@/shared/models/entities/item.interface";
 
 export class PublishingApiServices extends ApiServices{
     constructor() {
@@ -43,7 +43,7 @@ export class PublishingApiServices extends ApiServices{
     }
 
     async updateExistingPost(p_post: CreatePostInterface, postId: number){
-        return (await this.patch('/posts/' + postId, p_post)).data;
+        return (await this.patch('/posts/' + postId, p_post)).status;
     }
 
     async updatePost(p_post: CreatePostInterface, id: number){

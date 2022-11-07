@@ -4,13 +4,13 @@
       <div>
         <span class="p-float-label">
             <InputText id="Tittle" type="text" v-model="tittle"/>
-            <label for="username">Tittle</label>
+            <label for="username">{{translate('bc-publishing-title')}}</label>
         </span>
       </div>
       <div>
         <span class="p-float-label">
             <InputText id="Description" type="text" v-model="description"/>
-            <label for="username">Description</label>
+            <label for="username">{{translate('bc-publishing-description')}}</label>
         </span>
       </div>
       <div v-if="image.length > 1 "  style="margin-top: 20%">
@@ -20,13 +20,13 @@
            <Dialog header="Upload Image" v-model:visible="showImageModalForEditing" :breakpoints="{'960px': '75vw', '640px': '90vw'}" :style="{width: '50vw'}">
             <ImageModal @upload-image="myUploader"  />
         </Dialog>
-            <label for="username">Image</label>
+            <label for="username">{{translate('bc-publishing-image')}}</label>
         </span>
       </div>
       <div v-else >
         <span class="p-float-label">
-        <label for="username">Image</label>
-        <Button label="Upload" @click="showImageModalForCreating = true"  />
+        <label for="username">{{translate('bc-publishing-image')}}</label>
+        <Button :label="translate('bc-publishing-upload')" @click="showImageModalForCreating = true"  />
           <Dialog header="Uploasasaasad Image" v-model:visible="showImageModalForCreating" :breakpoints="{'960px': '75vw', '640px': '90vw'}" :style="{width: '50vw'}">
             <ImageModal @upload-image="myUploader"  />
         </Dialog>
@@ -35,13 +35,13 @@
       </div>
       <div>
         <span class="p-float-label">
-        <label for="username">Status</label>
+        <label for="username">{{translate('bc-publishing-status')}}</label>
         <Dropdown v-model="status" :options="statusOptions" placeholder="Select status"/>
         </span>
       </div>
       <div>
         <span class="p-float-label">
-        <label for="username">Hashtags</label>
+        <label for="username">{{translate('bc-publishing-tags')}}</label>
         <Chips style="max-width:250px; max-height: 50px" v-model="hashtags"/>
         </span>
       </div>
@@ -56,8 +56,9 @@ import type { Ref} from "vue";
 import ImageModal from "@/publishing/components/image-modal.component.vue";
 import type {CreatePostInterface} from "@/publishing/model/entities/create-post.interface";
 import {EPostStatus} from "@/publishing/model/entities/post-status.enum";
-import type {Item} from "@/publishing/model/entities/item.interface";
+import type {Item} from "@/shared/models/entities/item.interface";
 import publishingFacade from "@/publishing/model/publishing.facade";
+import { translate } from '../../shared/plugins/i18n/i18n';
 
 
 

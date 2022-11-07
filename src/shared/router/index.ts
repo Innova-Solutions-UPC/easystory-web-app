@@ -2,6 +2,8 @@ import {createRouter, createWebHistory} from 'vue-router'
 import type { NavigationGuardNext, RouteLocationNormalized} from 'vue-router'
 import ProfileView from '../../personalLibrary/profile/profile.vue'
 import appController from "@/shared/models/Controller";
+import {PrimeIcons} from 'primevue/api';
+import { translate } from '../plugins/i18n/i18n';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,39 +20,59 @@ const router = createRouter({
     },
     {
       path: '/profile',
-      name: 'Profile',
+      name: translate('router-profile'),
       component: () => import('@/personalLibrary/profile/profile.vue'),
       meta: {
-        visible: true
+        visible: true,
+        icon: 'pi pi-user'
       }
     },
     {
       path: '/create-post',
-      name: 'CreatePost',
+      name: translate('router-create-post'),
       component: () => import('@/publishing/views/create-new-post.vue'),
       meta: {
-        visible: true
+        visible: true,
+        icon: PrimeIcons.BOOK
       }
     },
     {
       path: '/update-post',
-      name: 'UpdatePost',
+      name: 'Update Post',
       component: () => import('@/publishing/views/update-existing-post.vue'),
       meta: {
-        visible: true
+        visible: false
       }
     },
     {
       path: '/my-posts',
-      name: 'Posts',
+      name: translate('router-my-posts'),
       component: () => import('@/publishing/views/posts-by-author.vue'),
       meta: {
-        visible: true
+        visible: true,
+        icon: PrimeIcons.DATABASE
+      }
+    },
+    {
+      path: '/home',
+      name: translate('router-home'),
+      component: () => import('@/social/views/home.vue'),
+      meta: {
+        visible: true,
+        icon: PrimeIcons.HOME
+      }
+    },
+    {
+      path: '/post-detail',
+      name: 'Post detail',
+      component: () => import('@/social/views/post-detail.vue'),
+      meta:{
+        visible: false
       }
     },
     {
       path: '/:catchAll(.*)',
-      redirect: '/my-posts'
+      redirect: '/home'
     }
 
   ]

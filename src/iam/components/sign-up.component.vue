@@ -2,12 +2,12 @@
   <div class="form-demo">
   <div class="flex justify-content-center">
     <div class="card">
-      <h5 style="font-weight: bold; font-size: larger; margin-bottom: 15px"  class="text-center">Register</h5>
+      <h5 style="font-weight: bold; font-size: larger; margin-bottom: 15px"  class="text-center">{{translate('bc-iam-register')}}</h5>
       <form @submit.prevent="handleSubmit(!v$.$invalid)" class="p-fluid">
         <div class="field">
           <div class="p-float-label">
             <InputText id="name" v-model="v$.firstName.$model" :class="{'p-invalid':v$.firstName.$invalid && submitted}" />
-            <label for="firstName" :class="{'p-error':v$.firstName.$invalid && submitted}">First name*</label>
+            <label for="firstName" :class="{'p-error':v$.firstName.$invalid && submitted}">{{translate('bc-iam-firstname')}}*</label>
           </div>
           <small v-if="(v$.firstName.$invalid && submitted) || v$.firstName.$pending.$response" class="p-error">{{v$.firstName.required.$message.replace('Value', 'Name')}}</small>
         </div>
@@ -15,7 +15,7 @@
         <div class="field">
           <div class="p-float-label">
             <InputText id="name" v-model="v$.lastName.$model" :class="{'p-invalid':v$.lastName.$invalid && submitted}" />
-            <label for="lastName" :class="{'p-error':v$.lastName.$invalid && submitted}">Last name*</label>
+            <label for="lastName" :class="{'p-error':v$.lastName.$invalid && submitted}">{{translate('bc-iam-lastname')}}*</label>
           </div>
           <small v-if="(v$.lastName.$invalid && submitted) || v$.lastName.$pending.$response" class="p-error">{{v$.lastName.required.$message.replace('Value', 'Last name')}}</small>
         </div>
@@ -24,7 +24,7 @@
           <div class="p-float-label p-input-icon-right">
             <i class="pi pi-envelope" />
             <InputText id="email" v-model="v$.email.$model" :class="{'p-invalid':v$.email.$invalid && submitted}" aria-describedby="email-error"/>
-            <label for="email" :class="{'p-error':v$.email.$invalid && submitted}">Email*</label>
+            <label for="email" :class="{'p-error':v$.email.$invalid && submitted}">{{translate('bc-iam-email')}}*</label>
           </div>
           <span v-if="v$.email.$error && submitted">
                             <span id="email-error" v-for="(error, index) of v$.email.$errors" :key="index">
@@ -37,29 +37,29 @@
           <div class="p-float-label">
             <Password id="password" v-model="v$.password.$model" :class="{'p-invalid':v$.password.$invalid && submitted}" toggleMask>
               <template #header>
-                <h6>Pick a password</h6>
+                <h6>{{translate('bc-iam-pick-password')}}</h6>
               </template>
               <template #footer="sp">
                 {{sp.level}}
                 <Divider />
-                <p class="mt-2">Suggestions</p>
+                <p class="mt-2">{{translate('bc-iam-suggest-password')}}</p>
                 <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
-                  <li>At least one lowercase</li>
-                  <li>At least one uppercase</li>
-                  <li>At least one numeric</li>
-                  <li>Minimum 8 characters</li>
+                  <li>{{translate('bc-iam-one-lowcase')}}</li>
+                  <li>{{translate('bc-iam-one-uppercase')}}</li>
+                  <li>{{translate('bc-iam-one-number')}}</li>
+                  <li>{{translate('bc-iam-characters')}}</li>
                 </ul>
               </template>
             </Password>
-            <label for="password" :class="{'p-error':v$.password.$invalid && submitted}">Password*</label>
+            <label for="password" :class="{'p-error':v$.password.$invalid && submitted}">{{translate('bc-iam-password')}}*</label>
           </div>
           <small v-if="(v$.password.$invalid && submitted) || v$.password.$pending.$response" class="p-error">{{v$.password.required.$message.replace('Value', 'Password')}}</small>
         </div>
         <div class="field-checkbox">
           <Checkbox id="accept" name="accept" value="Accept" v-model="v$.accept.$model" :class="{'p-invalid':v$.accept.$invalid && submitted}" />
-          <label for="accept" :class="{'p-error': v$.accept.$invalid && submitted}">I agree to the terms and conditions*</label>
+          <label for="accept" :class="{'p-error': v$.accept.$invalid && submitted}">{{translate('bc-iam-agree-terms')}}*</label>
         </div>
-        <Button @click="handleSubmit" type="submit" label="Submit" class="mt-2" />
+        <Button @click="handleSubmit" type="submit" :label="translate('bc-iam-sign-up')" class="mt-2" />
       </form>
     </div>
   </div>
@@ -86,6 +86,7 @@ import {useToast} from "primevue/usetoast";
 import { useVuelidate } from '@vuelidate/core'
 import { required, email } from '@vuelidate/validators'
 import router from "@/shared/router";
+import { translate } from '../../shared/plugins/i18n/i18n';
 
 
 const showCreatedAccountDialog = ref(false);

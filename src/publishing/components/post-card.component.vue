@@ -15,7 +15,7 @@
 import {ref} from "vue";
 
 import {defineProps} from "vue";
-import type {Item} from "@/publishing/model/entities/item.interface";
+import type {Item} from "@/shared/models/entities/item.interface";
 
 const props = defineProps<{
  post: Item

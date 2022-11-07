@@ -6,7 +6,8 @@ import PrimeVue from "primevue/config";
 import StyleClass from "primevue/styleclass";
 import "./shared/assets/styles/layout.css";
 import router from "./shared/router";
-
+import '@vueup/vue-quill/dist/vue-quill.bubble.css'
+import '@vueup/vue-quill/dist/vue-quill.snow.css'
 import "./shared/assets/main.css";
 //PRIME VUE COMPONENTS
 
@@ -42,7 +43,8 @@ import Password from "primevue/password";
 import Toast from "primevue/toast";
 import ToastService from 'primevue/toastservice';
 import Skeleton from 'primevue/skeleton';
-
+//Highchart library
+import HighchartsVue from 'highcharts-vue'
 
 import Chips from "primevue/chips";
 import VirtualScroller from "primevue/virtualscroller";
@@ -50,6 +52,10 @@ import Image from "primevue/image";
 import FileUpload from "primevue/fileupload";
 import Breadcrumb from "primevue/breadcrumb";
 import ProgressSpinner from "primevue/progressspinner";
+import Avatar from "primevue/avatar";
+import SpeedDial from "primevue/speeddial";
+import {QuillEditor} from "@vueup/vue-quill";
+import i18n from './shared/plugins/i18n/i18n';
 
 
 const app = createApp(App);
@@ -60,6 +66,8 @@ app.use(PrimeVue, {inputStyle: 'filled'});
 app.use(createPinia());
 app.use(router);
 app.use(ToastService);
+app.use(i18n);
+app.use(HighchartsVue);
 
 app.component('InputText', InputText);
 app.component('Button', Button);
@@ -80,11 +88,12 @@ app.component('Password', Password)
 app.component('Toast', Toast)
 app.provide('appController', appController )
 app.component('Breadcrumb', Breadcrumb)
+app.component('Avatar', Avatar);
 
 app.component('Dropdown', Dropdown)
 app.component('VirtualScroller', VirtualScroller);
-
-
+app.component('SpeedDial', SpeedDial)
+app.component('QuillEditor', QuillEditor);
 app.component('Dropdown', Dropdown)
 app.component('VirtualScroller', VirtualScroller);
 app.component('Skeleton', Skeleton);

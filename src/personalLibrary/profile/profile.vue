@@ -6,7 +6,7 @@
       </div>
       <div class="block font-bold text-center p-4  mb-3 bottom-color">
         <ContinueReading />
-        <About />
+        <!--<About /> --> 
       </div>
     </div>
   </div>
@@ -23,12 +23,12 @@ import ContinueReading from "@/personalLibrary/profile/components/continue-readi
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #e2e2e3;
+  background-color: #191a23;
 }
 
 .top-color {
   min-width: 100vw;
-  background-color: #193f6c;
+  background-color: #343647;
   border-top-right-radius: 0 !important;
   border-top-left-radius: 0 !important;
   border-bottom-right-radius: 100px;
@@ -38,7 +38,7 @@ import ContinueReading from "@/personalLibrary/profile/components/continue-readi
 }
 
 .bottom-color {
-  background-color: #e2e2e3;
+  background-color: #191a23;
   min-height: 70vh;
   margin-top: -15px;
 }

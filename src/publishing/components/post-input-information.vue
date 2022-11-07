@@ -4,29 +4,29 @@
       <div>
         <span class="p-float-label">
             <InputText id="Tittle" type="text" v-model="tittle"/>
-            <label for="username">{{translate('bc-publishing-title')}}</label>
+            <label for="username">Tittle</label>
         </span>
       </div>
       <div>
         <span class="p-float-label">
             <InputText id="Description" type="text" v-model="description"/>
-            <label for="username">{{translate('bc-publishing-description')}}</label>
+            <label for="username">Description</label>
         </span>
       </div>
-      <div v-if="image.length > 1 "  style="margin-top: 20%">
+      <div v-if="inputInformation.image.length > 1 "  style="margin-top: 20%">
          <span class="p-float-label">
            <code class="image-edit">Edit</code>
              <Image class="post-image" :src="imageToShow" alt="Image" width="150" height="150" @click="showImageModalForEditing = true" />
            <Dialog header="Upload Image" v-model:visible="showImageModalForEditing" :breakpoints="{'960px': '75vw', '640px': '90vw'}" :style="{width: '50vw'}">
             <ImageModal @upload-image="myUploader"  />
         </Dialog>
-            <label for="username">{{translate('bc-publishing-image')}}</label>
+            <label for="username">Image</label>
         </span>
       </div>
       <div v-else >
         <span class="p-float-label">
-        <label for="username">{{translate('bc-publishing-image')}}</label>
-        <Button :label="translate('bc-publishing-upload')" @click="showImageModalForCreating = true"  />
+        <label for="username">Image</label>
+        <Button label="Upload" @click="showImageModalForCreating = true"  />
           <Dialog header="Uploasasaasad Image" v-model:visible="showImageModalForCreating" :breakpoints="{'960px': '75vw', '640px': '90vw'}" :style="{width: '50vw'}">
             <ImageModal @upload-image="myUploader"  />
         </Dialog>
@@ -35,13 +35,13 @@
       </div>
       <div>
         <span class="p-float-label">
-        <label for="username">{{translate('bc-publishing-status')}}</label>
+        <label for="username">Status</label>
         <Dropdown v-model="status" :options="statusOptions" placeholder="Select status"/>
         </span>
       </div>
       <div>
         <span class="p-float-label">
-        <label for="username">{{translate('bc-publishing-tags')}}</label>
+        <label for="username">Hashtags</label>
         <Chips style="max-width:250px; max-height: 50px" v-model="hashtags"/>
         </span>
       </div>
@@ -53,26 +53,27 @@
 <script lang="ts" setup>
 import { ref} from "vue";
 import type { Ref} from "vue";
-import ImageModal from "@/publishing/components/image-modal.component.vue";
+
 import type {CreatePostInterface} from "@/publishing/model/entities/create-post.interface";
 import {EPostStatus} from "@/publishing/model/entities/post-status.enum";
-import type {Item} from "@/shared/models/entities/item.interface";
-import publishingFacade from "@/publishing/model/publishing.facade";
-import { translate } from '../../shared/plugins/i18n/i18n';
+import ImageModal from "@/publishing/components/image-modal.component.vue";
 
 
+const props = defineProps<{
+  inputInformation: CreatePostInterface;
+}>()
 
 const statusOptions = Object.keys(EPostStatus).filter((v) => isNaN(Number(v)));
 
-const tittle = ref(publishingFacade.selectedPost.title);
-const description = ref(publishingFacade.selectedPost.description);
-const image: Ref<string | FormData > | any  = ref(publishingFacade.selectedPost.image!);
-const status = ref(publishingFacade.selectedPost.status);
-const hashtags = ref(publishingFacade.selectedPost.hashtags);
+const tittle = ref(props.inputInformation.title);
+const description = ref(props.inputInformation.description);
+const image: Ref<string | FormData >  = ref(props.inputInformation.image!);
+const status = ref(props.inputInformation.status);
+const hashtags = ref(props.inputInformation.hashtags);
 
 
 
-const imageToShow = ref(publishingFacade.selectedPost.image);
+const imageToShow = ref(props.inputInformation.image);
 
 
 const myUploader = (data: FormData, blobUrl: string) => {
@@ -95,11 +96,6 @@ defineExpose({
   status,
   hashtags
 })
-</script>
-<script lang="ts">
-export default {
-  name: "PostInputInformation"
-}
 </script>
 
 <style scoped>

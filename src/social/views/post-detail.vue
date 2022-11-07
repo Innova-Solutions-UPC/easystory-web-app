@@ -24,7 +24,7 @@
 <!--        <template v-slot:toolbar style="display: none">-->
 <!--        </template>-->
 <!--      </Editor>-->
-      <QuillEditor theme="bubble" read-only content-type="text" :content="post.content" />
+      <QuillEditor theme="bubble" read-only content-type="html" :content="post.content" />
     </div>
     <Divider type="dashed" align="left">
       <div class="inline-flex align-items-center">

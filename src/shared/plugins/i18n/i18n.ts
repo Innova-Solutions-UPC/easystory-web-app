@@ -10,7 +10,7 @@ import fr from '@/shared/plugins/i18n/locales/fr.json'
 
 const i18n = vueI18n.createI18n({
   legacy: false,
-  locale:  "fr",
+  locale:  localStorage.getItem('language') || "fr",
   fallbackLocale: ["es", "en", "pt", "fr"],
   messages: {
     es: es,

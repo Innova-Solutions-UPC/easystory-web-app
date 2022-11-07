@@ -6,13 +6,14 @@
            src="https://media.istockphoto.com/photos/portrait-of-successful-black-male-modern-day-student-holding-picture-id1311634222?k=20&m=1311634222&s=612x612&w=0&h=1a0XDWnZNPjk_5n7maZdzowaDfBcBohwoiZZF69qS9A=">
     </template>
     <template #title>
-      <h4 style="color: #fff">{{userName}}</h4>
+      <h4 style="color: #fff">@{{userName}}</h4>
     </template>
     <template #content>
       <div class="chips-container ">
         <Chip :label="email" icon="pi pi-google"/>
         <Chip label="Lima, Peru" icon="pi pi-map-marker"/>
         <Chip label="+51 998 554 525" icon="pi pi-phone"/>
+        <Dropdown v-model="selectedLanguage" :options="languageOptions" optionLabel="label" option-value="value" :editable="true" class="language-dpd"/>
       </div>
 
     </template>
@@ -22,11 +23,20 @@
 <script lang="ts" setup>
 import type {Controller} from "@/shared/models/Controller";
 import {injectStrict} from "@/shared/utils/Injections";
-import {computed} from "vue";
+import { computed, ref, watch } from 'vue';
+
+const selectedLanguage = ref(localStorage.getItem('language') ?? 'fr');
+const languageOptions = [{label: 'English', value: 'en'}, {label: 'Español', value: 'en'}, {label: 'Frances', value: 'fr'}, {label: 'Portugues', value:'pt'}]
 const app: Controller = injectStrict('appController');
 const userName = computed(()=> app.user.m_profile?.authenticatedUser.username);
 const email = computed(()=> app.user.m_profile?.authenticatedUser.email);
-console.log(userName)
+console.log(app.user.m_profile?.authenticatedUser)
+
+watch(selectedLanguage,(act) => {
+  localStorage.setItem('language', act);
+  window.location.reload();
+})
+
 </script>
 <script lang="ts">
 export default {
@@ -71,5 +81,10 @@ backdrop-filter: blur(8.2px);
     margin-left: 10vw;
     margin-right: 10vw;
   }
+}
+
+.language-dpd{
+  height: 36px;
+  border-radius: 20px;
 }
 </style>

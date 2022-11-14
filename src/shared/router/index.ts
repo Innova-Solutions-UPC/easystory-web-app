@@ -19,6 +19,16 @@ const router = createRouter({
       }
     },
     {
+      path: '/subscription',
+      name: 'Subscription',
+      component: () => import('@/subscriptions/views/subscription.vue'),
+      meta: {
+        visible: false,
+        onlyWhenLoggedOut: true,
+        public: true
+      }
+    },
+    {
       path: '/profile',
       name: translate('router-profile'),
       component: () => import('@/personalLibrary/profile/profile.vue'),

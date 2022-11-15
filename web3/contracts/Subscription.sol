@@ -7,13 +7,13 @@ import "hardhat/console.sol";
 contract CSubscription {
     uint256 totalWaves;
 
-    event NewSubscription(address indexed from, uint256 timestamp, uint price, string since, string monthDuration);
+    event NewSubscription(address indexed from, uint256 timestamp, string since, uint monthDuration);
 
     struct Subscription {
         address waver;
-        uint price;
+
         string from;
-        string monthDuration;
+        uint monthDuration;
         uint256 timestamp;
     }
 
@@ -24,21 +24,43 @@ contract CSubscription {
     constructor() payable {
     }
 
-    function subscript(uint  _price, string memory from, string memory monthDuration) public {
+    function getPrice(uint monthDuration) public pure returns (uint256){
+        uint256 calculatedPrice;
+        if(monthDuration > 2){
+            calculatedPrice = 1 * 10**19;
+        }
+        else if(monthDuration > 2 && monthDuration < 5){
+            calculatedPrice = 2 * 10**19;
+        }
+        else if(monthDuration > 5 && monthDuration < 9){
+            calculatedPrice = 3 * 10**19;
+        }
+        else {
+            calculatedPrice =  4 * 10**19;
+        }
+        return calculatedPrice;
+    }
+
+    function subscript(string memory from, uint monthDuration) public payable {
         require(
             lastSubscriptionAt[msg.sender] + 60 seconds < block.timestamp,
             "Please wait 60 seconds before waving again."
         );
 
-        lastSubscriptionAt[msg.sender] = block.timestamp;
+        require(msg.value >= getPrice(monthDuration), "Not enough Matic paid");
+
+        if (monthDuration == 1)
+
+            lastSubscriptionAt[msg.sender] = block.timestamp;
 
         totalWaves += 1;
         console.log("%s has added!", msg.sender);
 
-        subscriptions.push(Subscription(msg.sender, _price,from,monthDuration, block.timestamp));
+        subscriptions.push(Subscription(msg.sender,from,monthDuration, block.timestamp));
 
-        emit NewSubscription(msg.sender, block.timestamp, _price, from, monthDuration);
+        emit NewSubscription(msg.sender, block.timestamp, from, monthDuration);
     }
+
 
     function getAllWaves() public view returns (Subscription[] memory) {
         return subscriptions;

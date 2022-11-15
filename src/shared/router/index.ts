@@ -24,7 +24,6 @@ const router = createRouter({
       component: () => import('@/subscriptions/views/subscription.vue'),
       meta: {
         visible: false,
-        onlyWhenLoggedOut: true,
         public: true
       }
     },

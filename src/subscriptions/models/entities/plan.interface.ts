@@ -4,5 +4,6 @@ export default interface Plan {
     tittle: string;
     description: string;
     price: number;
+    monthDuration: number;
     benefits: Array<Benefits>
 }

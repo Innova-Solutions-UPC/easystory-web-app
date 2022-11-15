@@ -1,6 +1,6 @@
 <template>
-  <div class="col-12 lg:col-4" style="color: #0E0B16">
-    <div class="p-3 h-full">
+  <div  class="col-12 lg:col-4" style="color: #0E0B16" >
+    <div class="p-3 h-full" >
       <div class="shadow-2 p-3 h-full flex flex-column surface-card" style="border-radius: 6px">
         <div class="text-900 font-medium text-xl mb-2">{{ props.detail.tittle }}</div>
         <div class="text-600">{{ props.detail.description }}</div>
@@ -22,24 +22,60 @@
         <Button v-else disabled label="Coming soon " class="p-3 w-full mt-auto"></Button>
       </div>
     </div>
+
   </div>
 </template>
 
 
-<script lang="ts" setup>
+<script lang="ts" setup >
 import type Plan from "@/subscriptions/models/entities/plan.interface";
+import {ethers} from "ethers";
+import CONTRACT_JSON from '../../../web3/src/artifacts/contracts/Subscription.sol/CSubscription.json';
+import type {ComputedVariable} from "vue/macros";
+import {computed, ref, toRef, watch} from "vue";
+import {useToast} from "primevue/usetoast";
 
+const {ethereum}: any = window;
 const props = defineProps<{
-  detail: Plan
+  detail: Plan,
+  contractAddress: string,
+  provider: any,
+  signer: any,
+  accounts: any
 }>();
+
+const contract = new ethers.Contract(props.contractAddress, CONTRACT_JSON.abi, props.signer);
+const accountsRef = toRef(props, 'accounts');
+
+
+
 
 const emits = defineEmits<{
-  (e:'buyPlan', plan: Plan): void;
+  (e:'buyPlan'): void;
+  (e:'operationSucceed'): void;
 }>();
+const toast = useToast();
+const buyPlan = async () => {
+  emits('buyPlan');
+  if (accountsRef.value.length !== 0) {
+    accountsRef.value = accountsRef.value[0];
+  } else {
+    console.log('No hay cuentas autorizadas');
+    console.log('Autorizando....');
+    accountsRef.value = await ethereum.request({method: 'eth_requestAccounts'});
+  }
+  let tx = await contract.subscript( new Date().toDateString(), props.detail.monthDuration, {value: ethers.utils.parseEther(props.detail.price.toString())});
+  await tx.wait();
+  console.log({tx});
+  console.log('Operation finished successfully https://mumbai.polygonscan.com/tx/' + tx.hash);
+  if(tx.hash == null){
+    toast.add({severity:'error', summary: 'Operation error', detail:'Operation was carried out with an error', life: 3000});
+    window.location.reload();
+  }
+  toast.add({severity:'success', summary: 'Operation succeed', detail:'Operation was carried out successfully', life: 3000});
+  emits('operationSucceed');
+};
 
-const buyPlan = () =>{
-  emits('buyPlan', props.detail);
-}
 
 
 </script>
@@ -52,5 +88,6 @@ export default {
 </script>
 
 <style scoped>
+
 
 </style>

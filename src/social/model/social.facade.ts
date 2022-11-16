@@ -9,6 +9,11 @@ export class SocialFacade {
     private _allPosts: AuthorPosts | undefined = undefined;
     private _selectedPost: Item | undefined = undefined;
     private _bookmarks: BookmarkResponse | undefined = undefined;
+    private _commentsForSelectedPost: any | undefined = undefined;
+
+    get commentsForSelectedPost(): any {
+        return this._commentsForSelectedPost;
+    }
 
     constructor() {
         this.apiService = new SocialApiServices();
@@ -32,6 +37,17 @@ export class SocialFacade {
 
     set selectedPost(value: Item | undefined) {
         this._selectedPost = value;
+        this.apiService.getAllCommentsIntoAPost(value?.slug!).then((res) => {
+            this._commentsForSelectedPost = res;
+        }).catch(e =>console.log({e}))
+    }
+
+    async loadCommentsForSelectredPost(slug: string) {
+        this._commentsForSelectedPost = (await this.apiService.getAllCommentsIntoAPost(slug));
+    }
+
+    async createComment(slug: string, content: string){
+        return (await this.apiService.createNewComment(slug, content));
     }
 
     get allPosts(): AuthorPosts | undefined {
@@ -42,7 +58,7 @@ export class SocialFacade {
         return this._selectedPost;
     }
 
-    async bookmarkAPost(p_postId: string): Promise<number>{
+    async bookmarkAPost(p_postId: string): Promise<boolean>{
         return (await this.apiService.createBookMark(p_postId)).toString().startsWith('2');
     }
 }

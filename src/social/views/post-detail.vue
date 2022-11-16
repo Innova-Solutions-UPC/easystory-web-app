@@ -20,18 +20,26 @@
       <div style="margin-left: 5%"><h3>Time ago: {{timeAgo}}</h3></div>
     </div>
     <div style="margin-top: 2%" class="quill-cnt">
-<!--      <Editor readonly v-model="post.content" editorStyle="height: 500px; width: 98%" >-->
+<!--      <Editor readonly v-model="post.content"  >-->
 <!--        <template v-slot:toolbar style="display: none">-->
 <!--        </template>-->
 <!--      </Editor>-->
-      <QuillEditor theme="bubble" read-only content-type="html" :content="post.content" />
+      <QuillEditor theme="bubble" read-only content-type="html" :content="post.content" editorStyle="height: 500px; width: 98%" />
     </div>
     <Divider type="dashed" align="left">
-      <div class="inline-flex align-items-center">
+      <div class="inline-flex align-items-center" style="min-height: 40px">
         <i class="pi pi-comments mr-2"></i>
-        <b>Comments</b>
+        <b style="color: #3c08c1">Comments</b>
+        <Button style="max-height: 30px; margin-left: 5px" @click=" newComentDialog = true" label="Add" icon="pi pi-plus-circle" />
+        <Dialog header="Header" footer="Footer" v-model:visible="newComentDialog">
+          <new-comment :slug="post.slug" @comment-created="commentWasCreated" />
+        </Dialog>
+
       </div>
     </Divider>
+    <div class="comments-gallery">
+      <comments v-for="comment in comments.items" :key="comment.id" :comment="comment" />
+    </div>
 
   </div>
 <Toast />
@@ -40,14 +48,16 @@
 
 <script lang="ts" setup>
 import socialFacade from "@/social/model/social.facade";
-import {computed, ref} from "vue";
+import {computed, reactive, ref} from "vue";
 import type {Item} from "@/shared/models/entities/item.interface";
-import router from "@/shared/router";
+import router from "@/shared/plugins/router";
 import {useShare, useTimeAgo} from "@vueuse/core";
 import type {Controller} from "@/shared/models/Controller";
 import {injectStrict} from "@/shared/utils/Injections";
 import {useToast} from "primevue/usetoast";
 import {QuillEditor} from "@vueup/vue-quill";
+import Comments from "@/social/components/comments.component.vue";
+import NewComment from "@/social/components/new-comment-dialog.component.vue";
 socialFacade.selectedPost == undefined ? router.push('/home') : console.log('');
 const post: Item | any = computed(()=> socialFacade.selectedPost);
 const created = post.createdAt;
@@ -55,11 +65,19 @@ const app: Controller = injectStrict('appController');
 const { share, isSupported } = useShare()
 const timeAgo = useTimeAgo(post.value.createdAt!);
 const toast = useToast();
+await socialFacade.loadCommentsForSelectredPost(socialFacade.selectedPost?.slug!);
+const comments = reactive(socialFacade.commentsForSelectedPost);
+const newComentDialog = ref(false);
 
 const isBookmarked: boolean = socialFacade.bookmarks?.items.filter(e => e.id == post.value.id).length! > 0;
 console.log(isBookmarked)
 const bookmarkedIcon = isBookmarked ? 'pi pi-bookmark-fill' : 'pi pi-bookmark';
 console.log(bookmarkedIcon)
+
+const commentWasCreated = async () => {
+  newComentDialog.value = false;
+  await socialFacade.loadCommentsForSelectredPost(socialFacade.selectedPost?.slug!);
+}
 
 const speedDialItems = ref([
   {
@@ -120,7 +138,7 @@ function startShare(text: string) {
   background: linear-gradient(to right, #2c3e50, #bdc3c7);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   text-align: center;
-  height: calc(100vh - 52px);
+
   color: #fff;
 }
 .quill-cnt{
@@ -129,7 +147,6 @@ function startShare(text: string) {
   min-height: 35vh;
   border-radius: 20px;
   background: rgba(13, 13, 14, 0.404);
-  border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(8.2px);
   -webkit-backdrop-filter: blur(8.2px);
@@ -238,5 +255,11 @@ function startShare(text: string) {
     right: 0;
     bottom: 0;
   }
+}
+.comments-gallery{
+  display: grid;
+  gap: 1rem;
+  grid-auto-rows: 15rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
 }
 </style>

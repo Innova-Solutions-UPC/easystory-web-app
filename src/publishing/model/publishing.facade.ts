@@ -10,7 +10,7 @@ export class PublishingFacade {
 
     private apiService: PublishingApiServices;
     private _posts: AuthorPosts | undefined = undefined;
-    private _postsByAuthor: AuthorPosts | undefined = undefined;
+    private _postsByAuthor: AuthorPosts | undefined | any = undefined;
     private _selectedPost: Item;
 
     constructor() {
@@ -51,7 +51,9 @@ export class PublishingFacade {
 
 
         this._posts = await this.apiService.getPostByAutenticatedUser();
-        this._postsByAuthor = await this.apiService.getAllPostByAuthorId(authorId);
+        //this._postsByAuthor = await this.apiService.getAllPostByAuthorId(authorId);
+        this._postsByAuthor = (await this.apiService.getPostByAutenticatedUser()).items.filter(e => e.author?.id == authorId);
+        console.log(this._postsByAuthor)
     }
 
     async createNewPost(p_post: Item): Promise<boolean> {

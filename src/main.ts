@@ -5,7 +5,7 @@ import App from "./App.vue";
 import PrimeVue from "primevue/config";
 import StyleClass from "primevue/styleclass";
 import "./shared/assets/styles/layout.css";
-import router from "./shared/router";
+import router from "./shared/plugins/router";
 import '@vueup/vue-quill/dist/vue-quill.bubble.css'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
 import "./shared/assets/main.css";
@@ -14,6 +14,7 @@ import "./shared/assets/main.css";
 import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
 import Card from 'primevue/card';
+import Textarea from 'primevue/textarea';
 import Editor from "primevue/editor";
 import Dialog from "primevue/dialog";
 import Chip from 'primevue/chip';
@@ -58,6 +59,21 @@ import {QuillEditor} from "@vueup/vue-quill";
 import i18n from './shared/plugins/i18n/i18n';
 
 
+
+import firebase from "firebase/compat";
+const firebaseConf = {
+    apiKey: "AIzaSyDKMM9J-mMiEBaX1-wmPhS27AgA_akTokE",
+    authDomain: "easy-story-5040d.firebaseapp.com",
+    projectId: "easy-story-5040d",
+    storageBucket: "easy-story-5040d.appspot.com",
+    messagingSenderId: "454108586040",
+    appId: "1:454108586040:web:4151ee0dcea934fac446cd",
+    measurementId: "G-0EGZHXZLMX"
+}
+firebase.initializeApp(firebaseConf);
+// @ts-ignore
+//const analytics = getAnalytics(firebaseConf);
+
 const app = createApp(App);
 
 app.directive("styleclass", StyleClass);
@@ -67,6 +83,7 @@ app.use(createPinia());
 app.use(router);
 app.use(ToastService);
 app.use(i18n);
+// @ts-ignore
 app.use(HighchartsVue);
 
 app.component('InputText', InputText);
@@ -77,6 +94,7 @@ app.component('Chip', Chip);
 app.component('Divider', Divider);
 app.component('Tag', Tag);
 app.component('Chips', Chips);
+app.component('Textarea', Textarea);
 app.component('Image', Image);
 app.component('ProgressSpinner', ProgressSpinner)
 app.component('FileUpload', FileUpload);
@@ -91,10 +109,8 @@ app.component('Breadcrumb', Breadcrumb)
 app.component('Avatar', Avatar);
 
 app.component('Dropdown', Dropdown)
-app.component('VirtualScroller', VirtualScroller);
 app.component('SpeedDial', SpeedDial)
 app.component('QuillEditor', QuillEditor);
-app.component('Dropdown', Dropdown)
 app.component('VirtualScroller', VirtualScroller);
 app.component('Skeleton', Skeleton);
 

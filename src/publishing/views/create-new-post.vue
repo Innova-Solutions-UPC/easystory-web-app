@@ -9,9 +9,9 @@
     fill="var(--surface-ground)"
     animationDuration=".5s"
   />
-  <Toast />
+  <Toast style="margin-top: 50px" />
   </div>
-  
+
 </template>
 
 <script lang="ts" setup>
@@ -20,7 +20,7 @@ import PostCreator from "@/publishing/components/post-creator.component.vue";
 import type { Item } from "@/shared/models/entities/item.interface";
 import { computed, ref } from "vue";
 import { useToast } from "primevue/usetoast";
-import router from "@/shared/router";
+import router from "@/shared/plugins/router";
 
 Object.assign(publishingFacade.selectedPost, {});
 const createdSuccesfully = ref(false);
@@ -36,8 +36,8 @@ const savePost = async (p_post: Item) => {
   createdSuccesfully.value
     ? toast.add({
         severity: "success",
-        summary: "Success Message",
-        detail: "Message Content",
+        summary: "Post created",
+        detail: "Post created successfully",
         life: 3000,
       })
     : toast.add({
@@ -68,7 +68,7 @@ const savePost = async (p_post: Item) => {
   opacity: v-bind(showOpacity);
 }
 .bg-post{
-  
+
   background: #bdc3c7;
   /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #272b2e, #474b4e);

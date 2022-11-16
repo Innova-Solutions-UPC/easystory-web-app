@@ -14,6 +14,7 @@ import "./shared/assets/main.css";
 import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
 import Card from 'primevue/card';
+import Textarea from 'primevue/textarea';
 import Editor from "primevue/editor";
 import Dialog from "primevue/dialog";
 import Chip from 'primevue/chip';
@@ -93,6 +94,7 @@ app.component('Chip', Chip);
 app.component('Divider', Divider);
 app.component('Tag', Tag);
 app.component('Chips', Chips);
+app.component('Textarea', Textarea);
 app.component('Image', Image);
 app.component('ProgressSpinner', ProgressSpinner)
 app.component('FileUpload', FileUpload);

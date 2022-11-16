@@ -42,6 +42,14 @@ export class SocialFacade {
         }).catch(e =>console.log({e}))
     }
 
+    async loadCommentsForSelectredPost(slug: string) {
+        this._commentsForSelectedPost = (await this.apiService.getAllCommentsIntoAPost(slug));
+    }
+
+    async createComment(slug: string, content: string){
+        return (await this.apiService.createNewComment(slug, content));
+    }
+
     get allPosts(): AuthorPosts | undefined {
         return this._allPosts;
     }

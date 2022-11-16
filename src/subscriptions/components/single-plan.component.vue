@@ -30,7 +30,7 @@
 <script lang="ts" setup >
 import type Plan from "@/subscriptions/models/entities/plan.interface";
 import {ethers} from "ethers";
-import CONTRACT_JSON from '../../../web3/src/artifacts/contracts/Subscription.sol/CSubscription.json';
+import CONTRACT_JSON from '../models/CSubscription.json';
 import type {ComputedVariable} from "vue/macros";
 import {computed, ref, toRef, watch} from "vue";
 import {useToast} from "primevue/usetoast";

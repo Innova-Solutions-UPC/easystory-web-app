@@ -85,7 +85,7 @@ import AuthService from "@/iam/services/auth-api.services";
 import {useToast} from "primevue/usetoast";
 import { useVuelidate } from '@vuelidate/core'
 import { required, email } from '@vuelidate/validators'
-import router from "@/shared/router";
+import router from "@/shared/plugins/router";
 import { translate } from '../../shared/plugins/i18n/i18n';
 
 
@@ -122,7 +122,7 @@ const handleSubmit = async (isFormValid: any) => {
     return;
   }
   submitted.value = true;
-  state.username = state.firstName + state.lastName + (Math.random() + 1).toString(36).substring(7);
+  state.username = state.firstName + state.lastName + (Math.random() + 1).toString(36).substring(2);
   let createUser: RegisterUserInterface = reactive({
     username: state.username,
     email: state.email,
@@ -135,7 +135,12 @@ const handleSubmit = async (isFormValid: any) => {
   console.log(responseStatus.status)
   if (responseStatus.status.toString().startsWith('2')){
     toast.add({severity:'success', summary: 'Welcome  ' + responseStatus.data.username, detail:'Message Content', life: 3200});
-    window.location.reload();
+    //NOTE: soy consiente que el codigo de abajo esta muy cochino
+    //NOTE: pero es momentaneo creo
+    localStorage.setItem('easy_story_email', createUser.email);
+    localStorage.setItem('easy_story_password', createUser.password);
+    //NOTE: aca termina el codigo cochino
+    await router.push('/subscription');
   }
   else {
     toast.add({severity:'error', summary: 'Error while creating account', detail:'Your account was created successfully', life: 3200});

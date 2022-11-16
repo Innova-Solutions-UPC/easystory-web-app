@@ -17,7 +17,9 @@ export class SocialApiServices extends ApiServices{
     }
 
     async createNewComment(p_slug: string, p_comment: string){
-        return (await (this.post(`/posts/${p_slug}/comments`, p_comment))).data
+        return (await (this.post(`/posts/${p_slug}/comments`, {
+            content: p_comment
+        }))).status
     }
 
     async updateExistingComment(p_id: string, p_comment: string){

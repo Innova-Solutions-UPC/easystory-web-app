@@ -26,7 +26,7 @@ import {injectStrict} from "@/shared/utils/Injections";
 import { computed, ref, watch } from 'vue';
 
 const selectedLanguage = ref(localStorage.getItem('language') ?? 'fr');
-const languageOptions = [{label: 'English', value: 'en'}, {label: 'Africano', value: 'af'}, {label: 'Español', value: 'en'}, {label: 'Frances', value: 'fr'}, {label: 'Portugues', value:'pt'}]
+const languageOptions = [{label: 'English', value: 'en'}, {label: 'Africano', value: 'af'}, {label: 'Español', value: 'es'}, {label: 'Frances', value: 'fr'}, {label: 'Portugues', value:'pt'}]
 const app: Controller = injectStrict('appController');
 const userName = computed(()=> app.user.m_profile?.authenticatedUser.username);
 const email = computed(()=> app.user.m_profile?.authenticatedUser.email);

@@ -24,7 +24,7 @@ import type { Item } from "@/shared/models/entities/item.interface";
 import { useMouseInElement, useShare, useTimeAgo } from "@vueuse/core";
 import { computed, ref } from "vue";
 import socialFacade from "@/social/model/social.facade";
-import router from "@/shared/router";
+import router from "@/shared/plugins/router";
 import { QuillEditor } from "@vueup/vue-quill";
 
 const props = defineProps<{

@@ -11,7 +11,7 @@
   />
   <Toast  style="margin-top: 3%;"/>
   </div>
-  
+
 </template>
 
 <script lang="ts" setup>
@@ -20,7 +20,7 @@ import PostCreator from "@/publishing/components/post-creator.component.vue";
 import type { Item } from "@/shared/models/entities/item.interface";
 import { computed, ref } from "vue";
 import { useToast } from "primevue/usetoast";
-import router from "@/shared/router";
+import router from "@/shared/plugins/router";
 
 const createdSuccesfully = ref(false);
 const showLoading = ref(false);
@@ -47,12 +47,12 @@ const savePost = async (p_post: Item) => {
         detail: "Intentalo de nuevo",
         life: 3000,
       });
-  
+
   setTimeout(()=> {
     showLoading.value = false;
     createdSuccesfully.value ? router.push("/my-posts") : console.log("oh no");
   }, 3000)
-  
+
 };
 </script>
 

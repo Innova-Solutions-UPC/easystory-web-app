@@ -9,7 +9,7 @@
     fill="var(--surface-ground)"
     animationDuration=".5s"
   />
-  <Toast />
+  <Toast style="margin-top: 50px" />
   </div>
 
 </template>
@@ -36,8 +36,8 @@ const savePost = async (p_post: Item) => {
   createdSuccesfully.value
     ? toast.add({
         severity: "success",
-        summary: "Success Message",
-        detail: "Message Content",
+        summary: "Post created",
+        detail: "Post created successfully",
         life: 3000,
       })
     : toast.add({

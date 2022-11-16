@@ -18,7 +18,7 @@
            <code class="image-edit">Edit</code>
              <Image class="post-image" :src="imageToShow" alt="Image" width="150" height="150" @click="showImageModalForEditing = true" />
            <Dialog header="Upload Image" v-model:visible="showImageModalForEditing" :breakpoints="{'960px': '75vw', '640px': '90vw'}" :style="{width: '50vw'}">
-            <ImageModal @upload-image="myUploader"  />
+            <ImageModal @upload-image="myUploader" @start-uploading="startUploadingImage = true" />
         </Dialog>
             <label for="username">{{translate('bc-publishing-image')}}</label>
         </span>
@@ -28,7 +28,7 @@
         <label for="username">{{translate('bc-publishing-image')}}</label>
         <Button :label="translate('bc-publishing-upload')" @click="showImageModalForCreating = true"  />
           <Dialog header="Uploasasaasad Image" v-model:visible="showImageModalForCreating" :breakpoints="{'960px': '75vw', '640px': '90vw'}" :style="{width: '50vw'}">
-            <ImageModal @upload-image="myUploader"  />
+            <ImageModal @upload-image="myUploader"  @start-uploading="startUploadingImage = true" />
         </Dialog>
 
         </span>
@@ -69,16 +69,18 @@ const description = ref(publishingFacade.selectedPost.description);
 const image: Ref<string | FormData > | any  = ref(publishingFacade.selectedPost.image!);
 const status = ref(publishingFacade.selectedPost.status);
 const hashtags = ref(publishingFacade.selectedPost.hashtags);
-
+const startUploadingImage = ref(false)
 
 
 const imageToShow = ref(publishingFacade.selectedPost.image);
 
 
-const myUploader = (data: FormData, blobUrl: string) => {
+const myUploader = ( blobUrl: string) => {
+  startUploadingImage.value = false;
+  console.log({blobUrl})
   showImageModalForEditing.value =false;
   showImageModalForCreating.value = false;
-  image.value = data;
+  image.value = blobUrl;
   imageToShow.value = blobUrl;
 }
 
@@ -93,7 +95,8 @@ defineExpose({
   description,
   image,
   status,
-  hashtags
+  hashtags,
+  startUploadingImage
 })
 </script>
 <script lang="ts">

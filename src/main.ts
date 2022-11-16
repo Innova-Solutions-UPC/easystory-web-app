@@ -58,6 +58,21 @@ import {QuillEditor} from "@vueup/vue-quill";
 import i18n from './shared/plugins/i18n/i18n';
 
 
+
+import firebase from "firebase/compat";
+const firebaseConf = {
+    apiKey: "AIzaSyDKMM9J-mMiEBaX1-wmPhS27AgA_akTokE",
+    authDomain: "easy-story-5040d.firebaseapp.com",
+    projectId: "easy-story-5040d",
+    storageBucket: "easy-story-5040d.appspot.com",
+    messagingSenderId: "454108586040",
+    appId: "1:454108586040:web:4151ee0dcea934fac446cd",
+    measurementId: "G-0EGZHXZLMX"
+}
+firebase.initializeApp(firebaseConf);
+// @ts-ignore
+//const analytics = getAnalytics(firebaseConf);
+
 const app = createApp(App);
 
 app.directive("styleclass", StyleClass);
@@ -67,6 +82,7 @@ app.use(createPinia());
 app.use(router);
 app.use(ToastService);
 app.use(i18n);
+// @ts-ignore
 app.use(HighchartsVue);
 
 app.component('InputText', InputText);
@@ -91,10 +107,8 @@ app.component('Breadcrumb', Breadcrumb)
 app.component('Avatar', Avatar);
 
 app.component('Dropdown', Dropdown)
-app.component('VirtualScroller', VirtualScroller);
 app.component('SpeedDial', SpeedDial)
 app.component('QuillEditor', QuillEditor);
-app.component('Dropdown', Dropdown)
 app.component('VirtualScroller', VirtualScroller);
 app.component('Skeleton', Skeleton);
 

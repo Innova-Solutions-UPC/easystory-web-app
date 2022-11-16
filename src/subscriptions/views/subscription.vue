@@ -74,12 +74,12 @@ const finishTransaction = async () => {
   localStorage.removeItem('easy_story_email');
   localStorage.removeItem('easy_story_password');
   await app.user.doLogin({email: _email, password: _password});
-  if (app.user.getIsAuthenticated()){
+  if (app.user.getIsAuthenticated()) {
     window.location.reload();
   }
 }
 
-onMounted( () => {
+onMounted(() => {
   checkIfWalletIsConnected();
   //await getExistingSubscriptions();
 });

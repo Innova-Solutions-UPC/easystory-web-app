@@ -7,7 +7,7 @@
     />
     <div class="posts-gallery">
       <PostCard
-        v-for="post in posts.items"
+        v-for="post in posts"
         :key="post.id"
         :post="post"
         @click="selectPost(post)"
@@ -28,7 +28,7 @@ import PostCard from "@/publishing/components/post-card.component.vue";
 // const showOpacity = computed(() => showLoading.value ? 0.2 : 1);
 await publishingFacade.loadInfo();
 
-const posts: AuthorPosts = publishingFacade.postsByAuthor!;
+const posts: AuthorPosts | Array<Item> = publishingFacade.postsByAuthor!;
 
 const selectPost = (p_post: Item) => {
   Object.assign(publishingFacade.selectedPost!, p_post);

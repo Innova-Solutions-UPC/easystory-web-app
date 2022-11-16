@@ -42,7 +42,7 @@
 import socialFacade from "@/social/model/social.facade";
 import {computed, ref} from "vue";
 import type {Item} from "@/shared/models/entities/item.interface";
-import router from "@/shared/router";
+import router from "@/shared/plugins/router";
 import {useShare, useTimeAgo} from "@vueuse/core";
 import type {Controller} from "@/shared/models/Controller";
 import {injectStrict} from "@/shared/utils/Injections";

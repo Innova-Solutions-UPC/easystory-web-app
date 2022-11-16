@@ -1,9 +1,9 @@
 import {createRouter, createWebHistory} from 'vue-router'
 import type { NavigationGuardNext, RouteLocationNormalized} from 'vue-router'
-import ProfileView from '../../personalLibrary/profile/profile.vue'
+import ProfileView from '../../../personalLibrary/profile/profile.vue'
 import appController from "@/shared/models/Controller";
 import {PrimeIcons} from 'primevue/api';
-import { translate } from '../plugins/i18n/i18n';
+import { translate } from '../i18n/i18n';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -24,6 +24,7 @@ const router = createRouter({
       component: () => import('@/subscriptions/views/subscription.vue'),
       meta: {
         visible: false,
+        onlyWhenLoggedOut: true,
         public: true
       }
     },

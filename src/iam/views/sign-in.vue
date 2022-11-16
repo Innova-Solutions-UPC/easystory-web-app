@@ -55,7 +55,7 @@ import type {Controller} from "@/shared/models/Controller";
 import {injectStrict} from "@/shared/utils/Injections";
 import CreateAccount from "@/iam/components/sign-up.component.vue";
 import appController from "@/shared/models/Controller";
-import router from "@/shared/router";
+import router from "@/shared/plugins/router";
 import { translate } from '../../shared/plugins/i18n/i18n';
 
 const login: Login = reactive(new Login());
@@ -85,7 +85,7 @@ const doLogin = async function () {
     );
     if (app.user.getIsAuthenticated()){
       console.log('is authenticated')
-      router.push('/profile');
+      window.location.reload();
     }
     wrongCredentials.value = !successfulLogin;
   }

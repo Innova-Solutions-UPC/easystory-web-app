@@ -37,8 +37,11 @@
 <script setup>
 import {ethers} from "ethers";
 import {onMounted, ref} from "vue";
-import CONTRACT_JSON from '../../../web3/src/artifacts/contracts/Subscription.sol/CSubscription.json';
+import CONTRACT_JSON from '../models/CSubscription.json';
 import SinglePlan from "../components/single-plan.component.vue";
+import router from "../../shared/plugins/router";
+import {Controller} from "../../shared/models/Controller";
+import {injectStrict} from "../../shared/utils/Injections";
 
 
 const {ethereum} = window;
@@ -50,6 +53,7 @@ const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_JSON.abi, signer
 const transactionInProgress = ref(false);
 const transactionText = ref('IN PROGRESS');
 const accounts = await ethereum.request({method: "eth_accounts"});
+const app = injectStrict("appController");
 
 
 const checkIfWalletIsConnected = () => {
@@ -63,13 +67,34 @@ const checkIfWalletIsConnected = () => {
 const startTransaction = async () => {
   transactionInProgress.value = true;
 }
-const finishTransaction = () => {
+const finishTransaction = async () => {
   transactionInProgress.value = false;
+  const _email = localStorage.getItem('easy_story_email');
+  const _password = localStorage.getItem('easy_story_password');
+  localStorage.removeItem('easy_story_email');
+  localStorage.removeItem('easy_story_password');
+  await app.user.doLogin({email: _email, password: _password});
+  if (app.user.getIsAuthenticated()){
+    window.location.reload();
+  }
 }
 
-onMounted(() => {
+onMounted( () => {
   checkIfWalletIsConnected();
+  //await getExistingSubscriptions();
 });
+
+// const getExistingSubscriptions = async () => {
+//   try {
+//     let tx = await contract.;
+//     const receipt = await tx.wait();
+//     console.log({receipt})
+//     console.log({tx});
+//   } catch (e) {
+//     console.log({e})
+//   }
+//
+// }
 
 
 const availablePlans = [{

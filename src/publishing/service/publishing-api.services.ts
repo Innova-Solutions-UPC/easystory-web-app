@@ -39,7 +39,13 @@ export class PublishingApiServices extends ApiServices{
     }
 
     async createNewPost(p_post: CreatePostInterface){
-        return (await this.post('/posts',p_post)).status;
+        try {
+           const response: any = (await this.post('/posts',p_post)).status;
+           return response;
+        }
+        catch (e) {
+            return 500;
+        }
     }
 
     async updateExistingPost(p_post: CreatePostInterface, postId: number){

@@ -69,10 +69,10 @@ const buyPlan = async () => {
   console.log({tx});
   console.log('Operation finished successfully https://mumbai.polygonscan.com/tx/' + tx.hash);
   if(tx.hash == null){
-    toast.add({severity:'error', summary: 'Operation error', detail:'Operation was carried out with an error', life: 3000});
+    toast.add({severity:'error', summary: 'Operation error', detail:'Operation was carried out with an error', life: 5000});
     window.location.reload();
   }
-  toast.add({severity:'success', summary: 'Operation succeed', detail:'Operation was carried out successfully', life: 3000});
+  toast.add({severity:'success', summary: 'Operation succeed', detail:'Operation was carried out successfully', life: 5000});
   emits('operationSucceed');
 };
 

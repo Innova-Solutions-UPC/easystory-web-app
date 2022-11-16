@@ -5,7 +5,7 @@ import App from "./App.vue";
 import PrimeVue from "primevue/config";
 import StyleClass from "primevue/styleclass";
 import "./shared/assets/styles/layout.css";
-import router from "./shared/router";
+import router from "./shared/plugins/router";
 import '@vueup/vue-quill/dist/vue-quill.bubble.css'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
 import "./shared/assets/main.css";

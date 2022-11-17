@@ -28,7 +28,7 @@
         <label for="username">{{translate('bc-publishing-image')}}</label>
         <Button :label="translate('bc-publishing-upload')" @click="showImageModalForCreating = true"  />
           <Dialog header="Uploasasaasad Image" v-model:visible="showImageModalForCreating" :breakpoints="{'960px': '75vw', '640px': '90vw'}" :style="{width: '50vw'}">
-            <ImageModal @upload-image="myUploader"  @start-uploading="startUploadingImage = true" />
+            <ImageModal base-folder="/Books-covers/" @upload-image="myUploader"  @start-uploading="startUploadingImage = true" />
         </Dialog>
 
         </span>

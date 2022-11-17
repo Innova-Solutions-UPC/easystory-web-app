@@ -25,6 +25,10 @@
 import {defineEmits, ref, watch} from "vue";
 import firebase from "firebase/compat";
 
+const  props = defineProps<{
+  baseFolder: string
+}>();
+
 const transactionInProgress = ref(false);
 
 const emits = defineEmits<{
@@ -44,7 +48,7 @@ const uploadValue = ref(0);
 const uploadToFirebase = (selectedFile: any) => {
   emits('startUploading');
   transactionInProgress.value = true;
-  const storageRef = firebase.storage().ref('/Books-covers/' + selectedFile.name).put(selectedFile);
+  const storageRef = firebase.storage().ref(props.baseFolder + selectedFile.name).put(selectedFile);
   storageRef.on('state_changed', snapshot => {
         let percantaje = (snapshot.bytesTransferred / snapshot.totalBytes);
         uploadValue.value = percantaje;
@@ -56,6 +60,7 @@ const uploadToFirebase = (selectedFile: any) => {
         storageRef.snapshot.ref.getDownloadURL().then((url) => {
           imageFirebaseUrlUploaded.value = url
           emits('uploadImage', url);
+          transactionInProgress.value = false;
         });
       }
   )

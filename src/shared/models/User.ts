@@ -5,7 +5,7 @@ import type {LoginForm} from "@/shared/models/entities/login-form.interface";
 import appController from "@/shared/models/Controller";
 import type {ResProfile} from "@/shared/models/entities/res-profile.interface";
 import type {ResLogin} from "@/shared/models/entities/res-login.interface";
-import type {AuthenticatedUser} from "@/shared/models/entities/autenticated-user.interface";
+import type {UserInterface} from "@/shared/models/entities/autenticated-user.interface";
 
 export default class User{
     private _m_name: string | null = null;
@@ -78,7 +78,7 @@ export default class User{
     async getProfile(): Promise<void>{
         this.m_profile = await this.m_apiService.getProfile()
     }
-    async getUserProfile(): Promise<AuthenticatedUser>{
+    async getUserProfile(): Promise<UserInterface>{
         return (await this.m_apiService.getProfile()).authenticatedUser;
     }
 }

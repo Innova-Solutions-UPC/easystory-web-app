@@ -129,7 +129,8 @@ const handleSubmit = async (isFormValid: any) => {
     password: state.password,
     firstName: state.firstName,
     lastName: state.lastName,
-    bio: state.bio
+    bio: state.bio,
+    image: 'https://firebasestorage.googleapis.com/v0/b/easy-story-5040d.appspot.com/o/Books-covers%2Faction-thriller-book-cover-design-template-3675ae3e3ac7ee095fc793ab61b812cc_screen.jpg?alt=media&token=e418575d-5ac6-4bfc-95c4-fc179329b7e3'
   });
   const responseStatus = await authService.createAccount(createUser);
   console.log(responseStatus.status)

@@ -57,6 +57,12 @@ export class PublishingApiServices extends ApiServices{
     }
 
     async getPostByAutenticatedUser(): Promise<AuthorPosts> {
-        return (await (this.get('/user-posts'))).data;
+        const config = {
+            params: {
+                page: 1,
+                limit: 200
+            }
+        }
+        return (await (this.get('/user-posts', config))).data;
     }
 }

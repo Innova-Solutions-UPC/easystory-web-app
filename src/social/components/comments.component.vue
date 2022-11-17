@@ -11,16 +11,27 @@
         </div>
       </div>
       <span class="text-green-500 font-medium">@ </span>
-      <span class="text-500">{{ props.comment.user.username }}</span>
+      <span style="cursor: pointer" @click="goToProfile" class="text-500">{{ props.comment.user.username }}</span>
     </div>
   </div>
 </template>
 
 
 <script lang="ts" setup>
+import profileFacade from "@/personalLibrary/profile/models/profile.facade";
+import router from "@/shared/plugins/router";
+
 const props = defineProps<{
   comment: any
 }>();
+
+console.log(props)
+const goToProfile =async () => {
+  await profileFacade.setUserByUsername(props.comment.user.username);
+  profileFacade.username = props.comment.user.username;
+  profileFacade.isForOwnUser = false;
+  await router.push('/profile');
+}
 </script>
 
 <script lang="ts">

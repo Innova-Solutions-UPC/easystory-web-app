@@ -5,4 +5,5 @@ export interface RegisterUserInterface {
     firstName: string
     lastName: string
     bio: string
+    image: string
 }

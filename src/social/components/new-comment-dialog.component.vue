@@ -28,6 +28,7 @@ const createComment = async () => {
       detail: "Comment created successfully",
       life: 5000,
     });
+    await socialFacade.loadCommentsForSelectredPost(socialFacade.selectedPost?.slug!);
     emits('commentCreated');
   }
   else {

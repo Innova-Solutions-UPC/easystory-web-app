@@ -66,7 +66,7 @@ const { share, isSupported } = useShare()
 const timeAgo = useTimeAgo(post.value.createdAt!);
 const toast = useToast();
 await socialFacade.loadCommentsForSelectredPost(socialFacade.selectedPost?.slug!);
-const comments = reactive(socialFacade.commentsForSelectedPost);
+const comments = computed(()=>socialFacade.commentsForSelectedPost);
 const newComentDialog = ref(false);
 
 const isBookmarked: boolean = socialFacade.bookmarks?.items.filter(e => e.id == post.value.id).length! > 0;

@@ -50,6 +50,14 @@ export class SocialFacade {
         return (await this.apiService.createNewComment(slug, content));
     }
 
+    async getCommentsNumberBySlug(slug: string){
+        let totalComments =0;
+        await this.apiService.getAllCommentsIntoAPost(slug).then(
+            (res) => totalComments = res.items.length
+        ).catch(e => console.log({e}));
+        return totalComments;
+    }
+
     get allPosts(): AuthorPosts | undefined {
         return this._allPosts;
     }

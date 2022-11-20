@@ -25,7 +25,7 @@
             </div>
         </header>
         <main>
-            <p>{{ props.post.description}}</p>
+            <p class="description-txt">{{ props.post.description}}</p>
         </main>
         <section>
             <div class="users-avatars">
@@ -128,6 +128,12 @@ export default {
   display: flex
 }
 
+.description-txt{
+  display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
 .card-cnt {
   background-color: transparent;
   cursor: pointer;

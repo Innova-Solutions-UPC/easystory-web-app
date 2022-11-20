@@ -40,7 +40,7 @@ const { list, containerProps, wrapperProps } = useVirtualList(posts.value!, {
   margin-right: 1% !important;
   display: grid;
   gap: 1rem;
-  grid-auto-rows: 5%;
+  grid-auto-rows: 8%;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
 }
 

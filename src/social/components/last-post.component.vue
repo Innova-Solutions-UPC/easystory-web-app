@@ -7,7 +7,7 @@ import { defineProps } from 'vue';
         <span class="block text-6xl font-bold mb-1">{{ translate('bc-home-last-post-tittle')}}</span>
         <div class="text-6xl text-primary font-bold mb-3">{{ props.post.title }}</div>
         <p class="mt-0 mb-4 text-700 line-height-3">{{ props.post.description }}</p>
-        <Button @click="selectPost()" label="View More" type="button" class="mr-3 p-button-raised"></Button>
+        <Button @click="selectPost()" :label="translate('bc-home-last-post-view-more')" type="button" class="mr-3 p-button-raised"></Button>
       </section>
     </div>
     <div class="col-12 md:col-6 overflow-hidden">

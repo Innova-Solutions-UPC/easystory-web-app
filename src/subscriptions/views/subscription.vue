@@ -23,7 +23,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup >
 import { ethers } from "ethers";
 import { onMounted, ref } from "vue";
 import CONTRACT_JSON from '../models/CSubscription.json';
@@ -57,16 +57,21 @@ const checkIfWalletIsConnected = () => {
 const startTransaction = async () => {
   transactionInProgress.value = true;
 }
-const finishTransaction = async (mumbaiString: string) => {
+const finishTransaction = async (mumbaiString) => {
+  console.log("🚀 ~ file: subscription.vue ~ line 61 ~ finishTransaction ~ mumbaiString", mumbaiString)
   mumbaiStringHash.value = mumbaiString;
   const _email = localStorage.getItem('easy_story_email');
   const _password = localStorage.getItem('easy_story_password');
   localStorage.removeItem('easy_story_email');
   localStorage.removeItem('easy_story_password');
   await app.user.doLogin({ email: _email, password: _password });
-  transactionInProgress.value = false;
+  
   if (app.user.getIsAuthenticated()) {
-    window.location.reload();
+    setTimeout(() => {
+      transactionInProgress.value = false;
+      window.location.reload();
+    }, 3000);
+    
   }
 }
 

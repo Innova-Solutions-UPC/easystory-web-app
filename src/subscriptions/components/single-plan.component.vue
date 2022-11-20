@@ -18,7 +18,7 @@
           </li>
         </ul>
         <hr class="mb-3 mx-0 border-top-1 border-none surface-border mt-auto"/>
-        <Button v-if="props.detail.tittle !== 'Enterprise'" label="Buy Now" class="p-3 w-full mt-auto" @click="buyPlan"></Button>
+        <Button v-if="props.detail.tittle !== 'Enterprise'" :label="translate('buy-now')" class="p-3 w-full mt-auto" @click="buyPlan"></Button>
         <Button v-else disabled label="Coming soon " class="p-3 w-full mt-auto"></Button>
       </div>
     </div>

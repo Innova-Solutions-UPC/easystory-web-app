@@ -60,6 +60,8 @@
   "comments": "Comments",
   "shared": "Shared",
 
+  "buy-now": "Buy Now",
+
   "toast-account-created": "Account created successfully",
   "toast-account-not-created": "Account not created",
   "toast-account-not-logged": "Account not logged",

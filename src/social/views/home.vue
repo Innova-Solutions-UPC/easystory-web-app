@@ -5,7 +5,7 @@
     </div>
     <div v-bind="containerProps" class="props-cnt">
       <div v-bind="wrapperProps" class="gallery">
-        <div v-for="{ index, data } in list" :key="index">
+        <div v-auto-animate v-for="{ index, data } in list" :key="index">
           <HomeItem :post="data" />
         </div>
       </div>

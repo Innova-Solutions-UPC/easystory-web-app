@@ -33,9 +33,9 @@
                 <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="">
                 <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" alt="">
             </div>
-            <p>{{getRanNum()}} Likes</p>
-            <p class="comment">{{comments }} comment</p>
-            <p>{{getRanNum()}} shared</p>
+            <p>{{getRanNum() +' '+ translate('likes')}} </p>
+            <p class="comment">{{comments +' '+ translate('comments')}} </p>
+            <p>{{getRanNum() +' '+ translate('shared')}} </p>
         </section>
     </div>   
   <!--  </div>--> 
@@ -49,6 +49,7 @@ import { computed, ref } from "vue";
 import socialFacade from "@/social/model/social.facade";
 import router from "@/shared/plugins/router";
 import { QuillEditor } from "@vueup/vue-quill";
+import { translate } from '../../shared/plugins/i18n/i18n';
 
 function getRanNum (){
   return (Math.floor(Math.random() *8))
@@ -72,8 +73,8 @@ const { share, isSupported } = useShare()
 
 function startShare() {
   share({
-    title: 'Hello',
-    text: 'Hello my friend!',
+    title: props.post.title,
+    text: props.post.description,
     url: location.href,
   })
 }

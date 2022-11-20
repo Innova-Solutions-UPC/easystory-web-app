@@ -32,7 +32,7 @@ import "primevue/resources/themes/lara-light-blue/theme.css";
 import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
 
-
+import { autoAnimatePlugin } from '@formkit/auto-animate/vue'
 import './shared/assets/main.css'
 import 'animate.css';
 
@@ -85,6 +85,7 @@ app.use(ToastService);
 app.use(i18n);
 // @ts-ignore
 app.use(HighchartsVue);
+app.use(autoAnimatePlugin);
 
 app.component('InputText', InputText);
 app.component('Button', Button);

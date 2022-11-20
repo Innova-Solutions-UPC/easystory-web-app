@@ -34,6 +34,7 @@ import CONTRACT_JSON from '../models/CSubscription.json';
 import type {ComputedVariable} from "vue/macros";
 import {computed, ref, toRef, watch} from "vue";
 import {useToast} from "primevue/usetoast";
+import { translate } from '../../shared/plugins/i18n/i18n';
 
 const {ethereum}: any = window;
 const props = defineProps<{
@@ -52,7 +53,7 @@ const accountsRef = toRef(props, 'accounts');
 
 const emits = defineEmits<{
   (e:'buyPlan'): void;
-  (e:'operationSucceed'): void;
+  (e:'operationSucceed', mumbaiString: string): void;
 }>();
 const toast = useToast();
 const buyPlan = async () => {
@@ -66,14 +67,14 @@ const buyPlan = async () => {
   }
   let tx = await contract.subscript( new Date().toDateString(), props.detail.monthDuration, {value: ethers.utils.parseEther(props.detail.price.toString())});
   await tx.wait();
-  console.log({tx});
-  console.log('Operation finished successfully https://mumbai.polygonscan.com/tx/' + tx.hash);
+  const mumbaiString = 'https://mumbai.polygonscan.com/tx/' + tx.hash;
+
   if(tx.hash == null){
     toast.add({severity:'error', summary: 'Operation error', detail:'Operation was carried out with an error', life: 5000});
     window.location.reload();
   }
-  toast.add({severity:'success', summary: 'Operation succeed', detail:'Operation was carried out successfully', life: 5000});
-  emits('operationSucceed');
+  toast.add({severity:'success', summary: translate('toast-subscription-created'), detail:translate('toasr-description-subscription-created'), life: 5000});
+  emits('operationSucceed', mumbaiString);
 };
 
 

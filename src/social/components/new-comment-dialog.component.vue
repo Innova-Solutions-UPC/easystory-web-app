@@ -1,6 +1,6 @@
 <template>
   <Textarea v-model="comment" :autoResize="true" rows="5" cols="30" />
-  <Button @click="createComment" label="Save" icon="pi pi-check"  />
+  <Button @click="createComment" :label="translate('bc-publishing-publish')" icon="pi pi-check"  />
   <Toast />
 </template>
 
@@ -9,6 +9,7 @@
 import {ref} from "vue";
 import socialFacade from "@/social/model/social.facade";
 import {useToast} from "primevue/usetoast";
+import { translate } from '../../shared/plugins/i18n/i18n';
 const toast = useToast();
 
 const emits = defineEmits<{
@@ -24,8 +25,8 @@ const createComment = async () => {
   if(response.toString().startsWith('2')){
     toast.add({
       severity: "success",
-      summary: "Comment created",
-      detail: "Comment created successfully",
+      summary: translate('toast-post-commented'),
+      detail: translate('toasr-description-post-commented'),
       life: 5000,
     });
     await socialFacade.loadCommentsForSelectredPost(socialFacade.selectedPost?.slug!);
@@ -34,8 +35,8 @@ const createComment = async () => {
   else {
     toast.add({
       severity: "error",
-      summary: "There was an error",
-      detail: "An error occurred while creating commnet",
+      summary: translate('toast-post-commented-error'),
+      detail: translate('toasr-description-post-commented-error'),
       life: 3000,
     })
   }

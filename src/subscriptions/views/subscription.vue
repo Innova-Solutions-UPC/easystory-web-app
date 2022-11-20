@@ -1,61 +1,51 @@
 <template>
   <div class="">
     <div class="surface-ground px-4 py-8 md:px-6 lg:px-8 subscription-cnt">
-      <div class="text-900 font-bold text-6xl mb-4 text-center">Pricing Plans</div>
-      <div class="text-700 text-xl mb-6 text-center line-height-3">Lorem ipsum dolor sit, amet consectetur adipisicing
-        elit. Velit numquam eligendi quos.
+      <div class="text-900 font-bold text-6xl mb-4 text-center">{{ translate('bc-subscriptions-pricing') }}</div>
+      <div class="text-700 text-xl mb-6 text-center line-height-3">{{ translate('bc-subscription-plans-description') }}
       </div>
       <div class="grid">
-        <SinglePlan v-for="plan in availablePlans"
-                    :key="plan.tittle"
-                    :detail="plan"
-                    :contract-address="CONTRACT_ADDRESS"
-                    :signer="signer"
-                    :provider="provider"
-                    :accounts="accounts"
-                    ref="singlePlan"
-                    @buy-plan="startTransaction"
-                    @operation-succeed="finishTransaction"/>
+        <SinglePlan v-for="plan in availablePlans" :key="plan.tittle" :detail="plan"
+          :contract-address="CONTRACT_ADDRESS" :signer="signer" :provider="provider" :accounts="accounts"
+          ref="singlePlan" @buy-plan="startTransaction" @operation-succeed="finishTransaction" />
       </div>
     </div>
     <div v-if="transactionInProgress" class="loading-status">
       <div>
         <h3>{{ transactionText }}</h3>
-        <ProgressSpinner
-            style="width: 5vw; height: 50px; opacity: 1 !important;"
-            strokeWidth="8"
-            fill="var(--surface-ground)"
-            animationDuration=".5s"
-        />
+        <a :href="mumbaiStringHash" />
+        <ProgressSpinner style="width: 5vw; height: 50px; opacity: 1 !important;" strokeWidth="8"
+          fill="var(--surface-ground)" animationDuration=".5s" />
       </div>
 
     </div>
-    <Toast/>
+    <Toast />
   </div>
 </template>
 
 <script setup>
-import {ethers} from "ethers";
-import {onMounted, ref} from "vue";
+import { ethers } from "ethers";
+import { onMounted, ref } from "vue";
 import CONTRACT_JSON from '../models/CSubscription.json';
 import SinglePlan from "../components/single-plan.component.vue";
 import router from "../../shared/plugins/router";
-import {Controller} from "../../shared/models/Controller";
-import {injectStrict} from "../../shared/utils/Injections";
+import { Controller } from "../../shared/models/Controller";
+import { injectStrict } from "../../shared/utils/Injections";
+import { translate } from '../../shared/plugins/i18n/i18n';
 
 
-const {ethereum} = window;
+const { ethereum } = window;
 const currentAccount = ref();
 const CONTRACT_ADDRESS = import.meta.env.VITE_CONTRACT_ADDRESS;
 const provider = new ethers.providers.Web3Provider(ethereum);
 const signer = provider.getSigner();
 const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_JSON.abi, signer);
 const transactionInProgress = ref(false);
-const transactionText = ref('IN PROGRESS');
-const accounts = await ethereum.request({method: "eth_accounts"});
+const transactionText = ref(translate('bc-subscription-transaction-in-progress'));
+const accounts = await ethereum.request({ method: "eth_accounts" });
 const app = injectStrict("appController");
 
-
+const mumbaiStringHash = ref('');
 const checkIfWalletIsConnected = () => {
   if (!ethereum) {
     console.log('ERROR IN CONNECTING TO WALLET');
@@ -67,13 +57,14 @@ const checkIfWalletIsConnected = () => {
 const startTransaction = async () => {
   transactionInProgress.value = true;
 }
-const finishTransaction = async () => {
-  transactionInProgress.value = false;
+const finishTransaction = async (mumbaiString: string) => {
+  mumbaiStringHash.value = mumbaiString;
   const _email = localStorage.getItem('easy_story_email');
   const _password = localStorage.getItem('easy_story_password');
   localStorage.removeItem('easy_story_email');
   localStorage.removeItem('easy_story_password');
-  await app.user.doLogin({email: _email, password: _password});
+  await app.user.doLogin({ email: _email, password: _password });
+  transactionInProgress.value = false;
   if (app.user.getIsAuthenticated()) {
     window.location.reload();
   }
@@ -98,29 +89,33 @@ onMounted(() => {
 
 
 const availablePlans = [{
-  tittle: 'Monthly',
-  description: 'Plan description',
+  tittle: translate('bc-subscription-plan-0-monthly'),
+  description: translate('bc-subscription-plan-description'),
   price: 0.0004,
   monthDuration: 1,
-  benefits: [{benefitDetail: 'Acceso a todas las funcionalidades'}, {benefitDetail: 'Compartir la publicacion por diversos medios'}]
+  benefits: [{ benefitDetail:translate('bc-subscription-plan-0-full-access')}, { benefitDetail:  translate('bc-subscription-plan-0-share-posts') }]
 },
-  {
-    tittle: 'Annually',
-    description: 'Plan description',
-    price: 0.00037,
-    monthDuration: 12,
-    benefits: [{benefitDetail: 'Acceso a todas las funcionalidades'}, {benefitDetail: 'Compartir la publicacion por diversos medios'}, {benefitDetail: 'Congelamiento de cuenta'}, {benefitDetail: 'Sin pago extra pr cancelación'}]
-  },
-  {
-    tittle: 'Enterprise',
-    description: 'Plan description',
-    price: 0.950,
-    monthDuration: 12,
-    benefits: [{benefitDetail: 'Acceso a todas las funcionalidades'}, {benefitDetail: 'Compartir la publicacion por diversos medios'}, {benefitDetail: 'Congelamiento de cuenta'}, {benefitDetail: 'Sin pago extra pr cancelación'},
-      {benefitDetail: 'Maximo de 20 cuentas'},
-      {benefitDetail: 'Contenido Offline'}
-    ]
-  }
+{
+  tittle: translate('bc-subscription-plan-0-yearly'),
+  description: translate('bc-subscription-plan-description'),
+  price: 0.00037,
+  monthDuration: 12,
+  benefits: [{ benefitDetail: translate('bc-subscription-plan-0-full-access') }, { benefitDetail:  translate('bc-subscription-plan-0-share-posts') }, { benefitDetail:  translate('bc-subscription-plan-0-freeze-account') }, { benefitDetail:  translate('bc-subscription-plan-0-no-pay-for-cancel') }]
+},
+{
+  tittle: translate('bc-subscriptions-plan-0-enterprise'),
+  description: translate('bc-subscription-plan-description'),
+  price: 0.950,
+  monthDuration: 12,
+  benefits: [{ benefitDetail: translate('bc-subscription-plan-0-full-access') },
+  { benefitDetail: translate('bc-subscription-plan-0-share-posts') },
+  { benefitDetail: translate('bc-subscription-plan-0-freeze-account') }, 
+  { benefitDetail: translate('bc-subscription-plan-0-no-pay-for-cancel')},
+  { benefitDetail: translate('bc-subscription-plan-0-24-7-support') },
+  { benefitDetail: translate('bc-subscription-20-account')},
+  { benefitDetail: translate('bc-subscription-offline-content')}
+  ]
+}
 ];
 </script>
 
@@ -150,6 +145,7 @@ const availablePlans = [{
   from {
     width: 0;
   }
+
   to {
     width: 75%;
   }

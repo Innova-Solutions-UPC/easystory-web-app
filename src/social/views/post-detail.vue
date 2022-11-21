@@ -29,9 +29,9 @@
     <Divider type="dashed" align="left">
       <div class="inline-flex align-items-center" style="min-height: 40px">
         <i class="pi pi-comments mr-2"></i>
-        <b style="color: #3c08c1">Comments</b>
+        <b style="color: #3c08c1">{{translate('comments')}}</b>
         <Button style="max-height: 30px; margin-left: 5px" @click=" newComentDialog = true" label="Add" icon="pi pi-plus-circle" />
-        <Dialog header="Header" footer="Footer" v-model:visible="newComentDialog">
+        <Dialog :header="translate('comments')"  v-model:visible="newComentDialog">
           <new-comment :slug="post.slug" @comment-created="commentWasCreated" />
         </Dialog>
 
@@ -58,6 +58,7 @@ import {useToast} from "primevue/usetoast";
 import {QuillEditor} from "@vueup/vue-quill";
 import Comments from "@/social/components/comments.component.vue";
 import NewComment from "@/social/components/new-comment-dialog.component.vue";
+import { translate } from '../../shared/plugins/i18n/i18n';
 socialFacade.selectedPost == undefined ? router.push('/home') : console.log('');
 const post: Item | any = computed(()=> socialFacade.selectedPost);
 const created = post.createdAt;
@@ -66,7 +67,7 @@ const { share, isSupported } = useShare()
 const timeAgo = useTimeAgo(post.value.createdAt!);
 const toast = useToast();
 await socialFacade.loadCommentsForSelectredPost(socialFacade.selectedPost?.slug!);
-const comments = reactive(socialFacade.commentsForSelectedPost);
+const comments = computed(()=>socialFacade.commentsForSelectedPost);
 const newComentDialog = ref(false);
 
 const isBookmarked: boolean = socialFacade.bookmarks?.items.filter(e => e.id == post.value.id).length! > 0;

@@ -10,5 +10,6 @@ export interface AuthorInterface {
     verified?: boolean
     createdAt?: string
     updatedAt?: string
+    image?: string
 
 }

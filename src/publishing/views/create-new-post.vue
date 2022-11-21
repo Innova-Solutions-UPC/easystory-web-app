@@ -21,6 +21,7 @@ import type { Item } from "@/shared/models/entities/item.interface";
 import { computed, ref } from "vue";
 import { useToast } from "primevue/usetoast";
 import router from "@/shared/plugins/router";
+import { translate } from '../../shared/plugins/i18n/i18n';
 
 Object.assign(publishingFacade.selectedPost, {});
 const createdSuccesfully = ref(false);
@@ -36,14 +37,14 @@ const savePost = async (p_post: Item) => {
   createdSuccesfully.value
     ? toast.add({
         severity: "success",
-        summary: "Post created",
-        detail: "Post created successfully",
+        summary: translate('toast-post-created'),
+        detail: translate('toasr-description-post-created'),
         life: 3000,
       })
     : toast.add({
         severity: "error",
-        summary: "Error Message",
-        detail: "Message Content",
+        summary: translate('toast-post-created-error'),
+        detail: translate('toasr-description-post-created-error'),
         life: 3000,
       });
 

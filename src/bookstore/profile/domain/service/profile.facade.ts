@@ -1,5 +1,5 @@
 import type {UserInterface} from "@/shared/models/entities/autenticated-user.interface";
-import {ProfileService} from "@/personalLibrary/profile/services/profile-api.services";
+import {ProfileService} from "@/bookstore/profile/services/profile-api.services";
 import {reactive} from "vue";
 import appController from "@/shared/models/Controller";
 

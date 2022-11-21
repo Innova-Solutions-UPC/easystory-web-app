@@ -1,6 +1,6 @@
 import {createRouter, createWebHistory} from 'vue-router'
 import type { NavigationGuardNext, RouteLocationNormalized} from 'vue-router'
-import ProfileView from '../../../personalLibrary/profile/profile.vue'
+import ProfileView from '../../../bookstore/profile/profile.vue'
 import appController from "@/shared/models/Controller";
 import {PrimeIcons} from 'primevue/api';
 import { translate } from '../i18n/i18n';
@@ -31,7 +31,7 @@ const router = createRouter({
     {
       path: '/profile',
       name: translate('router-profile'),
-      component: () => import('@/personalLibrary/profile/profile.vue'),
+      component: () => import('@/bookstore/profile/profile.vue'),
       meta: {
         visible: true,
         icon: 'pi pi-user'

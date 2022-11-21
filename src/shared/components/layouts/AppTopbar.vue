@@ -32,6 +32,12 @@
             </button>
           </router-link>
           </li>
+          <li>
+            <button class="square-btn blue-btn mr-2" @click="doLogout">
+              <i class="pi pi-sign-out"></i>
+              <span style="margin-left: 5px;">Logout</span>
+            </button>
+          </li>
         </ul>
       </div>
     </div>
@@ -41,9 +47,11 @@
 <script setup lang="ts">
 import IconCommunity from "../icons/IconCommunity.vue";
 import { useRouter } from 'vue-router';
-import profileFacade from "@/personalLibrary/profile/models/profile.facade";
+import profileFacade from "@/bookstore/profile/domain/service/profile.facade";
 import type {Controller} from "@/shared/models/Controller";
 import {injectStrict} from "@/shared/utils/Injections";
+import tokenApiServices from "@/iam/services/token-api.services";
+import router from "@/shared/plugins/router";
 
 const app : Controller = injectStrict('appController')
 const selectMenu = async (routeName: string) => {
@@ -55,7 +63,10 @@ const selectMenu = async (routeName: string) => {
   }
 }
 const visibleRroutes = useRouter().getRoutes().filter(e => e.meta.visible);
-console.log({visibleRroutes})
+const doLogout = async () => {
+  tokenApiServices.removeToken();
+  await router.push('/login');
+}
 </script>
 <style scoped>
 .AppTopbar{

@@ -5,7 +5,7 @@
       icon="pi pi-plus-circle"
       class="add-btn"
     />
-    <div class="posts-gallery">
+    <div class="posts-gallery" ref="parent">
       <PostCard
         v-for="post in posts"
         :key="post.id"
@@ -22,6 +22,7 @@ import publishingFacade from "@/publishing/model/publishing.facade";
 import type { Item } from "@/shared/models/entities/item.interface";
 import router from "@/shared/plugins/router";
 import PostCard from "@/publishing/components/post-card.component.vue";
+import { useAutoAnimate } from '@formkit/auto-animate/vue'
 // import {computed, ref} from "vue";
 
 // const showLoading = ref(true);
@@ -29,7 +30,7 @@ import PostCard from "@/publishing/components/post-card.component.vue";
 await publishingFacade.loadInfo();
 
 const posts: AuthorPosts | Array<Item> = publishingFacade.postsByAuthor!;
-
+const [parent] = useAutoAnimate()
 const selectPost = (p_post: Item) => {
   Object.assign(publishingFacade.selectedPost!, p_post);
   console.log("FROM ALL POSTS VIEWS: ", publishingFacade.selectedPost);

@@ -18,7 +18,7 @@
 
 
 <script lang="ts" setup>
-import profileFacade from "@/personalLibrary/profile/models/profile.facade";
+import profileFacade from "@/bookstore/profile/domain/service/profile.facade";
 import router from "@/shared/plugins/router";
 
 const props = defineProps<{

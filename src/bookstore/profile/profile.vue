@@ -19,13 +19,13 @@
 </template>
 
 <script lang="ts" setup>
-import PersonalInformation from "@/personalLibrary/profile/components/personal-information.component.vue";
-import About from "@/personalLibrary/profile/components/about.component.vue";
-import ContinueReading from "@/personalLibrary/profile/components/continue-reading.component.vue";
+import PersonalInformation from "@/bookstore/profile/components/personal-information.component.vue";
+import About from "@/bookstore/profile/components/about.component.vue";
+import ContinueReading from "@/bookstore/profile/components/continue-reading.component.vue";
 import type {Controller} from "@/shared/models/Controller";
 import {injectStrict} from "@/shared/utils/Injections";
 import {computed, onMounted} from "vue";
-import profileFacade from "@/personalLibrary/profile/models/profile.facade";
+import profileFacade from "@/bookstore/profile/domain/service/profile.facade";
 const app: Controller = injectStrict('appController');
 
 const userInformation = computed(() => profileFacade.selectedUser);

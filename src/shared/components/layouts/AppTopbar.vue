@@ -41,7 +41,7 @@
 <script setup lang="ts">
 import IconCommunity from "../icons/IconCommunity.vue";
 import { useRouter } from 'vue-router';
-import profileFacade from "@/personalLibrary/profile/models/profile.facade";
+import profileFacade from "@/bookstore/profile/domain/service/profile.facade";
 import type {Controller} from "@/shared/models/Controller";
 import {injectStrict} from "@/shared/utils/Injections";
 

@@ -31,7 +31,7 @@ import {injectStrict} from "@/shared/utils/Injections";
 import {computed, ComputedRef, onMounted, ref, watch} from 'vue';
 import type {UserInterface} from "@/shared/models/entities/autenticated-user.interface";
 import type {ComputedVariable} from "vue/macros";
-import profileFacade from "@/personalLibrary/profile/models/profile.facade";
+import profileFacade from "@/bookstore/profile/domain/service/profile.facade";
 import ImageModal from "@/publishing/components/image-modal.component.vue";
 import {useToast} from "primevue/usetoast";
 const selectedLanguage = ref(localStorage.getItem('language') ?? 'fr');

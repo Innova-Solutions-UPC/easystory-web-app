@@ -1,4 +1,15 @@
-# easystory-web-app
+
+
+# Easy Story REST API 🚀
+
+### Hi there, We're Innova Solutions  🙋💻📖🎮
+
+“EasyStory” is a web platform whose content is published by its users. With "EasyStory" you can publish your own stories or tales. You also have access to content created by other users in the community, with the ability to subscribe to your favorite content creator and support them financially to access exclusive content.
+
+
+## Authors
+
+- [@SebTou08](https://www.github.com/SebTou08)
 
 This template should help get you started developing with Vue 3 in Vite.
 

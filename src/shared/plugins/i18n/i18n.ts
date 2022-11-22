@@ -11,7 +11,7 @@ import af from '@/shared/plugins/i18n/locales/af.json'
 
 const i18n = vueI18n.createI18n({
   legacy: false,
-  locale:  localStorage.getItem('language') || "fr",
+  locale:  localStorage.getItem('language') || "en",
   fallbackLocale: ["es", "en", "pt", "fr", "af"],
   messages: {
     es: es,

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <LastPostComponent :post="posts?.at(0)!" />
+      <LastPostComponent :post="posts?.filter(e => e.id == 63).at(0)!" />
     </div>
     <div v-bind="containerProps" class="props-cnt">
       <div v-bind="wrapperProps" class="gallery">

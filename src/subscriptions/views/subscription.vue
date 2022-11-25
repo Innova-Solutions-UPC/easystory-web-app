@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <div class="surface-ground px-4 py-8 md:px-6 lg:px-8 subscription-cnt">
+    <div class="surface-ground px-4 py-8 md:px-6 lg:px-8 subscription-cnt" v-if="isWallaetConnected">
       <div class="text-900 font-bold text-6xl mb-4 text-center">{{ translate('bc-subscriptions-pricing') }}</div>
       <div class="text-700 text-xl mb-6 text-center line-height-3">{{ translate('bc-subscription-plans-description') }}
       </div>
@@ -10,6 +10,9 @@
           ref="singlePlan" @buy-plan="startTransaction" @operation-succeed="finishTransaction" />
       </div>
     </div>
+    <div v-if="!isWallaetConnected">
+      <wallet-not-found />
+  </div>
     <div v-if="transactionInProgress" class="loading-status">
       <div>
         <h3>{{ transactionText }}</h3>
@@ -25,34 +28,51 @@
 
 <script setup >
 import { ethers } from "ethers";
-import { onMounted, ref } from "vue";
+import { onMounted, ref, computed } from 'vue';
 import CONTRACT_JSON from '../models/CSubscription.json';
 import SinglePlan from "../components/single-plan.component.vue";
 import router from "../../shared/plugins/router";
 import { Controller } from "../../shared/models/Controller";
 import { injectStrict } from "../../shared/utils/Injections";
 import { translate } from '../../shared/plugins/i18n/i18n';
+import WalletNotFound from "../components/wallet-not-found.component.vue";
 
 
 const { ethereum } = window;
-const currentAccount = ref();
-const CONTRACT_ADDRESS = import.meta.env.VITE_CONTRACT_ADDRESS;
-const provider = new ethers.providers.Web3Provider(ethereum);
-const signer = provider.getSigner();
-const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_JSON.abi, signer);
-const transactionInProgress = ref(false);
-const transactionText = ref(translate('bc-subscription-transaction-in-progress'));
-const accounts = await ethereum.request({ method: "eth_accounts" });
-const app = injectStrict("appController");
+const isWallaetConnected = computed(()=> ethereum !== undefined);
 
+
+
+let currentAccount
+let CONTRACT_ADDRESS
+let provider
+let signer
+let contract
+let transactionInProgress
+let transactionText
+let accounts;
+let app = injectStrict("appController");
+
+if (isWallaetConnected.value){
+  currentAccount = ref();
+  CONTRACT_ADDRESS = import.meta.env.VITE_CONTRACT_ADDRESS;
+  provider = new ethers.providers.Web3Provider(ethereum);
+  signer = provider.getSigner();
+  contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_JSON.abi, signer);
+  transactionInProgress = ref(false);
+  transactionText = ref(translate('bc-subscription-transaction-in-progress'));
+  accounts = await ethereum.request({ method: "eth_accounts" });
+
+}
 const mumbaiStringHash = ref('');
-const checkIfWalletIsConnected = () => {
+/*const checkIfWalletIsConnected = () => {
   if (!ethereum) {
     console.log('ERROR IN CONNECTING TO WALLET');
   } else {
     console.log('isConnected')
   }
-}
+
+}*/
 
 const startTransaction = async () => {
   transactionInProgress.value = true;
@@ -65,20 +85,20 @@ const finishTransaction = async (mumbaiString) => {
   localStorage.removeItem('easy_story_email');
   localStorage.removeItem('easy_story_password');
   await app.user.doLogin({ email: _email, password: _password });
-  
+
   if (app.user.getIsAuthenticated()) {
     setTimeout(() => {
       transactionInProgress.value = false;
       window.location.reload();
     }, 3000);
-    
+
   }
 }
 
-onMounted(() => {
+/*onMounted(() => {
   checkIfWalletIsConnected();
   //await getExistingSubscriptions();
-});
+});*/
 
 // const getExistingSubscriptions = async () => {
 //   try {
@@ -114,7 +134,7 @@ const availablePlans = [{
   monthDuration: 12,
   benefits: [{ benefitDetail: translate('bc-subscription-plan-0-full-access') },
   { benefitDetail: translate('bc-subscription-plan-0-share-posts') },
-  { benefitDetail: translate('bc-subscription-plan-0-freeze-account') }, 
+  { benefitDetail: translate('bc-subscription-plan-0-freeze-account') },
   { benefitDetail: translate('bc-subscription-plan-0-no-pay-for-cancel')},
   { benefitDetail: translate('bc-subscription-plan-0-24-7-support') },
   { benefitDetail: translate('bc-subscription-20-account')},

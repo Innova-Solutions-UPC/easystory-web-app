@@ -59,6 +59,9 @@ export class ProfileFacade  {
          user.image = photoUrl;
          return (await this.apiService.updateUserPhoto(user)).toString().startsWith('2');
     }
+    async updateUserInformation(user: UserInterface): Promise<boolean>{
+        return (await this.apiService.updateUserPhoto(user)).toString().startsWith('2');
+    }
 }
 const profileFacade = reactive(new ProfileFacade());
 export default profileFacade;

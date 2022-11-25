@@ -22,7 +22,7 @@
         <Chip label="Lima, Peru" icon="pi pi-map-marker"/>
         <Chip label="+51 998 554 525" icon="pi pi-phone"/>
         <Dropdown v-model="selectedLanguage" :options="languageOptions" optionLabel="label" option-value="value" :editable="true" class="language-dpd"/>
-        <Button @click="changeUserInfo" style="border-radius: 20px;height: 34px;background-color: #dee2e6; color: #0E0B16">Change Information</Button>
+        <Button @click="changeUserInfo" disabled="disabled" style="border-radius: 20px;height: 34px;background-color: #dee2e6; color: #0E0B16">Change Information</Button>
       </div>
 
       <Dialog header="Header" v-model:visible="editInformationDialog" >

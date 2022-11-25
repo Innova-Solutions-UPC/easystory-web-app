@@ -16,9 +16,12 @@ export class ProfileService extends ApiServices{
     }
 
     async updateUserPhoto( user: UserInterface){
-        return (await this.patch('/users/' + user.username, {
+        return (await this.patch('/auth/users/' + user.username, {
             image: user.image,
-            username: user.username
+            username: user.username,
+            email: user.email,
         })).status;
+        //return (await this.patch('/users/' + user.username, user)).status;
+
     }
 }
